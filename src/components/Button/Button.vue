@@ -32,8 +32,4 @@ defineExpose({
 
 </script>
 
-<style scoped>
-.utp-button {
-  background-color: var(--main-bg-color);
-}
-</style>
+<style></style>

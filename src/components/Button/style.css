@@ -1,0 +1,130 @@
+/* 按钮相关变量 */
+.utp-button {
+  --utp-button-font-weight: var(--utp-font-weight-primary);
+  --utp-button-border-color: var(--utp-border-color);
+  --utp-button-bg-color: var(--utp-fill-color-blank);
+  --utp-button-text-color: var(--utp-text-color-regular);
+  --utp-button-disabled-text-color: var(--utp-disabled-text-color);
+  --utp-button-disabled-bg-color: var(--utp-fill-color-blank);
+  --utp-button-disabled-border-color: var(--utp-border-color-light);
+  --utp-button-hover-text-color: var(--utp-color-primary);
+  --utp-button-hover-bg-color: var(--utp-color-primary-light-9);
+  --utp-button-hover-border-color: var(--utp-color-primary-light-7);
+  --utp-button-active-text-color: var(--utp-button-hover-text-color);
+  --utp-button-active-border-color: var(--utp-color-primary);
+  --utp-button-active-bg-color: var(--utp-button-hover-bg-color);
+  --utp-button-outline-color: var(--utp-color-primary-light-5);
+  --utp-button-active-color: var(--utp-text-color-primary);
+}
+/* 按钮的基本样式 */
+.utp-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: 32px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--utp-button-text-color);
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.1s;
+  font-weight: var(--utp-button-font-weight);
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: var(--utp-button-bg-color);
+  border: var(--utp-border);
+  border-color: var(--utp-button-border-color);
+  padding: 8px 15px;
+  font-size: var(--utp-font-size-base);
+  border-radius: var(--utp-border-radius-base);
+  /* 当前元素后紧接着的另一个 .utp-button 元素 */
+  & + & {
+    margin-left: 12px;
+  }
+  /* 鼠标移动上以及聚焦后的样式 */
+  &:hover,
+  &:focus {
+    color: var(--utp-button-hover-text-color);
+    border-color: var(--utp-button-hover-border-color);
+    background-color: var(--utp-button-hover-bg-color);
+    outline: none;
+  }
+  /* 按钮点击时的状态 */
+  &:active {
+    color: var(--utp-button-active-text-color);
+    border-color: var(--utp-button-active-border-color);
+    background-color: var(--utp-button-active-bg-color);
+    outline: none;
+  }
+  /* 边框按钮样式 */
+  &.is-plain {
+    --utp-button-hover-text-color: var(--utp-color-primary);
+    --utp-button-hover-bg-color: var(--utp-fill-color-blank);
+    --utp-button-hover-border-color: var(--utp-color-primary);
+  }
+  /* 椭圆形按钮 */
+  &.is-round {
+    border-radius: var(--utp-border-radius-round);
+  }
+  /* 原型按钮 */
+  &.is-circle {
+    border-radius: 50%;
+    padding: 8px;
+  }
+  /* 禁止样式 */
+  &.is-disabled,
+  &.is-disabled:hover,
+  &.is-disabled:focus,
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus {
+    color: var(--utp-button-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
+    background-color: var(--utp-button-disabled-bg-color);
+    border-color: var(--utp-button-disabled-border-color);
+  }
+}
+@each $val in primary, success, warning, danger, info {
+  .utp-button--$(val) {
+    --utp-button-text-color: var(--utp-color-white);
+    --utp-button-bg-color: var(--utp-color-$(val));
+    --utp-button-border-color: var(--utp-color-$(val));
+    --utp-button-outline-color: var(--utp-color-$(val)-light-5);
+    --utp-button-active-color: var(--utp-color-$(val)-dark-2);
+    --utp-button-hover-text-color: var(--utp-color-white);
+    --utp-button-hover-bg-color: var(--utp-color-$(val)-light-3);
+    --utp-button-hover-border-color: var(--utp-color-$(val)-light-3);
+    --utp-button-active-bg-color: var(--utp-color-$(val)-dark-2);
+    --utp-button-active-border-color: var(--utp-color-$(val)-dark-2);
+    --utp-button-disabled-text-color: var(--utp-color-white);
+    --utp-button-disabled-bg-color: var(--utp-color-$(val)-light-5);
+    --utp-button-disabled-border-color: var(--utp-color-$(val)-light-5);
+  }
+  .utp-button--$(val).is-plain {
+    --utp-button-text-color: var(--utp-color-$(val));
+    --utp-button-bg-color: var(--utp-color-$(val)-light-9);
+    --utp-button-border-color: var(--utp-color-$(val)-light-5);
+    --utp-button-hover-text-color: var(--utp-color-white);
+    --utp-button-hover-bg-color: var(--utp-color-$(val));
+    --utp-button-hover-border-color: var(--utp-color-$(val));
+    --utp-button-active-text-color: var(--utp-color-white);
+  }
+}
+.utp-button--big {
+  --utp-button-size: 40px;
+  height: var(--utp-button-size);
+  padding: 12px 19px;
+  font-size: var(--utp-font-size-base);
+  border-radius: var(--utp-border-radius-base);
+}
+.utp-button--small {
+  --utp-button-size: 24px;
+  height: var(--utp-button-size);
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: calc(var(--utp-border-radius-base) - 1px);
+}

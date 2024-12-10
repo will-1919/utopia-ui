@@ -3,10 +3,16 @@
     <img src="./assets/logo.svg" alt="Vue logo" class="logo" width="125" height="125">
   </header>
   <main>
-    <Button ref="btnRef">btn test</Button>
-    <h1>h1</h1>
-    <h2>h2</h2>
-    <h3>h3</h3>
+    <Button type="primary" ref="btnRef">btn info</Button>
+    <Button plain>btn plain</Button>
+    <Button round disabled>btn round</Button>
+    <Button circle>btn circle</Button>
+    <Button>btn sc</Button>
+    <Button type="primary">btn primary</Button>
+    <Button type="danger" plain>btn danger</Button>
+    <Button type="success" size="big">btn success</Button>
+    <Button type="warning" size="small">btn warning</Button>
+    <Button type="info">btn info</Button>
   </main>
 </template>
 
