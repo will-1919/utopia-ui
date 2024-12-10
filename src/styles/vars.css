@@ -1,5 +1,68 @@
 :root {
+  /* colors */
   --utp-color-white: #ffffff;
   --utp-color-black: #000000;
-  --utp-color-primary: #ffffff;
+
+  --utp-color-primary: #409eff;
+  --utp-color-primary-light-3: #79bbff;
+  --utp-color-primary-light-5: #a0cfff;
+  --utp-color-primary-light-7: #c6e2ff;
+  --utp-color-primary-light-8: #d9ecff;
+  --utp-color-primary-light-9: #ecf5ff;
+  --utp-color-primary-dark-2: #337ecc;
+
+  --utp-color-success: #67c23a;
+  --utp-color-success-light-3: #95d475;
+  --utp-color-success-light-5: #b3e19d;
+  --utp-color-success-light-7: #d1edc4;
+  --utp-color-success-light-8: #e1f3d8;
+  --utp-color-success-light-9: #f0f9eb;
+  --utp-color-success-dark-2: #529b2e;
+
+  --utp-color-warning: #e6a23c;
+  --utp-color-warning-light-3: #eebe77;
+  --utp-color-warning-light-5: #f3d19e;
+  --utp-color-warning-light-7: #f8e3c5;
+  --utp-color-warning-light-8: #faecd8;
+  --utp-color-warning-light-9: #fdf6ec;
+  --utp-color-warning-dark-2: #b88130;
+
+  --utp-color-danger: #f56c6c;
+  --utp-color-danger-light-3: #f89898;
+  --utp-color-danger-light-5: #fab5b5;
+  --utp-color-danger-light-7: #fcd2d2;
+  --utp-color-danger-light-8: #fde1e1;
+  --utp-color-danger-light-9: #fef0f0;
+  --utp-color-danger-dark-2: #c45656;
+
+  --utp-color-info: #909399;
+  --utp-color-info-light-3: #b1b3b8;
+  --utp-color-info-light-5: #c8c9cc;
+  --utp-color-info-light-7: #dedfe0;
+  --utp-color-info-light-8: #e9e9eb;
+  --utp-color-info-light-9: #f4f4f5;
+  --utp-color-info-dark-2: #73767a;
+
+  /* neutral colors */
+  --vk-bg-color: #ffffff;
+  --vk-bg-color-page: #f2f3f5;
+  --vk-bg-color-overlay: #ffffff;
+  --vk-text-color-primary: #303133;
+  --vk-text-color-regular: #606266;
+  --vk-text-color-secondary: #909399;
+  --vk-text-color-placeholder: #a8abb2;
+  --vk-text-color-disabled: #c0c4cc;
+  --vk-border-color: #dcdfe6;
+  --vk-border-color-light: #e4e7ed;
+  --vk-border-color-lighter: #ebeef5;
+  --vk-border-color-extra-light: #f2f6fc;
+  --vk-border-color-dark: #d4d7de;
+  --vk-border-color-darker: #cdd0d6;
+  --vk-fill-color: #f0f2f5;
+  --vk-fill-color-light: #f5f7fa;
+  --vk-fill-color-lighter: #fafafa;
+  --vk-fill-color-extra-light: #fafcff;
+  --vk-fill-color-dark: #ebedf0;
+  --vk-fill-color-darker: #e6e8eb;
+  --vk-fill-color-blank: #ffffff;
 }
