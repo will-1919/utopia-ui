@@ -2,46 +2,22 @@
   /* colors */
   --utp-color-white: #ffffff;
   --utp-color-black: #000000;
+  --colors: (
+    primary: #5f35ae,
+    success: #67c23a,
+    warning: #e6a23c,
+    danger: #f56c6c,
+    info: #909399
+  );
 
-  --utp-color-primary: #409eff;
-  --utp-color-primary-light-3: #79bbff;
-  --utp-color-primary-light-5: #a0cfff;
-  --utp-color-primary-light-7: #c6e2ff;
-  --utp-color-primary-light-8: #d9ecff;
-  --utp-color-primary-light-9: #ecf5ff;
-  --utp-color-primary-dark-2: #337ecc;
-
-  --utp-color-success: #67c23a;
-  --utp-color-success-light-3: #95d475;
-  --utp-color-success-light-5: #b3e19d;
-  --utp-color-success-light-7: #d1edc4;
-  --utp-color-success-light-8: #e1f3d8;
-  --utp-color-success-light-9: #f0f9eb;
-  --utp-color-success-dark-2: #529b2e;
-
-  --utp-color-warning: #e6a23c;
-  --utp-color-warning-light-3: #eebe77;
-  --utp-color-warning-light-5: #f3d19e;
-  --utp-color-warning-light-7: #f8e3c5;
-  --utp-color-warning-light-8: #faecd8;
-  --utp-color-warning-light-9: #fdf6ec;
-  --utp-color-warning-dark-2: #b88130;
-
-  --utp-color-danger: #f56c6c;
-  --utp-color-danger-light-3: #f89898;
-  --utp-color-danger-light-5: #fab5b5;
-  --utp-color-danger-light-7: #fcd2d2;
-  --utp-color-danger-light-8: #fde1e1;
-  --utp-color-danger-light-9: #fef0f0;
-  --utp-color-danger-dark-2: #c45656;
-
-  --utp-color-info: #909399;
-  --utp-color-info-light-3: #b1b3b8;
-  --utp-color-info-light-5: #c8c9cc;
-  --utp-color-info-light-7: #dedfe0;
-  --utp-color-info-light-8: #e9e9eb;
-  --utp-color-info-light-9: #f4f4f5;
-  --utp-color-info-dark-2: #73767a;
+  @each $val, $color in var(--colors) {
+    --utp-color-$(val): $(color);
+    @for $i from 3 to 9 by 2 {
+      --utp-color-$(val)-light-$(i): mix(#fff, $(color), .$(i))
+    }
+    --utp-color-$(val)-light-8: mix(#fff, $(color), 0.8);
+    --utp-color-$(val)-dark-2: mix(#000, $(color), 0.2);
+  }
   /* neutral-colors */
   --utp-bg-color: #ffffff;
   --utp-bg-color-page: #f2f3f5;

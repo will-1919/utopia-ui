@@ -5,7 +5,7 @@
     'is-circle': circle,
     'is-disabled': disabled,
     [`utp-button--${type}`]: type,
-    [`utp-button--${size}`]: size
+    [`utp-button--${size}`]: size,
   }" :disabled="disabled" :autofocus="autofocus" :type="nativeType">
     <span>
       <slot></slot>
@@ -14,22 +14,20 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import { ButtonProps } from './types'
 
-
 defineOptions({
-  name: 'UtpButton'
+  name: 'UtpButton',
 })
 
-defineProps(ButtonProps)  // 声明按钮的一系列属性变量
+defineProps(ButtonProps) // 声明按钮的一系列属性变量
 
 // 对外暴露dom节点
 const _ref = ref<HTMLButtonElement>()
 defineExpose({
-  ref: _ref
+  ref: _ref,
 })
-
 </script>
 
 <style></style>
