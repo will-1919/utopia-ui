@@ -1,5 +1,5 @@
 <template>
-  <button @click="myClick" ref="_ref" class="utp-button" :class="{
+  <button @click="utpClick" ref="_ref" class="utp-button" :class="{
     'is-plain': plain,
     'is-round': round,
     'is-circle': circle,
@@ -18,13 +18,13 @@ import { ref } from 'vue'
 import { ButtonProps } from './types'
 
 defineOptions({
-  name: 'UtpButton',
+  name: 'utp-button',
 })
 
 defineProps(ButtonProps) // 声明按钮的一系列属性变量
 // 优化事件
 const emit = defineEmits(['click'])
-const myClick = () => {
+const utpClick = () => {
   emit('click')
 }
 
