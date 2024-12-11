@@ -3,7 +3,7 @@
     <img src="./assets/logo.svg" alt="Vue logo" class="logo" width="125" height="125">
   </header>
   <main>
-    <Button type="primary" ref="btnRef">btn info</Button>
+    <Button @click="test" ref="btnRef">btn info</Button>
     <Button plain>btn plain</Button>
     <Button round disabled>btn round</Button>
     <Button circle>btn circle</Button>
@@ -25,6 +25,9 @@ const btnRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
   console.log('btnRef', btnRef.value?.ref)
 })
+const test = () => {
+  alert('测试')
+}
 </script>
 
 <style></style>

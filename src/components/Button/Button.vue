@@ -1,5 +1,5 @@
 <template>
-  <button ref="_ref" class="utp-button" :class="{
+  <button @click="myClick" ref="_ref" class="utp-button" :class="{
     'is-plain': plain,
     'is-round': round,
     'is-circle': circle,
@@ -22,6 +22,11 @@ defineOptions({
 })
 
 defineProps(ButtonProps) // 声明按钮的一系列属性变量
+// 优化事件
+const emit = defineEmits(['click'])
+const myClick = () => {
+  emit('click')
+}
 
 // 对外暴露dom节点
 const _ref = ref<HTMLButtonElement>()
