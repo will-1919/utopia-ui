@@ -14,7 +14,7 @@
     <utp-button type="success" size="big">btn success</utp-button>
     <utp-button type="warning" size="small">btn warning</utp-button>
     <utp-button type="info">btn</utp-button> -->
-    <utp-collapse>
+    <utp-collapse v-model="openedValue" accordion>
       <utp-collapse-item :name="1">
         <template v-slot:title>
           <h1>new title</h1>
@@ -29,6 +29,7 @@
         <div>禁用状态</div>
       </utp-collapse-item>
     </utp-collapse>
+    {{ openedValue }}
   </main>
 </template>
 
@@ -45,6 +46,8 @@ import { ref, onMounted } from 'vue';
 // Collapse组件测试------------------------------------------------------------------
 import UtpCollapse from './components/UtpCollapse/UtpCollapse.vue'
 import UtpCollapseItem from './components/UtpCollapse/UtpCollapseItem.vue'
+
+const openedValue = ref([1])
 </script>
 
 <style></style>

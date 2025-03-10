@@ -14,6 +14,15 @@ interface CollapseContext {
 }
 // injectKey
 const collapseContextKey: InjectionKey<CollapseContext> = Symbol('collapseContextKey')
+// 父组件动态绑定
+interface CollapseProps {
+  modelValue: NameType[],
+  accordion?: boolean
+}
+interface CollapseEmits {
+  (e: 'update:modelValue', values: NameType[]) : void
+  (e: 'change', values: NameType[]) : void
+}
 
-export type { NameType, CollapseItemProps, CollapseContext }
+export type { NameType, CollapseItemProps, CollapseContext, CollapseProps, CollapseEmits }
 export { collapseContextKey }

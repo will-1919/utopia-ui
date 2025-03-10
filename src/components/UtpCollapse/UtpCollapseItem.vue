@@ -33,9 +33,7 @@ const handlerClick = () => {
   if (props.disabled) {
     return
   }
-  console.log('点击事件触发')
   collapseContext?.handlerItemClick(props.name);
-  console.log('isActive', isActive.value)
 }
 </script>
 
