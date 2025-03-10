@@ -14,7 +14,7 @@
     <utp-button type="success" size="big">btn success</utp-button>
     <utp-button type="warning" size="small">btn warning</utp-button>
     <utp-button type="info">btn</utp-button> -->
-    <utp-collapse v-model="openedValue" accordion>
+    <utp-collapse v-model="openedValue">
       <utp-collapse-item :name="1">
         <template v-slot:title>
           <h1>new title</h1>
@@ -48,6 +48,11 @@ import UtpCollapse from './components/UtpCollapse/UtpCollapse.vue'
 import UtpCollapseItem from './components/UtpCollapse/UtpCollapseItem.vue'
 
 const openedValue = ref([1])
+onMounted(() => {
+  setTimeout(() => {
+    openedValue.value = [1, 2]
+  }, 2000)
+})
 </script>
 
 <style></style>

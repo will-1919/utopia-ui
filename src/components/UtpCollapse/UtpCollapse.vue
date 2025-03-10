@@ -5,13 +5,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, provide } from 'vue'
+import { ref, provide, watch } from 'vue'
 import type { NameType, CollapseProps, CollapseEmits } from './types'
 import { collapseContextKey } from './types'
 
 // 动态v-module
 const props = defineProps<CollapseProps>()
 const emits = defineEmits<CollapseEmits>()
+watch(() => props.modelValue, () => {
+  activeNames.value = props.modelValue
+})
 // 当前展开状态数组
 const activeNames = ref<NameType[]>(props.modelValue)
 // 状态切换函数
