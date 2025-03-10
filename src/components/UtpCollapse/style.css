@@ -1,0 +1,63 @@
+/* Collapse组件相关变量 */
+.utp-collapse {
+  /* 边框 */
+  --utp-collapse-border-color: var(--utp-border-color-light);
+  /* header */
+  --utp-collapse-header-height: 48px;
+  --utp-collapse-header-bg-color: var(--utp-fill-color-blank);
+  --utp-collapse-header-text-color: var(--utp-text-color-primary);
+  --utp-collapse-header-font-size: 13px;
+  /* 内容 */
+  --utp-collapse-content-bg-color: var(--utp-fill-color-blank);
+  --utp-collapse-content-font-size: 13px;
+  --utp-collapse-content-text-color: var(--utp-text-color-primary);
+  /* 禁用 */
+  --utp-collapse-disabled-text-color: var(--utp-disabled-text-color);
+  --utp-collapse-disabled-border-color: var(--utp-border-color-lighter);
+  /* 整体上下边框 */
+  border-top: 1px solid var(--utp-collapse-border-color);
+  border-bottom: 1px solid var(--utp-collapse-border-color);
+}
+.utp-collapse-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--utp-collapse-header-height);
+  line-height: var(--utp-collapse-header-height);
+  background-color: var(--utp-collapse-header-bg-color);
+  color: var(--utp-collapse-header-text-color);
+  cursor: pointer;
+  font-size: var(--utp-collapse-header-font-size);
+  font-weight: 500;
+  transition: border-bottom-color var(--utp-transition-duration);
+  outline: none;
+  border-bottom: 1px solid var(--utp-collapse-border-color);
+  /* 头部禁用样式 */
+  &.is-disabled {
+    color: var(--utp-collapse-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
+  }
+  /* 激活样式 */
+  &.is-active {
+    border-bottom-color: transparent;
+    .header-angle {
+      transform: rotate(90deg);
+    }
+  }
+}
+/* 内容部分 */
+.utp-collapse-item__content {
+  will-change: height;
+  background-color: var(--utp-collapse-content-bg-color);
+  overflow: hidden;
+  box-sizing: border-box;
+  font-size: var(--utp-collapse-content-font-size);
+  color: var(--utp-collapse-content-text-color);
+  border-bottom: 1px solid var(--utp-collapse-border-color);
+  padding-bottom: 25px;
+}
+/* 动画 */
+.slide-enter-active, .slide-leave-active {
+  transition: height .2s ease-in-out;
+}
