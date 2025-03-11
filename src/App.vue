@@ -14,6 +14,7 @@
     <utp-button type="success" size="big">btn success</utp-button>
     <utp-button type="warning" size="small">btn warning</utp-button>
     <utp-button type="info">btn</utp-button> -->
+    <!-- Collapse测试 -->
     <utp-collapse v-model="openedValue">
       <utp-collapse-item :name="1">
         <template v-slot:title>
@@ -29,7 +30,8 @@
         <div>禁用状态</div>
       </utp-collapse-item>
     </utp-collapse>
-    {{ openedValue }}
+    <!-- 图标测试 -->
+    <font-awesome-icon icon="fa-solid fa-user-secret" />
   </main>
 </template>
 
@@ -48,11 +50,8 @@ import UtpCollapse from './components/UtpCollapse/UtpCollapse.vue'
 import UtpCollapseItem from './components/UtpCollapse/UtpCollapseItem.vue'
 
 const openedValue = ref([1])
-onMounted(() => {
-  setTimeout(() => {
-    openedValue.value = [1, 2]
-  }, 2000)
-})
+// 图标测试
+
 </script>
 
 <style></style>
