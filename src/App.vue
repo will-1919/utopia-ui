@@ -31,7 +31,7 @@
       </utp-collapse-item>
     </utp-collapse>
     <!-- 图标测试 -->
-    <font-awesome-icon icon="fa-solid fa-user-secret" />
+     <utp-icon icon="arrow-up" size="2xl" type="primary" color="red"></utp-icon>
   </main>
 </template>
 
@@ -48,6 +48,7 @@ import { ref, onMounted } from 'vue';
 // Collapse组件测试------------------------------------------------------------------
 import UtpCollapse from './components/UtpCollapse/UtpCollapse.vue'
 import UtpCollapseItem from './components/UtpCollapse/UtpCollapseItem.vue'
+import UtpIcon from './components/UtpIcon/UtpIcon.vue'
 
 const openedValue = ref([1])
 // 图标测试

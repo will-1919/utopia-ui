@@ -1,0 +1,15 @@
+.utp-icon {
+  --utp-icon-color: inherit;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  fill: currentColor;
+  color: var(--utp-icon-color);
+  font-size: inherit;
+}
+@each $val in primary, success, warning, danger, info {
+    .utp-icon--$(val) {
+        --utp-icon-color: var(--utp-color-$(val));
+    }
+}
