@@ -31,7 +31,7 @@
       </utp-collapse-item>
     </utp-collapse>
     <!-- 图标测试 -->
-     <utp-icon icon="arrow-up" size="2xl" type="primary" color="red"></utp-icon>
+    <utp-icon icon="arrow-up" :size="iconSize" type="primary" color="red"></utp-icon>
   </main>
 </template>
 
@@ -52,7 +52,12 @@ import UtpIcon from './components/UtpIcon/UtpIcon.vue'
 
 const openedValue = ref([1])
 // 图标测试
-
+const iconSize = ref<any>('3xl')
+onMounted(() => {
+  setTimeout(() => {
+    iconSize.value = '2xl'
+  }, 2000)
+})
 </script>
 
 <style></style>

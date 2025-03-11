@@ -14,7 +14,9 @@ defineOptions({
   inheritAttrs: false,  // 停止props属性透传到跟组件
 })
 const props = defineProps<UtpIconProps>()
-const filterProps = omit(props, ['type', 'color'])
+const filterProps = computed(() => {
+  return omit(props, ['type', 'color'])
+})
 const customStyles = computed(() => {
   if (props.color) {
     return { color: props.color }
