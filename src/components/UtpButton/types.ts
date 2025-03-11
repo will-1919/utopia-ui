@@ -46,6 +46,14 @@ const ButtonProps = {
     type: Boolean,
     default: false,
   },
+  icon: {
+    type: String,
+    default: '',
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 }
 // 组件对外暴露属性类型
 interface ButtonInstance {

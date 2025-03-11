@@ -87,6 +87,10 @@
     background-color: var(--utp-button-disabled-bg-color);
     border-color: var(--utp-button-disabled-border-color);
   }
+  /* icon样式, *=为包含选择器，[]为属性选择器 */
+  [class*=utp-icon] + span {
+    margin-left: 6px;
+  }
 }
 @each $val in primary, success, warning, danger, info {
   .utp-button--$(val) {

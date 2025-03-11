@@ -4,9 +4,12 @@
     'is-round': round,
     'is-circle': circle,
     'is-disabled': disabled,
+    'is-loading': loading,
     [`utp-button--${type}`]: type,
     [`utp-button--${size}`]: size,
-  }" :disabled="disabled" :autofocus="autofocus" :type="nativeType">
+  }" :disabled="disabled || loading" :autofocus="autofocus" :type="nativeType">
+    <utp-icon icon="spinner" spin v-if="loading"></utp-icon>
+    <utp-icon :icon="icon" spin v-if="icon"></utp-icon>
     <span>
       <slot></slot>
     </span>
@@ -15,6 +18,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import UtpIcon from '../UtpIcon/UtpIcon.vue'
 import { ButtonProps } from './types'
 
 defineOptions({
