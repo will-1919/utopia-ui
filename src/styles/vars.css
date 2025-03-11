@@ -63,4 +63,7 @@
   --utp-disabled-bg-color: var(--utp-fill-color-light);
   --utp-disabled-text-color: var(--utp-text-color-placeholder);
   --utp-disabled-border-color: var(--utp-border-color-light);
+  /* animation */
+  --utp-transition-duration: .3s;
+  --utp-transition-duration-fast: .2s;
 }

@@ -1,5 +1,5 @@
 <template>
-  <i class="utp-icon" :class="{ [`utp-icon--${type}`]: type }" :style="customStyles">
+  <i v-bind="$attrs" class="utp-icon" :class="{ [`utp-icon--${type}`]: type }" :style="customStyles">
     <font-awesome-icon v-bind="filterProps" />
   </i>
 </template>

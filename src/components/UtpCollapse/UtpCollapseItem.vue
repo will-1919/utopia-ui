@@ -6,6 +6,7 @@
         <!-- 当不传插槽则默认title, 传入时覆盖title -->
         {{ title }}
       </slot>
+      <utp-icon icon="angle-right" class="header-angle"></utp-icon>
     </div>
     <Transition v-on="transitionEvents" name="slide">
       <div class="utp-collapse-item__wrapper" v-show="isActive">
@@ -22,6 +23,7 @@
 import type { CollapseItemProps } from './types'
 import { collapseContextKey } from './types'
 import { inject, computed } from 'vue'
+import UtpIcon from '../UtpIcon/UtpIcon.vue'
 
 defineOptions({
   name: 'utp-collapse-item'

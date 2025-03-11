@@ -45,6 +45,9 @@
       transform: rotate(90deg);
     }
   }
+  .header-angle {
+    transition: transform var(--utp-transition-duration);
+  }
 }
 /* 内容部分 */
 .utp-collapse-item__content {
@@ -59,5 +62,5 @@
 }
 /* 动画 */
 .slide-enter-active, .slide-leave-active {
-  transition: height .2s ease-in-out;
+  transition: height var(--utp-transition-duration) ease-in-out;
 }
