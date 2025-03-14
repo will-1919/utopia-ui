@@ -12,26 +12,30 @@ import { collapseContextKey } from './types'
 // 动态v-module
 const props = defineProps<CollapseProps>()
 const emits = defineEmits<CollapseEmits>()
+// 当前展开状态数组
+const activeNames = ref<NameType[]>(props.modelValue)
 watch(() => props.modelValue, () => {
   activeNames.value = props.modelValue
 })
-// 当前展开状态数组
-const activeNames = ref<NameType[]>(props.modelValue)
 // 状态切换函数
 const handlerItemClick = (item: NameType) => {
+  // 创建响应式对象activeNames的原始数组，防止操作后@change函数返回值为响应式对象，从而导致错误
+  let _activeNames = [...activeNames.value]
   // 手风琴模式逻辑
   if (props.accordion) {
-    activeNames.value = [activeNames.value[0] === item ? '' : item]
+    _activeNames = [activeNames.value[0] === item ? '' : item]  // 修改复制数组
+    activeNames.value = _activeNames // 修改响应式对象
   } else {
-    const index = activeNames.value.indexOf(item)
+    const index = _activeNames.indexOf(item)
     if (index > -1) {
-      activeNames.value.splice(index, 1)
+      _activeNames.splice(index, 1)
     } else {
-      activeNames.value.push(item)
+      _activeNames.push(item)
     }
+    activeNames.value = _activeNames // 修改响应式对象
   }
-  emits('update:modelValue', activeNames.value)
-  emits('change', activeNames.value)
+  emits('update:modelValue', _activeNames)
+  emits('change', _activeNames)
 }
 // 传给子组件的属性
 provide(collapseContextKey, {
