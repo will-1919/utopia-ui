@@ -1,5 +1,5 @@
 <template>
-  <div v-on="outerEvents" class="utp-tooltip">
+  <div ref="popperContentNode" v-on="outerEvents" class="utp-tooltip">
     <!-- 触发部分 -->
     <div v-on="events" ref="tirggerNode" class="utp-tooltip__tirgger">
       <slot></slot>
@@ -17,6 +17,7 @@ import { ref, watch, reactive } from 'vue';
 import type { UtpTooltipProps, UtpTooltipEmits } from './types';
 import { createPopper } from '@popperjs/core';
 import type { Instance } from '@popperjs/core';
+import useClickOutside from '@/hooks/useClickOutside';
 
 const props = withDefaults(defineProps<UtpTooltipProps>(), {
   placement: 'bottom',
@@ -29,6 +30,7 @@ const emits = defineEmits<UtpTooltipEmits>()
 const isOpen = ref(false)
 const tirggerNode = ref<HTMLElement | null>(null)
 const popperNode = ref<HTMLElement | null>(null);
+const popperContentNode = ref<HTMLElement | undefined>();
 let popperInstance: null | Instance = null
 // 点击事件的回调函数
 const togglePopper = () => {
@@ -56,9 +58,15 @@ const attachEvents = () => {
 }
 // 执行添加事件
 attachEvents()
+// 执行useClickOutside函数
+useClickOutside(popperContentNode, () => {
+  if(props.trigger === 'click' && isOpen.value) {
+    close()
+  }
+})
 // 监听事件改变
 watch(() => props.trigger, (newValue, oldValue) => {
-  if(newValue != oldValue) {
+  if (newValue != oldValue) {
     // 首先清空事件
     events = {}
     outerEvents = {}
