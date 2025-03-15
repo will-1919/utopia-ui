@@ -1,6 +1,6 @@
 <template>
   <header>
-    <utp-tooltip placement="right" :trigger="trigger">
+    <utp-tooltip ref="tooltipRef" placement="right" :trigger="trigger" manual>
       <img src="./assets/logo.svg" alt="Vue logo" class="logo" width="125" height="125">
       <template #content>
         <h1>测试插槽</h1>
@@ -10,8 +10,8 @@
   <main>
     <!-- BUTTON按钮测试 -->
     <utp-button ref="btnRef">btn info</utp-button>
-    <utp-button plain>btn plain</utp-button>
-    <utp-button round disabled>btn round</utp-button>
+    <utp-button @click="open" plain>btn plain</utp-button>
+    <utp-button @click="close" round>btn round</utp-button>
     <utp-button circle>btn circle</utp-button>
     <utp-button>btn sc</utp-button>
     <utp-button type="primary">btn primary</utp-button>
@@ -69,12 +69,20 @@ const iconSize = ref<any>('3xl')
 //   }, 2000)
 // })
 // tooltip测试
+import type { TooltipInstance } from './components/UtpTooltip/types';
 const trigger = ref<any>('hover')
-onMounted(() => {
-  setTimeout(() => {
-    trigger.value = 'click'
-  }, 2000)
-})
+// onMounted(() => {
+//   setTimeout(() => {
+//     trigger.value = 'click'
+//   }, 2000)
+// })
+const tooltipRef = ref<TooltipInstance | null>(null)
+const open = () => {
+  tooltipRef.value?.show()
+}
+const close = () => {
+  tooltipRef.value?.hide()
+}
 
 
 </script>

@@ -3,10 +3,15 @@ import type { Placement } from "@popperjs/core"
 interface UtpTooltipProps {
   content?: string,
   trigger?: 'hover' | 'click',
-  placement?: Placement
+  placement?: Placement,
+  manual?: boolean
 }
 interface UtpTooltipEmits {
   (e: 'visible-change', value: Boolean): void
 }
+interface TooltipInstance {
+  show: () => void,
+  hide: () => void
+}
 
-export type { UtpTooltipProps, UtpTooltipEmits }
+export type { UtpTooltipProps, UtpTooltipEmits, TooltipInstance }

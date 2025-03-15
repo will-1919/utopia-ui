@@ -13,8 +13,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watch, reactive } from 'vue';
-import type { UtpTooltipProps, UtpTooltipEmits } from './types';
+import { ref, watch, reactive, onUnmounted } from 'vue';
+import type { UtpTooltipProps, UtpTooltipEmits, TooltipInstance } from './types';
 import { createPopper } from '@popperjs/core';
 import type { Instance } from '@popperjs/core';
 import useClickOutside from '@/hooks/useClickOutside';
@@ -57,10 +57,12 @@ const attachEvents = () => {
   }
 }
 // 执行添加事件
-attachEvents()
+if(!props.manual) {
+  attachEvents()
+}
 // 执行useClickOutside函数
 useClickOutside(popperContentNode, () => {
-  if(props.trigger === 'click' && isOpen.value) {
+  if(props.trigger === 'click' && isOpen.value && !props.manual) {
     close()
   }
 })
@@ -74,6 +76,14 @@ watch(() => props.trigger, (newValue, oldValue) => {
     attachEvents()
   }
 })
+watch(() => props.manual, (isManual) => {
+  if(isManual) {
+    events = {}
+    outerEvents = {}
+  } else {
+    attachEvents()
+  }
+})
 // 切换的同时创建 tooltip实例
 watch(isOpen, (newValue) => {
   if (newValue) {
@@ -84,6 +94,13 @@ watch(isOpen, (newValue) => {
     }
   }
 }, { flush: 'post' })  // watch第二个参数代表dom节点生成以后在进行调用监听
+defineExpose<TooltipInstance>({
+  'show': open,
+  'hide': close
+})
+onUnmounted(() => {
+  popperInstance?.destroy() // 销毁
+})
 </script>
 <style scoped>
 .utp-tooltip {
