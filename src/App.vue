@@ -1,6 +1,11 @@
 <template>
   <header>
-    <img src="./assets/logo.svg" alt="Vue logo" class="logo" width="125" height="125">
+    <utp-tooltip placement="right">
+      <img src="./assets/logo.svg" alt="Vue logo" class="logo" width="125" height="125">
+      <template #content>
+        <h1>测试插槽</h1>
+      </template>
+    </utp-tooltip>
   </header>
   <main>
     <!-- BUTTON按钮测试 -->
@@ -34,6 +39,8 @@
     </utp-collapse>
     <!-- 图标测试 -->
     <utp-icon icon="arrow-up" :size="iconSize" type="primary" color="red"></utp-icon>
+    <!-- 悬浮测试 -->
+
   </main>
 </template>
 
@@ -42,6 +49,7 @@ import { ref, onMounted } from 'vue';
 // BUTTON按钮测试------------------------------------------------------------------
 import type { ButtonInstance } from './components/UtpButton/types'
 import UtpButton from './components/UtpButton/UtpButton.vue'
+import UtpTooltip from './components/UtpTooltip/UtpTooltip.vue';
 
 const btnRef = ref<ButtonInstance | null>(null)
 onMounted(() => {
@@ -55,11 +63,13 @@ import UtpIcon from './components/UtpIcon/UtpIcon.vue'
 const openedValue = ref([1])
 // 图标测试
 const iconSize = ref<any>('3xl')
-onMounted(() => {
-  setTimeout(() => {
-    iconSize.value = '2xl'
-  }, 2000)
-})
+// onMounted(() => {
+//   setTimeout(() => {
+//     iconSize.value = '2xl'
+//   }, 2000)
+// })
+
+
 </script>
 
 <style></style>
