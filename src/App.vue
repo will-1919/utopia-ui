@@ -1,6 +1,6 @@
 <template>
   <header>
-    <utp-tooltip placement="right">
+    <utp-tooltip placement="right" :trigger="trigger">
       <img src="./assets/logo.svg" alt="Vue logo" class="logo" width="125" height="125">
       <template #content>
         <h1>测试插槽</h1>
@@ -52,9 +52,9 @@ import UtpButton from './components/UtpButton/UtpButton.vue'
 import UtpTooltip from './components/UtpTooltip/UtpTooltip.vue';
 
 const btnRef = ref<ButtonInstance | null>(null)
-onMounted(() => {
-  console.log('btnRef', btnRef.value?.ref)
-})
+// onMounted(() => {
+//   console.log('btnRef', btnRef.value?.ref)
+// })
 // Collapse组件测试------------------------------------------------------------------
 import UtpCollapse from './components/UtpCollapse/UtpCollapse.vue'
 import UtpCollapseItem from './components/UtpCollapse/UtpCollapseItem.vue'
@@ -68,6 +68,13 @@ const iconSize = ref<any>('3xl')
 //     iconSize.value = '2xl'
 //   }, 2000)
 // })
+// tooltip测试
+const trigger = ref<any>('hover')
+onMounted(() => {
+  setTimeout(() => {
+    trigger.value = 'click'
+  }, 2000)
+})
 
 
 </script>

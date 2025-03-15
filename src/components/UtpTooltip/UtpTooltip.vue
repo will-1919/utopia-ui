@@ -1,7 +1,7 @@
 <template>
-  <div class="utp-tooltip">
+  <div v-on="outerEvents" class="utp-tooltip">
     <!-- 触发部分 -->
-    <div @click="togglePopper" ref="tirggerNode" class="utp-tooltip__tirgger">
+    <div v-on="events" ref="tirggerNode" class="utp-tooltip__tirgger">
       <slot></slot>
     </div>
     <!-- 展示部分 -->
@@ -13,25 +13,59 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, reactive } from 'vue';
 import type { UtpTooltipProps, UtpTooltipEmits } from './types';
 import { createPopper } from '@popperjs/core';
 import type { Instance } from '@popperjs/core';
 
 const props = withDefaults(defineProps<UtpTooltipProps>(), {
-  placement: 'bottom'
+  placement: 'bottom',
+  trigger: 'hover'
 })
+// 当前事件变量
+let events: Record<string, any> = reactive({})
+let outerEvents: Record<string, any> = reactive({})
 const emits = defineEmits<UtpTooltipEmits>()
 const isOpen = ref(false)
 const tirggerNode = ref<HTMLElement | null>(null)
 const popperNode = ref<HTMLElement | null>(null);
 let popperInstance: null | Instance = null
-// 切换是否展示
+// 点击事件的回调函数
 const togglePopper = () => {
   isOpen.value = !isOpen.value
   emits('visible-change', isOpen.value)
 }
-
+// hover事件进入的回调函数
+const open = () => {
+  isOpen.value = true
+  emits('visible-change', isOpen.value)
+}
+// hover事件划出的回调函数
+const close = () => {
+  isOpen.value = false
+  emits('visible-change', isOpen.value)
+}
+// 添加事件韩式
+const attachEvents = () => {
+  if (props.trigger === 'hover') {
+    events['mouseenter'] = open
+    outerEvents['mouseleave'] = close
+  } else if (props.trigger === 'click') {
+    events['click'] = togglePopper
+  }
+}
+// 执行添加事件
+attachEvents()
+// 监听事件改变
+watch(() => props.trigger, (newValue, oldValue) => {
+  if(newValue != oldValue) {
+    // 首先清空事件
+    events = {}
+    outerEvents = {}
+    // 添加事件
+    attachEvents()
+  }
+})
 // 切换的同时创建 tooltip实例
 watch(isOpen, (newValue) => {
   if (newValue) {
