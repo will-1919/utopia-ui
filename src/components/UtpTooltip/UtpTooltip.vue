@@ -20,6 +20,7 @@ import type { UtpTooltipProps, UtpTooltipEmits, TooltipInstance } from './types'
 import { createPopper } from '@popperjs/core';
 import type { Instance } from '@popperjs/core';
 import useClickOutside from '@/hooks/useClickOutside';
+import { debounce } from 'lodash-es';
 
 const props = withDefaults(defineProps<UtpTooltipProps>(), {
   placement: 'bottom',
@@ -42,20 +43,33 @@ const popperOptions = computed(() => {
     ...props.popperOptions
   }
 })
-// 点击事件的回调函数
-const togglePopper = () => {
-  isOpen.value = !isOpen.value
-  emits('visible-change', isOpen.value)
-}
-// hover事件进入的回调函数
-const open = () => {
+// hover事件进入的防抖函数
+const openDebounce = debounce(() => {
   isOpen.value = true
   emits('visible-change', isOpen.value)
-}
-// hover事件划出的回调函数
-const close = () => {
+  console.log('打开执行了')
+}, props.openDelay)
+// hover事件划出的防抖函数
+const closeDebounce = debounce(() => {
   isOpen.value = false
   emits('visible-change', isOpen.value)
+  console.log('关闭执行了')
+}, props.closeDelay)
+const open = () => {
+  closeDebounce.cancel()
+  openDebounce()
+}
+const close = () => {
+  openDebounce.cancel()
+  closeDebounce()
+}
+// 点击事件的回调函数
+const togglePopper = () => {
+  if (isOpen.value) {
+    close()
+  } else {
+    open()
+  }
 }
 // 添加事件韩式
 const attachEvents = () => {

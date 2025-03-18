@@ -6,7 +6,9 @@ interface UtpTooltipProps {
   placement?: Placement,
   manual?: boolean,
   popperOptions?: Partial<Options>,
-  transition?: string
+  transition?: string,
+  openDelay?: number,
+  closeDelay?: number
 }
 interface UtpTooltipEmits {
   (e: 'visible-change', value: Boolean): void

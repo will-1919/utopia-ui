@@ -1,6 +1,6 @@
 <template>
   <header>
-    <utp-tooltip ref="tooltipRef" placement="right" :trigger="trigger" manual :popper-options="options">
+    <utp-tooltip ref="tooltipRef" placement="right" :trigger="trigger" :popper-options="options" :open-delay="2000" :close-delay="2000">
       <img src="./assets/logo.svg" alt="Vue logo" class="logo" width="125" height="125">
       <template #content>
         <h1>测试插槽</h1>
