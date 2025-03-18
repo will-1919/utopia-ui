@@ -1,6 +1,6 @@
 <template>
   <header>
-    <utp-tooltip ref="tooltipRef" placement="right" :trigger="trigger" manual>
+    <utp-tooltip ref="tooltipRef" placement="right" :trigger="trigger" manual :popper-options="options">
       <img src="./assets/logo.svg" alt="Vue logo" class="logo" width="125" height="125">
       <template #content>
         <h1>测试插槽</h1>
@@ -70,6 +70,7 @@ const iconSize = ref<any>('3xl')
 // })
 // tooltip测试
 import type { TooltipInstance } from './components/UtpTooltip/types';
+import type { Options } from '@popperjs/core';
 const trigger = ref<any>('hover')
 // onMounted(() => {
 //   setTimeout(() => {
@@ -83,6 +84,7 @@ const open = () => {
 const close = () => {
   tooltipRef.value?.hide()
 }
+const options = ref<Partial<Options>>({placement: 'right-end', strategy: 'fixed'})
 
 
 </script>

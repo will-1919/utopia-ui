@@ -13,7 +13,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watch, reactive, onUnmounted } from 'vue';
+import { ref, watch, reactive, onUnmounted, computed } from 'vue';
 import type { UtpTooltipProps, UtpTooltipEmits, TooltipInstance } from './types';
 import { createPopper } from '@popperjs/core';
 import type { Instance } from '@popperjs/core';
@@ -32,6 +32,13 @@ const tirggerNode = ref<HTMLElement | null>(null)
 const popperNode = ref<HTMLElement | null>(null);
 const popperContentNode = ref<HTMLElement | undefined>();
 let popperInstance: null | Instance = null
+// poppor整合配置
+const popperOptions = computed(() => {
+  return {
+    placement: props.placement,
+    ...props.popperOptions
+  }
+})
 // 点击事件的回调函数
 const togglePopper = () => {
   isOpen.value = !isOpen.value
@@ -88,7 +95,7 @@ watch(() => props.manual, (isManual) => {
 watch(isOpen, (newValue) => {
   if (newValue) {
     if (tirggerNode.value && popperNode.value) {
-      popperInstance = createPopper(tirggerNode.value, popperNode.value, { placement: props.placement })
+      popperInstance = createPopper(tirggerNode.value, popperNode.value, popperOptions.value)
     } else {
       popperInstance?.destroy() // 销毁
     }
