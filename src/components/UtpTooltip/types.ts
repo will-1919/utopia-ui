@@ -5,7 +5,8 @@ interface UtpTooltipProps {
   trigger?: 'hover' | 'click',
   placement?: Placement,
   manual?: boolean,
-  popperOptions?: Partial<Options>
+  popperOptions?: Partial<Options>,
+  transition?: string
 }
 interface UtpTooltipEmits {
   (e: 'visible-change', value: Boolean): void

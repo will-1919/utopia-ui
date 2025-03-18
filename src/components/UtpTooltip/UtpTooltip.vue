@@ -5,11 +5,13 @@
       <slot></slot>
     </div>
     <!-- 展示部分 -->
-    <div ref="popperNode" v-if="isOpen" class="utp-tooltip__popper">
-      <slot name="content">
-        {{ content }}
-      </slot>
-    </div>
+    <Transition :name="transition">
+      <div ref="popperNode" v-if="isOpen" class="utp-tooltip__popper">
+        <slot name="content">
+          {{ content }}
+        </slot>
+      </div>
+    </Transition>
   </div>
 </template>
 <script setup lang="ts">
@@ -21,7 +23,8 @@ import useClickOutside from '@/hooks/useClickOutside';
 
 const props = withDefaults(defineProps<UtpTooltipProps>(), {
   placement: 'bottom',
-  trigger: 'hover'
+  trigger: 'hover',
+  transition: 'fade'
 })
 // 当前事件变量
 let events: Record<string, any> = reactive({})
@@ -64,12 +67,12 @@ const attachEvents = () => {
   }
 }
 // 执行添加事件
-if(!props.manual) {
+if (!props.manual) {
   attachEvents()
 }
 // 执行useClickOutside函数
 useClickOutside(popperContentNode, () => {
-  if(props.trigger === 'click' && isOpen.value && !props.manual) {
+  if (props.trigger === 'click' && isOpen.value && !props.manual) {
     close()
   }
 })
@@ -84,7 +87,7 @@ watch(() => props.trigger, (newValue, oldValue) => {
   }
 })
 watch(() => props.manual, (isManual) => {
-  if(isManual) {
+  if (isManual) {
     events = {}
     outerEvents = {}
   } else {
