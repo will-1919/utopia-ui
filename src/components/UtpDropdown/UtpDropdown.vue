@@ -28,7 +28,7 @@ import { ref } from 'vue'
 
 const props = withDefaults(defineProps<UtpDropdownProps>(), {hideAfterClick: true})
 const emits = defineEmits<UtpDropdownEmits>()
-const tooltipRef = ref<TooltipInstance>()
+const tooltipRef = ref<TooltipInstance | null>(null)
 const visibleChange = (e: boolean) => {
   emits('visible-change', e)
 }
