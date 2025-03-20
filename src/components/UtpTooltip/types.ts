@@ -11,7 +11,7 @@ interface UtpTooltipProps {
   closeDelay?: number
 }
 interface UtpTooltipEmits {
-  (e: 'visible-change', value: Boolean): void
+  (e: 'visible-change', value: boolean): void
 }
 interface TooltipInstance {
   show: () => void,

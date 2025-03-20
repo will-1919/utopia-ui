@@ -6,6 +6,12 @@
         <h1>测试插槽</h1>
       </template>
     </utp-tooltip>
+    <utp-dropdown :menu-options="menuOptions" placement="bottom" :trigger="trigger">
+      <img src="./assets/logo.svg" alt="Vue logo" class="logo" width="125" height="125">
+      <template #content>
+        <h1>测试插槽</h1>
+      </template>
+    </utp-dropdown>
   </header>
   <main>
     <!-- BUTTON按钮测试 -->
@@ -84,8 +90,17 @@ const open = () => {
 const close = () => {
   tooltipRef.value?.hide()
 }
-const options = ref<Partial<Options>>({placement: 'right-end', strategy: 'fixed'})
+const options = ref<Partial<Options>>({ placement: 'right-end', strategy: 'fixed' })
+// 测试dropdown组件
+import UtpDropdown from './components/UtpDropdown/UtpDropdown.vue';
+import type { MenuOptions } from './components/UtpDropdown/types';
 
+const menuOptions = ref<MenuOptions[]>([
+  {key: 1, label: 'item1'},
+  {key: 2, label: 'item2', disabled: true},
+  {key: 3, label: 'item3', divided: true},
+  {key: 4, label: 'item4'}
+])
 
 </script>
 
