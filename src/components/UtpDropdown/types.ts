@@ -2,7 +2,8 @@ import type { VNode } from 'vue'
 import type { UtpTooltipProps } from '../UtpTooltip/types'
 
 interface UtpDropdownProps extends UtpTooltipProps {
-  menuOptions: MenuOptions[]
+  menuOptions: MenuOptions[],
+  hideAfterClick?: boolean
 }
 interface MenuOptions {
   label: string | VNode

@@ -6,7 +6,7 @@
         <h1>测试插槽</h1>
       </template>
     </utp-tooltip>
-    <utp-dropdown :menu-options="menuOptions" placement="bottom" :trigger="trigger">
+    <utp-dropdown :menu-options="menuOptions" placement="bottom" :trigger="trigger" hideAfterClick>
       <img src="./assets/logo.svg" alt="Vue logo" class="logo" width="125" height="125">
       <template #content>
         <h1>测试插槽</h1>
@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, h } from 'vue';
 // BUTTON按钮测试------------------------------------------------------------------
 import type { ButtonInstance } from './components/UtpButton/types'
 import UtpButton from './components/UtpButton/UtpButton.vue'
@@ -77,7 +77,7 @@ const iconSize = ref<any>('3xl')
 // tooltip测试
 import type { TooltipInstance } from './components/UtpTooltip/types';
 import type { Options } from '@popperjs/core';
-const trigger = ref<any>('hover')
+const trigger = ref<any>('click')
 // onMounted(() => {
 //   setTimeout(() => {
 //     trigger.value = 'click'
@@ -96,7 +96,7 @@ import UtpDropdown from './components/UtpDropdown/UtpDropdown.vue';
 import type { MenuOptions } from './components/UtpDropdown/types';
 
 const menuOptions = ref<MenuOptions[]>([
-  {key: 1, label: 'item1'},
+  {key: 1, label: h('h1', '这个加粗了')},
   {key: 2, label: 'item2', disabled: true},
   {key: 3, label: 'item3', divided: true},
   {key: 4, label: 'item4'}

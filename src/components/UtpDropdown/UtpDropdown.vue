@@ -10,8 +10,9 @@
           <template v-for="item in menuOptions" :key="item.key">
             <li v-if="item.divided" role="separator" class="divided-placeholder"></li>
             <li @click="itemClick(item)" class="utp-dropdown__item"
-              :class="{ 'is-disabled': item.disabled, 'is-divided': item.divided }">{{
-                item.label }}</li>
+              :class="{ 'is-disabled': item.disabled, 'is-divided': item.divided }">
+              <render-vnode :v-node="item.label"></render-vnode>
+            </li>
           </template>
         </ul>
       </template>
@@ -20,11 +21,12 @@
 </template>
 <script setup lang="ts">
 import UtpTooltip from '../UtpTooltip/UtpTooltip.vue';
+import RenderVnode from '../Common/RenderVnode';
 import type { UtpDropdownProps, UtpDropdownEmits, UtpDropdownInstance, MenuOptions } from './types';
 import type { TooltipInstance } from '../UtpTooltip/types';
 import { ref } from 'vue'
 
-const props = defineProps<UtpDropdownProps>()
+const props = withDefaults(defineProps<UtpDropdownProps>(), {hideAfterClick: true})
 const emits = defineEmits<UtpDropdownEmits>()
 const tooltipRef = ref<TooltipInstance>()
 const visibleChange = (e: boolean) => {
@@ -35,6 +37,9 @@ const itemClick = (e: MenuOptions) => {
     return
   }
   emits('select', e)
+  if(props.hideAfterClick) {
+    tooltipRef.value?.hide()
+  }
 }
 defineExpose<UtpDropdownInstance>({
   'show': open,
