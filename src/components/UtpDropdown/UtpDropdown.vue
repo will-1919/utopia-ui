@@ -26,7 +26,7 @@ import type { UtpDropdownProps, UtpDropdownEmits, UtpDropdownInstance, MenuOptio
 import type { TooltipInstance } from '../UtpTooltip/types';
 import { ref } from 'vue'
 
-const props = withDefaults(defineProps<UtpDropdownProps>(), {hideAfterClick: true})
+const props = withDefaults(defineProps<UtpDropdownProps>(), { hideAfterClick: true })
 const emits = defineEmits<UtpDropdownEmits>()
 const tooltipRef = ref<TooltipInstance | null>(null)
 const visibleChange = (e: boolean) => {
@@ -37,12 +37,12 @@ const itemClick = (e: MenuOptions) => {
     return
   }
   emits('select', e)
-  if(props.hideAfterClick) {
+  if (props.hideAfterClick) {
     tooltipRef.value?.hide()
   }
 }
 defineExpose<UtpDropdownInstance>({
-  'show': open,
-  'hide': close
+  show: () => tooltipRef.value?.show(),
+  hide: () => tooltipRef.value?.hide()
 })
 </script>
