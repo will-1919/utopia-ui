@@ -46,7 +46,7 @@
     <!-- 图标测试 -->
     <utp-icon icon="arrow-up" :size="iconSize" type="primary" color="red"></utp-icon>
     <!-- message测试 -->
-    <utp-message :message="'这是一条信息'" :duration="0" :show-close="true"></utp-message>
+    <!-- <utp-message :message="'这是一条信息'" :duration="0" :show-close="true"></utp-message> -->
   </main>
 </template>
 
@@ -103,7 +103,13 @@ const menuOptions = ref<MenuOptions[]>([
 ])
 
 // 测试message组件
-import UtpMessage from './components/UtpMessage/UtpMessage.vue';
+import { createMessage } from './components/UtpMessage/method';
+
+onMounted(() => {
+  createMessage({message: '测试函数形式1', duration: 0})
+  createMessage({message: '测试函数形式2', duration: 0})
+  createMessage({message: '测试函数形式3', duration: 0})
+})
 </script>
 
 <style></style>

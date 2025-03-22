@@ -1,5 +1,5 @@
 <template>
-  <div v-show="visible" class="utp-message" :class="{[`utp-message--${type}`]: type}" role="alert">
+  <div v-show="visible" class="utp-message" :class="{ [`utp-message--${type}`]: type }" role="alert">
     <!-- 内容 -->
     <div class="utp-message__content">
       <slot>
@@ -16,13 +16,16 @@
 import type { UtpMessageProps } from './types';
 import RenderVnode from '../Common/RenderVnode';
 import UtpIcon from '../UtpIcon/UtpIcon.vue';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
+import { getLastInstance } from './method'
 
-const props = withDefaults(defineProps<UtpMessageProps>(), {type: 'primary', duration: 3000})
+const props = withDefaults(defineProps<UtpMessageProps>(), { type: 'primary', duration: 3000 })
 const visible = ref<boolean>(false)
+const preInstance = getLastInstance()
+console.log('能否拿到最后一个', preInstance)
 // 自动关闭计时器
 const startTimer = () => {
-  if(props.duration === 0) {
+  if (props.duration === 0) {
     return
   }
   setTimeout(() => {
@@ -36,6 +39,11 @@ onMounted(() => {
   visible.value = true
   startTimer()
 })
+watch(visible, (newValue) => {
+  if (newValue === false) {
+    props.onDestory()
+  }
+})
 </script>
 <style>
 .utp-message {
@@ -46,5 +54,4 @@ onMounted(() => {
   transform: translateX(-50%);
   border: 1px solid blue;
 }
-
 </style>
