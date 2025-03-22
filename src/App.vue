@@ -45,8 +45,8 @@
     </utp-collapse>
     <!-- 图标测试 -->
     <utp-icon icon="arrow-up" :size="iconSize" type="primary" color="red"></utp-icon>
-    <!-- 悬浮测试 -->
-
+    <!-- message测试 -->
+    <utp-message :message="'这是一条信息'" :duration="0" :show-close="true"></utp-message>
   </main>
 </template>
 
@@ -102,6 +102,8 @@ const menuOptions = ref<MenuOptions[]>([
   {key: 4, label: 'item4'}
 ])
 
+// 测试message组件
+import UtpMessage from './components/UtpMessage/UtpMessage.vue';
 </script>
 
 <style></style>

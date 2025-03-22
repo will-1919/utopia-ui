@@ -8,6 +8,10 @@
   display: inline-block;
 }
 .utp-tooltip {
+  width: max-content;
+  .utp-tooltip__tirgger {
+    width: max-content;
+  }
   /* 渐变动画 */
   .fade-enter-active,
   .fade-leave-active {
