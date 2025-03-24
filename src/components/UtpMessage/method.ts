@@ -1,11 +1,10 @@
-import { render, h } from 'vue'
+import { render, h, shallowReactive } from 'vue'
 import type { CreateUtpMessageProps, MessageContext } from './types'
 import UtpMessage from './UtpMessage.vue'
-import { findIndex } from 'lodash-es'
 
 let seed: number = 0
-const instances: MessageContext[] = []
-// 生成消息组件
+const instances: MessageContext[] = shallowReactive([]) // shallowReactive不会监听深层次的，只会监听数组
+// 生成消息组件--------------------------------------------------------
 const createMessage = (props: CreateUtpMessageProps) => {
   seed++
   const id = `utp_message_${seed}`
@@ -24,6 +23,7 @@ const createMessage = (props: CreateUtpMessageProps) => {
   }
   const newProps = {
     ...props,
+    id: id,
     onDestory: destory,
   }
   const vnode = h(UtpMessage, newProps)
@@ -33,15 +33,27 @@ const createMessage = (props: CreateUtpMessageProps) => {
   const instance: MessageContext = {
     id: id,
     props: newProps,
+    vm: vnode.component!,
     vnode: vnode
   }
   instances.push(instance)
   return instance
 }
 
-// 获取已经生成的最后一个消息组件的实例
+// 获取已经生成的最后一个消息组件的实例--------------------------------------------
 const getLastInstance = () => {
   return instances.length > 0 ? instances[instances.length - 1] : undefined
 }
+// 获取上一个组件的底部位置-------------------------------------------------------
+const getLastBottomOffset = (id: string) => {
+  const index = instances.findIndex((item) => {
+    return item.id === id
+  })
+  if(index <= 0) {
+    return 0
+  } else {
+    return instances[index - 1].vm.exposed!.bottomOffset.value
+  }
+}
 
-export { createMessage, getLastInstance }
+export { createMessage, getLastInstance, getLastBottomOffset }

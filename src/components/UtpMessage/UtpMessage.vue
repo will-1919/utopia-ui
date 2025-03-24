@@ -1,8 +1,10 @@
 <template>
-  <div v-show="visible" class="utp-message" :class="{ [`utp-message--${type}`]: type }" role="alert">
+  <div ref="messageRef" :style="cssStyle" v-show="visible" class="utp-message"
+    :class="{ [`utp-message--${type}`]: type }" role="alert">
     <!-- 内容 -->
     <div class="utp-message__content">
       <slot>
+        {{ offset }} - {{ topOffset }} - {{ height }} - {{ bottomOffset }}
         <render-vnode v-if="message" :v-node="message"></render-vnode>
       </slot>
     </div>
@@ -16,10 +18,32 @@
 import type { UtpMessageProps } from './types';
 import RenderVnode from '../Common/RenderVnode';
 import UtpIcon from '../UtpIcon/UtpIcon.vue';
-import { onMounted, ref, watch } from 'vue';
-import { getLastInstance } from './method'
+import { computed, onMounted, ref, watch, nextTick } from 'vue';
+import { getLastInstance, getLastBottomOffset } from './method'
+import { bottom } from '@popperjs/core';
 
-const props = withDefaults(defineProps<UtpMessageProps>(), { type: 'primary', duration: 3000 })
+const props = withDefaults(defineProps<UtpMessageProps>(), { type: 'primary', duration: 3000, offset: 20 })
+// 组件定位相关逻辑------------------------------------------------------------------------------
+const messageRef = ref<HTMLDivElement>()
+// 当前消息组件自身高度
+const height = ref<number>(0)
+// 上一个组件最下方坐标，第一个为0
+const lastOffset = computed(() => {
+  return getLastBottomOffset(props.id)
+})
+// 当前消息组件定位top
+const topOffset = computed(() => {
+  return lastOffset.value + props.offset
+})
+// 为下一个元素预留当前最底部的bottom值
+const bottomOffset = computed(() => {
+  return topOffset.value + height.value
+})
+// 当前消息组件定位top动态样式
+const cssStyle = computed(() => {
+  return { top: topOffset.value + 'px' }
+})
+// 组件打开关闭相关逻辑---------------------------------------------------------------------------
 const visible = ref<boolean>(false)
 const preInstance = getLastInstance()
 console.log('能否拿到最后一个', preInstance)
@@ -38,11 +62,17 @@ const closeHander = () => {
 onMounted(() => {
   visible.value = true
   startTimer()
+  nextTick(() => {
+    height.value = messageRef.value!.getBoundingClientRect().height
+  })
 })
 watch(visible, (newValue) => {
   if (newValue === false) {
     props.onDestory()
   }
+})
+defineExpose({
+  bottomOffset,
 })
 </script>
 <style>
