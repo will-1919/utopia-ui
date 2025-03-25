@@ -8,14 +8,16 @@ interface UtpMessageProps {
   type?: 'success' | 'info' | 'warning' | 'error' | 'primary',
   offset?: number,
   onDestory: () => void,
-  id: string
+  id: string,
+  zIndex: number
 }
-type CreateUtpMessageProps =  Omit<UtpMessageProps, 'onDestory' | 'id'>
+type CreateUtpMessageProps =  Omit<UtpMessageProps, 'onDestory' | 'id' | 'zIndex'>
 interface MessageContext {
   id: string,
   vnode: VNode,
   vm: ComponentInternalInstance,
   props: UtpMessageProps
+  destory: () => void
 }
 
 export type {UtpMessageProps, CreateUtpMessageProps, MessageContext}

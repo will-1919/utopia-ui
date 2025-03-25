@@ -41,12 +41,13 @@ const bottomOffset = computed(() => {
 })
 // 当前消息组件定位top动态样式
 const cssStyle = computed(() => {
-  return { top: topOffset.value + 'px' }
+  return {
+    top: topOffset.value + 'px',
+    zIndex: props.zIndex
+   }
 })
 // 组件打开关闭相关逻辑---------------------------------------------------------------------------
 const visible = ref<boolean>(false)
-const preInstance = getLastInstance()
-console.log('能否拿到最后一个', preInstance)
 // 自动关闭计时器
 const startTimer = () => {
   if (props.duration === 0) {
@@ -73,6 +74,7 @@ watch(visible, (newValue) => {
 })
 defineExpose({
   bottomOffset,
+  visible
 })
 </script>
 <style>
