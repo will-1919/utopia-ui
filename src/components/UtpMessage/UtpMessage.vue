@@ -1,5 +1,5 @@
 <template>
-  <div ref="messageRef" :style="cssStyle" v-show="visible" class="utp-message"
+  <div @mouseenter="clearTimer" @mouseleave="startTimer" ref="messageRef" :style="cssStyle" v-show="visible" class="utp-message"
     :class="{ [`utp-message--${type}`]: type }" role="alert">
     <!-- 内容 -->
     <div class="utp-message__content">
@@ -48,14 +48,19 @@ const cssStyle = computed(() => {
 })
 // 组件打开关闭相关逻辑---------------------------------------------------------------------------
 const visible = ref<boolean>(false)
+let timer: any
 // 自动关闭计时器
 const startTimer = () => {
   if (props.duration === 0) {
     return
   }
-  setTimeout(() => {
+  timer = setTimeout(() => {
     visible.value = false
   }, props.duration)
+}
+// 暂停计时器
+const clearTimer = () => {
+  clearTimeout(timer)
 }
 const closeHander = () => {
   visible.value = false

@@ -110,7 +110,7 @@ onMounted(() => {
   setTimeout(() => {
     ins.destory()
   }, 2000)
-  createMessage({message: '测试函数形式2', duration: 0})
+  createMessage({message: '测试函数形式2', duration: 2000})
   createMessage({message: '测试函数形式3', duration: 0})
 })
 </script>
