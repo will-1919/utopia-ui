@@ -19,8 +19,8 @@ import type { UtpMessageProps } from './types';
 import RenderVnode from '../Common/RenderVnode';
 import UtpIcon from '../UtpIcon/UtpIcon.vue';
 import { computed, onMounted, ref, watch, nextTick } from 'vue';
-import { getLastInstance, getLastBottomOffset } from './method'
-import { bottom } from '@popperjs/core';
+import { getLastBottomOffset } from './method'
+import useEventListener from '@/hooks/useEventListener';
 
 const props = withDefaults(defineProps<UtpMessageProps>(), { type: 'primary', duration: 3000, offset: 20 })
 // 组件定位相关逻辑------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ const cssStyle = computed(() => {
   return {
     top: topOffset.value + 'px',
     zIndex: props.zIndex
-   }
+  }
 })
 // 组件打开关闭相关逻辑---------------------------------------------------------------------------
 const visible = ref<boolean>(false)
@@ -67,6 +67,13 @@ onMounted(() => {
     height.value = messageRef.value!.getBoundingClientRect().height
   })
 })
+const keydown = (e: Event) => {
+  const event = e as KeyboardEvent
+  if(event.code === 'Escape') {
+    visible.value = false
+  }
+}
+useEventListener(document, 'keydown', keydown)
 watch(visible, (newValue) => {
   if (newValue === false) {
     props.onDestory()
