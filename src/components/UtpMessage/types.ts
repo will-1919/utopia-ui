@@ -9,7 +9,8 @@ interface UtpMessageProps {
   offset?: number,
   onDestory: () => void,
   id: string,
-  zIndex: number
+  zIndex: number,
+  transitionName?: string
 }
 type CreateUtpMessageProps =  Omit<UtpMessageProps, 'onDestory' | 'id' | 'zIndex'>
 interface MessageContext {

@@ -106,10 +106,7 @@ const menuOptions = ref<MenuOptions[]>([
 import { createMessage } from './components/UtpMessage/method';
 
 onMounted(() => {
-  const ins = createMessage({message: '测试函数形式1', duration: 0})
-  setTimeout(() => {
-    ins.destory()
-  }, 2000)
+  const ins = createMessage({message: '测试函数形式1', duration: 0, showClose: true})
   createMessage({message: '测试函数形式2', duration: 2000})
   createMessage({message: '测试函数形式3', duration: 0})
 })
