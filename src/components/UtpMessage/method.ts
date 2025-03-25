@@ -68,5 +68,11 @@ const getLastBottomOffset = (id: string) => {
     return instances[index - 1].vm.exposed!.bottomOffset.value
   }
 }
+// 关闭所有实例
+const closeAll = () => {
+  instances.forEach((item) => {
+    item.destory()
+  })
+}
 
-export { createMessage, getLastInstance, getLastBottomOffset }
+export { createMessage, getLastInstance, getLastBottomOffset, closeAll }

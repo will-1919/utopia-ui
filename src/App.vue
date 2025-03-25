@@ -26,7 +26,7 @@
     <utp-button type="warning" size="small">btn warning</utp-button>
     <utp-button type="info">btn</utp-button>
     <utp-button type="primary" size="big" loading>btn warning</utp-button>
-    <utp-button type="primary" size="big" icon="arrow-up">btn</utp-button>
+    <utp-button @click="closeAll" type="primary" size="big" icon="arrow-up">closeAll</utp-button>
     <!-- Collapse测试 -->
     <utp-collapse v-model="openedValue">
       <utp-collapse-item :name="1">
@@ -85,7 +85,8 @@ const trigger = ref<any>('click')
 // })
 const tooltipRef = ref<TooltipInstance | null>(null)
 const open = () => {
-  tooltipRef.value?.show()
+  // tooltipRef.value?.show()
+  createMessage({message: '测试函数形式2'})
 }
 const close = () => {
   tooltipRef.value?.hide()
@@ -103,10 +104,12 @@ const menuOptions = ref<MenuOptions[]>([
 ])
 
 // 测试message组件
-import { createMessage } from './components/UtpMessage/method';
+import { createMessage, closeAll } from './components/UtpMessage/method';
 
 onMounted(() => {
-  const ins = createMessage({message: '测试函数形式1', duration: 0, showClose: true})
+  createMessage({message: '测试函数形式1', duration: 0, showClose: true})
+  createMessage({message: '测试函数形式1', duration: 0, showClose: true})
+  createMessage({message: '测试函数形式1', duration: 0, showClose: true})
   createMessage({message: '测试函数形式2', duration: 2000})
   createMessage({message: '测试函数形式3', duration: 0})
 })
