@@ -19,13 +19,24 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import UtpIcon from '../UtpIcon/UtpIcon.vue'
-import { ButtonProps } from './types'
+import type { ButtonProps } from './types'
 
 defineOptions({
   name: 'utp-button',
 })
 
-defineProps(ButtonProps) // 声明按钮的一系列属性变量
+withDefaults(defineProps<ButtonProps>(), {
+  type: 'primary',
+  nativeType: 'button',
+  size: 'middle',
+  plain: false,
+  round: false,
+  circle: false,
+  disabled: false,
+  autofocus: false,
+  icon: '',
+  loading: false
+}) // 声明按钮的一系列属性变量
 // 优化事件
 const emit = defineEmits(['click'])
 const utpClick = () => {

@@ -12,6 +12,18 @@ type NativeType = 'button' | 'submit' | 'reset'
 //   circle?: Boolean // 圆形按钮
 //   disabled?: Boolean // 是否禁用
 // }
+interface ButtonProps {
+  type?: ButtonType,
+  nativeType?: NativeType,
+  size?: ButtonSize,
+  plain?: boolean,
+  round?: boolean,
+  circle?: boolean,
+  disabled?: boolean,
+  autofocus?: boolean,
+  icon?: string,
+  loading?: boolean
+}
 // 组件承接的参数
 const ButtonProps = {
   type: {
@@ -60,5 +72,5 @@ interface ButtonInstance {
   ref: HTMLButtonElement
 }
 
-export type { ButtonInstance }
-export { ButtonProps }
+export type { ButtonInstance, ButtonProps }
+// export { ButtonProps }

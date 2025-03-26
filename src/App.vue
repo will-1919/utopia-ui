@@ -15,7 +15,7 @@
   </header>
   <main>
     <!-- BUTTON按钮测试 -->
-    <utp-button ref="btnRef">btn info</utp-button>
+    <utp-button>btn info</utp-button>
     <utp-button @click="open" plain>btn plain</utp-button>
     <utp-button @click="close" round>btn round</utp-button>
     <utp-button circle>btn circle</utp-button>
