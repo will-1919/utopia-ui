@@ -1,0 +1,13 @@
+:root {
+    /* 修改主题色 */
+    --vp-c-brand-1: var(--utp-color-primary-light-3);
+    --vp-c-brand-2: var(--utp-color-primary);
+    --vp-c-brand-3: var(--utp-color-primary-dark-2);
+}
+/* 解决自定义reset.css带来的深色模式下文字不可见 */
+body {
+    color: var(--vp-c-text-1);
+  }
+  h1, h2, h3, h4, h5, h6, p {
+    color: var(--vp-c-text-1);
+  }
