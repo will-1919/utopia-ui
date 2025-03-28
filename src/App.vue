@@ -49,18 +49,10 @@
     <!-- message测试 -->
     <!-- <utp-message :message="'这是一条信息'" :duration="0" :show-close="true"></utp-message> -->
     <!-- input测试 -->
-    <utp-input type="text">
-      <template v-slot:append>
-        <utp-icon icon="arrow-up" />
-      </template>
-      <template v-slot:prefix>
-        <utp-icon icon="arrow-up" />
-      </template>
-      <template v-slot:suffix>
-        <utp-icon icon="arrow-up" />
-      </template>
+     <br>
+    <utp-input v-model="inputValue" type="text">
       <template v-slot:prepend>
-        <utp-icon icon="arrow-up" />
+        <utp-icon icon="user"></utp-icon>
       </template>
     </utp-input>
   </main>
@@ -131,7 +123,9 @@ onMounted(() => {
 })
 // 测试input组件
 import UtpInput from './components/UtpInput/UtpInput.vue';
-import { text } from '@fortawesome/fontawesome-svg-core';
+const inputValue = ref('')
+const showPassword = ref<boolean>(false)
+
 </script>
 
 <style></style>
