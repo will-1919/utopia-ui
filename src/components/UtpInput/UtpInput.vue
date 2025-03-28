@@ -11,11 +11,11 @@
     <!-- input节点 -->
     <template v-if="type !== 'textarea'">
       <!-- 前置内容， prepend插槽 -->
-      <div v-if="$slots.prepend" class="utp-input__prepend">
+      <div v-if="$slots.prepend" class="utp-input__prepend max-content">
         <slot name="prepend"></slot>
       </div>
       <!-- input主体 -->
-      <div class="utp-input__wrapper">
+      <div class="utp-input__wrapper max-content">
         <!-- prefix插槽 -->
         <span v-if="$slots.prefix" class="utp-input__prefix">
           <slot name="prefix"></slot>
@@ -27,7 +27,7 @@
         </span>
       </div>
       <!-- 后置内容， append插槽 -->
-      <div v-if="$slots.append" class="utp-input__append">
+      <div v-if="$slots.append" class="utp-input__append max-content">
         <slot name="append"></slot>
       </div>
     </template>

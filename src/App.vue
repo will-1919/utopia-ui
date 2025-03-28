@@ -46,12 +46,20 @@
       </utp-collapse-item>
     </utp-collapse>
     <!-- 图标测试 -->
-    <utp-icon icon="arrow-up" :size="iconSize" type="primary" color="red"></utp-icon>
     <!-- message测试 -->
     <!-- <utp-message :message="'这是一条信息'" :duration="0" :show-close="true"></utp-message> -->
     <!-- input测试 -->
     <utp-input type="text">
-      <template v-slot: append>
+      <template v-slot:append>
+        <utp-icon icon="arrow-up" />
+      </template>
+      <template v-slot:prefix>
+        <utp-icon icon="arrow-up" />
+      </template>
+      <template v-slot:suffix>
+        <utp-icon icon="arrow-up" />
+      </template>
+      <template v-slot:prepend>
         <utp-icon icon="arrow-up" />
       </template>
     </utp-input>
@@ -99,7 +107,7 @@ const open = () => {
 const close = () => {
   tooltipRef.value?.hide()
 }
-const options = ref<Partial<Options>>({ placement: 'right-end', strategy: 'fixed' })
+const options = ref<Partial<Options>>({ placement: 'right' })
 // 测试dropdown组件
 import UtpDropdown from './components/UtpDropdown/UtpDropdown.vue';
 import type { MenuOptions } from './components/UtpDropdown/types';
