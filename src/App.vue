@@ -6,7 +6,8 @@
         <h1>测试插槽</h1>
       </template>
     </utp-tooltip>
-    <utp-dropdown @visible-change="(e) => {console.log(e)}" @select="(e) => {console.log(e)}" :menu-options="menuOptions" placement="bottom" :trigger="trigger" hideAfterClick>
+    <utp-dropdown @visible-change="(e) => { console.log(e) }" @select="(e) => { console.log(e) }"
+      :menu-options="menuOptions" placement="bottom" :trigger="trigger" hideAfterClick>
       <img src="./assets/logo.svg" alt="Vue logo" class="logo" width="125" height="125">
       <template #content>
         <h1>测试插槽</h1>
@@ -20,7 +21,7 @@
     <utp-button @click="close" round>btn round</utp-button>
     <utp-button circle>btn circle</utp-button>
     <utp-button>btn sc</utp-button>
-    <utp-button type="primary">btn primary</utp-button>
+    <utp-button type="primary" plain>btn primary</utp-button>
     <utp-button type="danger" plain>btn danger</utp-button>
     <utp-button type="success" size="big">btn success</utp-button>
     <utp-button type="warning" size="small">btn warning</utp-button>
@@ -47,6 +48,12 @@
     <utp-icon icon="arrow-up" :size="iconSize" type="primary" color="red"></utp-icon>
     <!-- message测试 -->
     <!-- <utp-message :message="'这是一条信息'" :duration="0" :show-close="true"></utp-message> -->
+    <!-- input测试 -->
+    <utp-input type="text">
+      <template v-slot: append>
+        <utp-icon icon="arrow-up" />
+      </template>
+    </utp-input>
   </main>
 </template>
 
@@ -86,7 +93,7 @@ const trigger = ref<any>('click')
 const tooltipRef = ref<TooltipInstance | null>(null)
 const open = () => {
   // tooltipRef.value?.show()
-  createMessage({message: '测试函数形式2'})
+  createMessage({ message: '测试函数形式2' })
 }
 const close = () => {
   tooltipRef.value?.hide()
@@ -97,22 +104,25 @@ import UtpDropdown from './components/UtpDropdown/UtpDropdown.vue';
 import type { MenuOptions } from './components/UtpDropdown/types';
 
 const menuOptions = ref<MenuOptions[]>([
-  {key: 1, label: h('h1', '这个加粗了')},
-  {key: 2, label: 'item2', disabled: true},
-  {key: 3, label: 'item3', divided: true},
-  {key: 4, label: 'item4'}
+  { key: 1, label: h('h1', '这个加粗了') },
+  { key: 2, label: 'item2', disabled: true },
+  { key: 3, label: 'item3', divided: true },
+  { key: 4, label: 'item4' }
 ])
 
 // 测试message组件
 import { createMessage, closeAll } from './components/UtpMessage/method';
 
 onMounted(() => {
-  createMessage({message: '测试函数形式1', duration: 0, showClose: true})
-  createMessage({message: '测试函数形式1', duration: 0, showClose: true})
-  createMessage({message: '测试函数形式1', duration: 0, showClose: true})
-  createMessage({message: '测试函数形式2', duration: 2000})
-  createMessage({message: '测试函数形式3', duration: 0})
+  createMessage({ message: '测试函数形式1', duration: 0, showClose: true })
+  createMessage({ message: '测试函数形式1', duration: 0, showClose: true })
+  createMessage({ message: '测试函数形式1', duration: 0, showClose: true })
+  createMessage({ message: '测试函数形式2', duration: 2000 })
+  createMessage({ message: '测试函数形式3', duration: 0 })
 })
+// 测试input组件
+import UtpInput from './components/UtpInput/UtpInput.vue';
+import { text } from '@fortawesome/fontawesome-svg-core';
 </script>
 
 <style></style>
