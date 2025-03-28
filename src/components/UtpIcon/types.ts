@@ -1,7 +1,7 @@
 import type { FontAwesomeIconProps } from '@fortawesome/vue-fontawesome'
 
 interface UtpIconProps extends FontAwesomeIconProps {
-  type?: 'primary' | 'success' | 'warning' | 'danger' | 'info'
+  type?: 'primary' | 'success' | 'error' | 'info'
   color?: string
 }
 

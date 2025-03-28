@@ -91,7 +91,7 @@
     margin-left: 6px;
   }
 }
-@each $val in primary, success, warning, danger, info {
+@each $val in primary, success, error, info {
   .utp-button--$(val) {
     --utp-button-text-color: var(--utp-color-white);
     --utp-button-bg-color: var(--utp-color-$(val));

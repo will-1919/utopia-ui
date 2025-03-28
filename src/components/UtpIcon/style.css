@@ -8,7 +8,7 @@
   color: var(--utp-icon-color);
   font-size: inherit;
 }
-@each $val in primary, success, warning, danger, info {
+@each $val in primary, success, error, info {
     .utp-icon--$(val) {
         --utp-icon-color: var(--utp-color-$(val));
     }

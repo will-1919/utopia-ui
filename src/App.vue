@@ -16,19 +16,18 @@
   </header>
   <main>
     <!-- BUTTON按钮测试 -->
-    <utp-button type="text">warning</utp-button>
-    <utp-button type="text" plain>warning</utp-button>
+    <utp-button type="text">text</utp-button>
+    <utp-button type="text" plain>text</utp-button>
     <utp-button>btn info</utp-button>
     <utp-button @click="open" plain>btn plain</utp-button>
     <utp-button @click="close" round>btn round</utp-button>
     <utp-button circle>btn circle</utp-button>
     <utp-button>btn sc</utp-button>
     <utp-button type="primary" plain>btn primary</utp-button>
-    <utp-button type="danger" plain>btn danger</utp-button>
     <utp-button type="success" size="big">btn success</utp-button>
-    <utp-button type="warning" size="small">btn warning</utp-button>
+    <utp-button type="error" size="small">btn error</utp-button>
     <utp-button type="info">btn</utp-button>
-    <utp-button type="primary" size="big" loading>btn warning</utp-button>
+    <utp-button type="primary" size="big" loading>btn error</utp-button>
     <utp-button @click="closeAll" type="primary" size="big" icon="arrow-up">closeAll</utp-button>
     <!-- Collapse测试 -->
     <utp-collapse v-model="openedValue">

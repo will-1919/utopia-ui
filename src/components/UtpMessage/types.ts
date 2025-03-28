@@ -5,7 +5,7 @@ interface UtpMessageProps {
   message?: string | VNode,
   duration?: number,
   showClose?: boolean,
-  type?: 'success' | 'info' | 'warning' | 'error' | 'primary',
+  type?: 'success' | 'info' | 'error' | 'error' | 'primary',
   offset?: number,
   onDestory: () => void,
   id: string,

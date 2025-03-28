@@ -5,8 +5,7 @@
   --colors: (
     primary: #F15A7C,
     success: #67c23a,
-    warning: #e6a23c,
-    danger: #DC143C,
+    error: #e6a23c,
     info: #909399
   );
 
