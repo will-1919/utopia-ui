@@ -16,6 +16,8 @@
   </header>
   <main>
     <!-- BUTTON按钮测试 -->
+    <utp-button type="text">warning</utp-button>
+    <utp-button type="text" plain>warning</utp-button>
     <utp-button>btn info</utp-button>
     <utp-button @click="open" plain>btn plain</utp-button>
     <utp-button @click="close" round>btn round</utp-button>
@@ -114,11 +116,11 @@ const menuOptions = ref<MenuOptions[]>([
 import { createMessage, closeAll } from './components/UtpMessage/method';
 
 onMounted(() => {
-  createMessage({ message: '测试函数形式1', duration: 0, showClose: true })
-  createMessage({ message: '测试函数形式1', duration: 0, showClose: true })
-  createMessage({ message: '测试函数形式1', duration: 0, showClose: true })
-  createMessage({ message: '测试函数形式2', duration: 2000 })
-  createMessage({ message: '测试函数形式3', duration: 0 })
+  // createMessage({ message: '测试函数形式1', duration: 0, showClose: true })
+  // createMessage({ message: '测试函数形式1', duration: 0, showClose: true })
+  // createMessage({ message: '测试函数形式1', duration: 0, showClose: true })
+  // createMessage({ message: '测试函数形式2', duration: 2000 })
+  // createMessage({ message: '测试函数形式3', duration: 0 })
 })
 // 测试input组件
 import UtpInput from './components/UtpInput/UtpInput.vue';

@@ -45,8 +45,7 @@
     margin-left: 12px;
   }
   /* 鼠标移动上以及聚焦后的样式 */
-  &:hover,
-  &:focus {
+  &:hover {
     color: var(--utp-button-hover-text-color);
     border-color: var(--utp-button-hover-border-color);
     background-color: var(--utp-button-hover-bg-color);

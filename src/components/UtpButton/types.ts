@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-type ButtonType = 'primary' | 'success' | 'info' | 'danger' | 'warning' // 按钮主题（颜色）
+type ButtonType = 'primary' | 'success' | 'info' | 'danger' | 'warning' | 'text' // 按钮主题（颜色）
 type ButtonSize = 'big' | 'middle' | 'small'
 type NativeType = 'button' | 'submit' | 'reset'
 
