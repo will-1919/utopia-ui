@@ -29,7 +29,7 @@
         <!-- suffix插槽 -->
         <span v-if="$slots.suffix || showClear || showPasswordArea" class="utp-input__suffix" @click="keepFocus">
           <slot name="suffix"></slot>
-          <utp-icon @click="clear" icon="circle-xmark" v-if="showClear" class="utp-input__clear"></utp-icon>
+          <utp-icon @click="clear" @mousedown.prevent="() => {}" icon="circle-xmark" v-if="showClear" class="utp-input__clear"></utp-icon>
           <utp-icon @click="togglePasswordVisible" icon="eye" v-if="showPasswordArea && passwordVisible"
             class="utp-input__password"></utp-icon>
           <utp-icon @click="togglePasswordVisible" icon="eye-slash" v-if="showPasswordArea && !passwordVisible"
