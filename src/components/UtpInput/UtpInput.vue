@@ -27,7 +27,7 @@
           :placeholder="placeholder" :readonly="readonly" :autocomplete="autocomplete" :autofocus="autofocus"
           :form="form" v-bind="attrs">
         <!-- suffix插槽 -->
-        <span v-if="$slots.suffix || showClear || showPasswordArea" class="utp-input__suffix">
+        <span v-if="$slots.suffix || showClear || showPasswordArea" class="utp-input__suffix" @click="keepFocus">
           <slot name="suffix"></slot>
           <utp-icon @click="clear" icon="circle-xmark" v-if="showClear" class="utp-input__clear"></utp-icon>
           <utp-icon @click="togglePasswordVisible" icon="eye" v-if="showPasswordArea && passwordVisible"
@@ -51,7 +51,7 @@
 </template>
 <script setup lang="ts">
 import type { UtpInputProps, UtpInputEmits } from './types';
-import { computed, ref, useAttrs, watch } from 'vue';
+import { computed, nextTick, ref, useAttrs, watch } from 'vue';
 import UtpIcon from '../UtpIcon/UtpIcon.vue';
 import type { Ref } from 'vue';
 
@@ -106,6 +106,12 @@ const showPasswordArea = computed(() => {
 // 点击切换密码是否展示
 const togglePasswordVisible = () => {
   passwordVisible.value = !passwordVisible.value
+}
+// 点击图标的时候保持focus
+const keepFocus = () => {
+  nextTick(() => {
+    inputRef.value?.focus()
+  })
 }
 // 支持一些原生的事件
 // change事件

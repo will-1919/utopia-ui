@@ -50,7 +50,7 @@
     <!-- <utp-message :message="'这是一条信息'" :duration="0" :show-close="true"></utp-message> -->
     <!-- input测试 -->
      <br>
-    <utp-input v-model="inputValue" type="text">
+    <utp-input v-model="inputValue" type="password" show-password>
       <template v-slot:prepend>
         <utp-icon icon="user"></utp-icon>
       </template>
