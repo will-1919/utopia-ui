@@ -49,12 +49,16 @@
     <!-- message测试 -->
     <!-- <utp-message :message="'这是一条信息'" :duration="0" :show-close="true"></utp-message> -->
     <!-- input测试 -->
-     <br>
+    <br>
     <utp-input v-model="inputValue" type="text" clearable>
       <template v-slot:prepend>
         <utp-icon icon="user"></utp-icon>
       </template>
     </utp-input>
+    <!-- 测试开关 -->
+     <br>
+     <br>
+    <utp-switch v-model="switchValue"></utp-switch>
   </main>
 </template>
 
@@ -125,6 +129,9 @@ onMounted(() => {
 import UtpInput from './components/UtpInput/UtpInput.vue';
 const inputValue = ref('')
 const showPassword = ref<boolean>(false)
+// 测试开关
+import UtpSwitch from './components/UtpSwitch/UtpSwitch.vue';
+const switchValue = ref(true)
 
 </script>
 
