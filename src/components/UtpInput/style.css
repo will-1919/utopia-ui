@@ -56,8 +56,8 @@
   }
 }
 
-.utp-input--large {
-  --utp-input-height: var(--utp-component-size-large);
+.utp-input--big {
+  --utp-input-height: var(--utp-component-size-big);
   font-size: 14px;
   .utp-input__wrapper {
     padding: 1px 15px;

@@ -50,11 +50,13 @@
     <!-- <utp-message :message="'这是一条信息'" :duration="0" :show-close="true"></utp-message> -->
     <!-- input测试 -->
     <br>
-    <utp-input v-model="inputValue" type="text" clearable>
-      <template v-slot:prepend>
-        <utp-icon icon="user"></utp-icon>
-      </template>
-    </utp-input>
+    <utp-input v-model="inputValue" type="text"></utp-input>
+    <br>
+    <br>
+    <utp-input v-model="inputValue" type="text" size="big"></utp-input>
+    <br>
+    <br>
+    <utp-input v-model="inputValue" type="text" size="small"></utp-input>
     <!-- 测试开关 -->
      <br>
      <br>
