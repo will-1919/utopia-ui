@@ -6,9 +6,17 @@
 
   }">
     <!-- 逻辑节点 -->
-    <input ref="input" @keydown.enter="switchValue" class="utp-switch__input" type="checkbox" role="switch" :name="name" :disabled="disabled">
+    <input ref="input" @keydown.enter="switchValue" class="utp-switch__input" type="checkbox" role="switch" :name="name"
+      :disabled="disabled">
     <!-- 展示节点 -->
     <div class="utp-switch__core">
+      <!--按钮文字  -->
+      <div class="utp-switch__core-inner">
+        <span v-if="activeText || inactiveText" class="utp-switch__core-inner-text">
+          {{ checked ? activeText : inactiveText }}
+        </span>
+      </div>
+      <!-- 按钮圆点 -->
       <div class="utp-switch__core-action"></div>
     </div>
   </div>
@@ -43,10 +51,10 @@ const switchValue = () => {
 onMounted(() => {
   input.value!.checked = checked.value
 })
-watch(checked,(newValue) => {
+watch(checked, (newValue) => {
   input.value!.checked = newValue
 })
-watch(() => props.modelValue,(newValue) => {
+watch(() => props.modelValue, (newValue) => {
   innerValue.value = newValue
 })
 </script>

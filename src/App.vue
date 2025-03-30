@@ -58,7 +58,7 @@
     <!-- 测试开关 -->
      <br>
      <br>
-    <utp-switch v-model="switchValue" active-value="right" in-active-value="left"></utp-switch>
+    <utp-switch v-model="switchValue" active-text="打开" inactive-text="关闭" active-value="right" in-active-value="left"></utp-switch>
     <span>switchValue-{{ switchValue }}</span>
   </main>
 </template>
