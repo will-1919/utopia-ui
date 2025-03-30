@@ -1,6 +1,6 @@
 <template>
   <div @click="switchValue" class="utp-switch" :class="{
-    [`utp-size--${size}`]: size,
+    [`utp-switch--${size}`]: size,
     'is-disabled': disabled,
     'is-checked': checked
 
