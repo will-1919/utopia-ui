@@ -10,7 +10,19 @@
   font-size: 14px;
   line-height: 20px;
   height: 32px;
-  border: 1px solid #efefef;
+  .utp-switch__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    margin: 0;
+    &:focus-visible {
+      & ~ .utp-switch__core {
+        outline: 2px solid var(--utp-switch-on-color);
+        outline-offset: 1px;
+      }
+    }
+  }
   &.is-checked {
     .utp-switch__core {
       border-color: var(--utp-switch-on-border-color);

@@ -6,7 +6,7 @@
 
   }">
     <!-- 逻辑节点 -->
-    <input class="utp-switch__input" type="checkbox" role="switch" :name="name" :disabled="disabled">
+    <input ref="input" @keydown.enter="switchValue" class="utp-switch__input" type="checkbox" role="switch" :name="name" :disabled="disabled">
     <!-- 展示节点 -->
     <div class="utp-switch__core">
       <div class="utp-switch__core-action"></div>
@@ -14,25 +14,39 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import type { UtpSwitchProps, UtpSwitchEmits } from './types';
 defineOptions({
   name: 'UtpSwitch',
   inheritAttrs: false
 })
 const props = withDefaults(defineProps<UtpSwitchProps>(), {
-
+  activeValue: true,
+  inActiveValue: false
 })
 const emits = defineEmits<UtpSwitchEmits>()
 // 开关是否激活
 const innerValue = ref(props.modelValue)
 const checked = computed(() => {
-  return innerValue.value
+  return innerValue.value === props.activeValue
 })
+// 获取checkbox的ref
+const input = ref<HTMLInputElement>()
 const switchValue = () => {
   if (props.disabled) { return }
-  innerValue.value = !checked.value
-  emits('update:modelValue', innerValue.value)
-  emits('change', innerValue.value)
+  const newValue = checked.value ? props.inActiveValue : props.activeValue
+  console.log('触发了', newValue)
+  innerValue.value = newValue
+  emits('update:modelValue', newValue)
+  emits('change', newValue)
 }
+onMounted(() => {
+  input.value!.checked = checked.value
+})
+watch(checked,(newValue) => {
+  input.value!.checked = newValue
+})
+watch(() => props.modelValue,(newValue) => {
+  innerValue.value = newValue
+})
 </script>

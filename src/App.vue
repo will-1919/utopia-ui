@@ -58,7 +58,8 @@
     <!-- 测试开关 -->
      <br>
      <br>
-    <utp-switch v-model="switchValue"></utp-switch>
+    <utp-switch v-model="switchValue" active-value="right" in-active-value="left"></utp-switch>
+    <span>switchValue-{{ switchValue }}</span>
   </main>
 </template>
 
@@ -131,7 +132,7 @@ const inputValue = ref('')
 const showPassword = ref<boolean>(false)
 // 测试开关
 import UtpSwitch from './components/UtpSwitch/UtpSwitch.vue';
-const switchValue = ref(true)
+const switchValue = ref('left')
 
 </script>
 

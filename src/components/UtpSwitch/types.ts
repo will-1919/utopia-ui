@@ -1,5 +1,8 @@
+type switchValueType = boolean | string | number
 interface UtpSwitchProps {
-  modelValue: boolean
+  modelValue: switchValueType
+  activeValue?: switchValueType
+  inActiveValue?: switchValueType
   disabled?: boolean
   activeText?: string
   inactiveText?: string
@@ -8,8 +11,8 @@ interface UtpSwitchProps {
   size?: 'small' | 'big'
 }
 interface UtpSwitchEmits {
-  (e: 'change', value: boolean): void
-  (e: 'update:modelValue', value: boolean): void
+  (e: 'change', value: switchValueType): void
+  (e: 'update:modelValue', value: switchValueType): void
 }
 
 export type { UtpSwitchProps, UtpSwitchEmits }
