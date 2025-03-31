@@ -58,12 +58,20 @@
     <br>
     <utp-input v-model="inputValue" type="text" size="small"></utp-input>
     <!-- 测试开关 -->
-     <br>
-     <br>
-    <utp-switch v-model="switchValue" active-text="打开" inactive-text="关闭" active-value="right" in-active-value="left"></utp-switch>
-    <utp-switch v-model="switchValue" active-text="打开" inactive-text="关闭" active-value="right" in-active-value="left" size="big"></utp-switch>
-    <utp-switch v-model="switchValue" active-text="打开" inactive-text="关闭" active-value="right" in-active-value="left" size="small"></utp-switch>
+    <br>
+    <br>
+    <utp-switch v-model="switchValue" active-text="打开" inactive-text="关闭" active-value="right"
+      in-active-value="left"></utp-switch>
+    <utp-switch v-model="switchValue" active-text="打开" inactive-text="关闭" active-value="right" in-active-value="left"
+      size="big"></utp-switch>
+    <utp-switch v-model="switchValue" active-text="打开" inactive-text="关闭" active-value="right" in-active-value="left"
+      size="small"></utp-switch>
     <span>switchValue-{{ switchValue }}</span>
+    <br>
+    <br>
+    <!-- 测试下拉菜单 -->
+    <utp-select :options="options2" v-model="test"></utp-select>
+    <span>test-{{ test }}</span>
   </main>
 </template>
 
@@ -137,7 +145,15 @@ const showPassword = ref<boolean>(false)
 // 测试开关
 import UtpSwitch from './components/UtpSwitch/UtpSwitch.vue';
 const switchValue = ref('left')
-
+// 测试下拉菜单
+import UtpSelect from './components/UtpSelect/UtpSelect.vue';
+const test = ref('')
+const options2 = [
+  {lable: 'aaaa', value: 1},
+  {lable: 'bbbb', value: 2},
+  {lable: 'cccc', value: 3},
+  {lable: 'dddd', value: 4},
+]
 </script>
 
 <style></style>

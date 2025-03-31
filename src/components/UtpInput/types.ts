@@ -1,6 +1,6 @@
 interface UtpInputProps {
   modelValue: string
-  type: string
+  type?: string
   size?: 'big' | 'small'
   disabled?: boolean
   clearable?: boolean
