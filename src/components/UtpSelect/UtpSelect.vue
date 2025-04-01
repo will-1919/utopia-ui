@@ -6,7 +6,7 @@
       <!-- 选项下拉列表 -->
       <template #content>
         <ul class="utp-select__menu">
-          <li v-for="(item, index) in options" :key="index" class="utp-select__menu-item"
+          <li @click.stop="itemSelect(item)" v-for="(item, index) in options" :key="index" class="utp-select__menu-item"
             :class="{ 'is-disabled': disabled }" :id="`select-item-${item.value}`">
             {{ item.lable }}
           </li>
@@ -28,8 +28,16 @@ defineExpose({
 })
 const props = withDefaults(defineProps<UtpSelectProps>(), {})
 const emits = defineEmits<UtpSelectEmits>()
+// 查找选项函数
+const findOption = (value: string | number) => {
+  const option = props.options.find((item) => {
+    return item.value === value
+  })
+  return option ? option : null
+}
+const initialOption = findOption(props.modelValue)
 // input双向绑定值
-const innerValue = ref('')
+const innerValue = ref(initialOption ? initialOption.lable : '')
 // tooltip实例
 const tooltipRef = ref() as Ref<TooltipInstance>
 const isDropdownShow = ref(false)
@@ -42,12 +50,21 @@ const controlDropdown = (show: boolean) => {
   isDropdownShow.value = show
   emits('visible-change', show)
 }
+// 切换下拉菜单是否打开
 const toggleDropdown = () => {
   if (props.disabled) { return }
-  if(isDropdownShow.value) {
+  if (isDropdownShow.value) {
     controlDropdown(false)
   } else {
     controlDropdown(true)
   }
+}
+// 点击菜单中的选项
+const itemSelect = (e: SelectOptions) => {
+  if (e.disabled) { return }
+  innerValue.value = e.value
+  emits('change', e.value)
+  emits('update:modelValue', e.value)
+  controlDropdown(false)
 }
 </script>

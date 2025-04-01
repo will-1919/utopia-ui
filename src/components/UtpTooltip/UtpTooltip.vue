@@ -57,13 +57,13 @@ const popperOptions = computed(() => {
 const openDebounce = debounce(() => {
   isOpen.value = true
   emits('visible-change', isOpen.value)
-  console.log('打开执行了')
+  // console.log('打开执行了')
 }, props.openDelay)
 // hover事件划出的防抖函数
 const closeDebounce = debounce(() => {
   isOpen.value = false
   emits('visible-change', isOpen.value)
-  console.log('关闭执行了')
+  // console.log('关闭执行了')
 }, props.closeDelay)
 const open = () => {
   closeDebounce.cancel()

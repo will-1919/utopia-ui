@@ -147,12 +147,12 @@ import UtpSwitch from './components/UtpSwitch/UtpSwitch.vue';
 const switchValue = ref('left')
 // 测试下拉菜单
 import UtpSelect from './components/UtpSelect/UtpSelect.vue';
-const test = ref('')
+const test = ref('1')
 const options2 = [
-  {lable: 'aaaa', value: 1},
-  {lable: 'bbbb', value: 2},
-  {lable: 'cccc', value: 3},
-  {lable: 'dddd', value: 4},
+  {lable: 'aaaa', value: '1'},
+  {lable: 'bbbb', value: '2'},
+  {lable: 'cccc', value: '3'},
+  {lable: 'dddd', value: '4'},
 ]
 </script>
 
