@@ -14,5 +14,9 @@ interface UtpSelectEmits {
   (e: 'update:modelValue', value: string): void
   (e: 'visible-change', value: boolean): void
 }
+interface SelectStates {
+  inputValue: string
+  selectOption: null | SelectOptions
+}
 
-export type { UtpSelectProps, UtpSelectEmits, SelectOptions }
+export type { UtpSelectProps, UtpSelectEmits, SelectOptions, SelectStates }

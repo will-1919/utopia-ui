@@ -2,12 +2,13 @@
   <div @click="toggleDropdown" class="utp-select" :class="{ 'is-disabled': disabled }">
     <utp-tooltip ref="tooltipRef" placement="bottom-start" manual>
       <!-- 选择按钮 -->
-      <utp-input v-model="innerValue" :disabled="disabled" :placeholder="placeholder"></utp-input>
+      <utp-input v-model="states.inputValue" :disabled="disabled" :placeholder="placeholder"></utp-input>
       <!-- 选项下拉列表 -->
       <template #content>
         <ul class="utp-select__menu">
           <li @click.stop="itemSelect(item)" v-for="(item, index) in options" :key="index" class="utp-select__menu-item"
-            :class="{ 'is-disabled': disabled }" :id="`select-item-${item.value}`">
+            :class="{ 'is-disabled': disabled, 'is-selected': states.selectOption?.value === item.value }"
+            :id="`select-item-${item.value}`">
             {{ item.lable }}
           </li>
         </ul>
@@ -16,12 +17,12 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import UtpInput from '../UtpInput/UtpInput.vue';
 import UtpTooltip from '../UtpTooltip/UtpTooltip.vue';
 import type { Ref } from 'vue';
 import type { TooltipInstance } from '../UtpTooltip/types';
-import type { UtpSelectEmits, UtpSelectProps, SelectOptions } from './types';
+import type { UtpSelectEmits, UtpSelectProps, SelectOptions, SelectStates } from './types';
 
 defineExpose({
   name: 'UtpSelect'
@@ -38,6 +39,11 @@ const findOption = (value: string | number) => {
 const initialOption = findOption(props.modelValue)
 // input双向绑定值
 const innerValue = ref(initialOption ? initialOption.lable : '')
+// 组件当前的状态值对象
+const states = reactive<SelectStates>({
+  inputValue: initialOption ? initialOption.lable : '',
+  selectOption: initialOption
+})
 // tooltip实例
 const tooltipRef = ref() as Ref<TooltipInstance>
 const isDropdownShow = ref(false)
@@ -62,7 +68,8 @@ const toggleDropdown = () => {
 // 点击菜单中的选项
 const itemSelect = (e: SelectOptions) => {
   if (e.disabled) { return }
-  innerValue.value = e.value
+  states.inputValue = e.lable
+  states.selectOption = e
   emits('change', e.value)
   emits('update:modelValue', e.value)
   controlDropdown(false)
