@@ -1,6 +1,6 @@
 <template>
   <div @click="toggleDropdown" class="utp-select" :class="{ 'is-disabled': disabled }">
-    <utp-tooltip ref="tooltipRef" placement="bottom-start" manual>
+    <utp-tooltip :popper-options="popperOption" ref="tooltipRef" placement="bottom-start" manual>
       <!-- 选择按钮 -->
       <utp-input v-model="states.inputValue" :disabled="disabled" :placeholder="placeholder"></utp-input>
       <!-- 选项下拉列表 -->
@@ -37,8 +37,6 @@ const findOption = (value: string | number) => {
   return option ? option : null
 }
 const initialOption = findOption(props.modelValue)
-// input双向绑定值
-const innerValue = ref(initialOption ? initialOption.lable : '')
 // 组件当前的状态值对象
 const states = reactive<SelectStates>({
   inputValue: initialOption ? initialOption.lable : '',
@@ -46,7 +44,30 @@ const states = reactive<SelectStates>({
 })
 // tooltip实例
 const tooltipRef = ref() as Ref<TooltipInstance>
+// 对其下拉菜单与input的长度
+const popperOption: any = {
+  modifiers: [
+    // 保留popper的偏移量
+    {
+      name: 'offset',
+      options: {
+        offset: [0, 9]
+      }
+    },
+    // 控制宽度相同代码来源https://codesandbox.io/p/sandbox/bitter-sky-pe3z9?file=%2Fsrc%2Findex.js
+    {
+      name: "sameWidth",
+      enabled: true,
+      fn: ({ state }: { state: any }) => {
+        state.styles.popper.width = `${state.rects.reference.width}px`;
+      },
+      phase: "beforeWrite",
+      requires: ["computeStyles"],
+    }
+  ],
+}
 const isDropdownShow = ref(false)
+// 控制下拉菜单是否展示函数
 const controlDropdown = (show: boolean) => {
   if (show) {
     tooltipRef.value.show()
