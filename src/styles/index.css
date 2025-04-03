@@ -7,4 +7,5 @@
 @import '../components/UtpDropdown/style.css';
 @import '../components/UtpMessage/style.css';
 @import '../components/UtpInput/style.css';
-@import '../components/UtpSwitch/style.css'
+@import '../components/UtpSwitch/style.css';
+@import '../components/UtpSelect/style.css';

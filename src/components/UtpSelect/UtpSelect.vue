@@ -2,12 +2,12 @@
   <div @click="toggleDropdown" class="utp-select" :class="{ 'is-disabled': disabled }">
     <utp-tooltip :popper-options="popperOption" ref="tooltipRef" placement="bottom-start" manual>
       <!-- 选择按钮 -->
-      <utp-input v-model="states.inputValue" :disabled="disabled" :placeholder="placeholder"></utp-input>
+      <utp-input v-model="states.inputValue" readonly :disabled="disabled" :placeholder="placeholder"></utp-input>
       <!-- 选项下拉列表 -->
       <template #content>
         <ul class="utp-select__menu">
           <li @click.stop="itemSelect(item)" v-for="(item, index) in options" :key="index" class="utp-select__menu-item"
-            :class="{ 'is-disabled': disabled, 'is-selected': states.selectOption?.value === item.value }"
+            :class="{ 'is-disabled': item.disabled, 'is-selected': states.selectOption?.value === item.value }"
             :id="`select-item-${item.value}`">
             {{ item.lable }}
           </li>

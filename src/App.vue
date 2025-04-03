@@ -150,7 +150,7 @@ import UtpSelect from './components/UtpSelect/UtpSelect.vue';
 const test = ref('1')
 const options2 = [
   {lable: 'aaaa', value: '1'},
-  {lable: 'bbbb', value: '2'},
+  {lable: 'bbbb', value: '2', disabled:true},
   {lable: 'cccc', value: '3'},
   {lable: 'dddd', value: '4'},
 ]

@@ -1,0 +1,55 @@
+.utp-select {
+  --utp-select-item-hover-bg-color: var(--utp-fill-color-light);
+  --utp-select-item-font-size: var(--utp-font-size-base);
+  --utp-select-item-font-color: var(--utp-text-color-regular);
+  --utp-select-item-selected-font-color: var(--utp-color-primary);
+  --utp-select-item-disabled-font-color: var(--utp-text-color-placeholder);
+  --utp-select-input-focus-border-color: var(--utp-color-primary);
+}
+.utp-select {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 32px;
+  .utp-tooltip .utp-tooltip__popper {
+    padding: 0;
+  }
+  .utp-input__inner {
+    cursor: pointer;
+  }
+  .utp-select__menu {
+    list-style: none;
+    margin: 6px 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .utp-select__menu-item {
+    margin: 0;
+    font-size: var(--utp-select-item-font-size);
+    padding: 0 32px 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--utp-select-item-font-color);
+    height: 34px;
+    line-height: 34px;
+    box-sizing: border-box;
+    /* 鼠标进入样式 */
+    &:hover {
+      background-color: var(--utp-select-item-hover-bg-color);
+    }
+    /* 选中后的样式 */
+    &.is-selected {
+      color: var(--utp-select-item-selected-font-color);
+      font-weight: 700;
+    }
+    /* 禁用样式 */
+    &.is-disabled {
+      color: var(--utp-select-item-disabled-font-color);
+      cursor: not-allowed;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
