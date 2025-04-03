@@ -13,6 +13,22 @@
   .utp-tooltip .utp-tooltip__popper {
     padding: 0;
   }
+  /* 输入框获得焦点的样式 */
+  .utp-input.is-focus .utp-input__wrapper {
+    box-shadow: 0 0 0 1px var(--utp-select-input-focus-border-color) inset !important;
+  }
+  /* 输入框样式右侧图标 */
+  .utp-input {
+    .utp-input__clear {
+      cursor: pointer;
+    }
+    .header-angle {
+      transition: transform var(--utp-transition-duration);
+      &.is-active {
+        transform: rotate(180deg);
+      }
+    }
+  }
   .utp-input__inner {
     cursor: pointer;
   }

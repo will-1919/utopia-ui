@@ -12,6 +12,7 @@ interface UtpTooltipProps {
 }
 interface UtpTooltipEmits {
   (e: 'visible-change', value: boolean): void
+  (e: 'click-outside', value: boolean): void
 }
 interface TooltipInstance {
   show: () => void,

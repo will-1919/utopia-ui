@@ -20,5 +20,8 @@ interface UtpInputEmits {
   (e: 'blur', value: FocusEvent): void
   (e: 'clear'): void
 }
+interface InputInstance {
+ref: HTMLInputElement | HTMLTextAreaElement
+}
 
-export type { UtpInputProps, UtpInputEmits }
+export type { UtpInputProps, UtpInputEmits, InputInstance }

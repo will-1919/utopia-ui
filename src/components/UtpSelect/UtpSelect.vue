@@ -1,8 +1,13 @@
 <template>
   <div @click="toggleDropdown" class="utp-select" :class="{ 'is-disabled': disabled }">
-    <utp-tooltip :popper-options="popperOption" ref="tooltipRef" placement="bottom-start" manual>
+    <utp-tooltip @click-outside="controlDropdown(false)" :popper-options="popperOption" ref="tooltipRef"
+      placement="bottom-start" manual>
       <!-- 选择按钮 -->
-      <utp-input v-model="states.inputValue" readonly :disabled="disabled" :placeholder="placeholder"></utp-input>
+      <utp-input ref="inputRef" v-model="states.inputValue" readonly :disabled="disabled" :placeholder="placeholder">
+        <template #suffix>
+          <utp-icon icon="angle-down" class="header-angle" :class="{'is-active': isDropdownShow}"></utp-icon>
+        </template>
+      </utp-input>
       <!-- 选项下拉列表 -->
       <template #content>
         <ul class="utp-select__menu">
@@ -17,12 +22,14 @@
   </div>
 </template>
 <script setup lang="ts">
+import UtpIcon from '../UtpIcon/UtpIcon.vue';
 import { reactive, ref } from 'vue';
 import UtpInput from '../UtpInput/UtpInput.vue';
 import UtpTooltip from '../UtpTooltip/UtpTooltip.vue';
 import type { Ref } from 'vue';
 import type { TooltipInstance } from '../UtpTooltip/types';
 import type { UtpSelectEmits, UtpSelectProps, SelectOptions, SelectStates } from './types';
+import type { InputInstance } from '../UtpInput/types';
 
 defineExpose({
   name: 'UtpSelect'
@@ -44,6 +51,7 @@ const states = reactive<SelectStates>({
 })
 // tooltip实例
 const tooltipRef = ref() as Ref<TooltipInstance>
+const inputRef = ref() as Ref<InputInstance>
 // 对其下拉菜单与input的长度
 const popperOption: any = {
   modifiers: [
@@ -94,5 +102,6 @@ const itemSelect = (e: SelectOptions) => {
   emits('change', e.value)
   emits('update:modelValue', e.value)
   controlDropdown(false)
+  inputRef.value.ref.focus()
 }
 </script>
