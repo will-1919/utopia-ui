@@ -4,7 +4,8 @@
     <utp-tooltip @click-outside="controlDropdown(false)" :popper-options="popperOption" ref="tooltipRef"
       placement="bottom-start" manual>
       <!-- 选择按钮 -->
-      <utp-input ref="inputRef" v-model="states.inputValue" @input="onFilter" :readonly="!filterable" :disabled="disabled" :placeholder="placeholder">
+      <utp-input ref="inputRef" v-model="states.inputValue" @input="onFilter" :readonly="!filterable || !isDropdownShow"
+        :disabled="disabled" :placeholder="filteredPlaceholder">
         <template #suffix>
           <!-- 清除图标 -->
           <utp-icon @mousedown.prevent="() => { }" @click="onClear" v-if="showClearIcon" icon="circle-xmark"
@@ -16,7 +17,8 @@
       <!-- 选项下拉列表 -->
       <template #content>
         <ul class="utp-select__menu">
-          <li @click.stop="itemSelect(item)" v-for="(item, index) in filteredOptions" :key="index" class="utp-select__menu-item"
+          <li @click.stop="itemSelect(item)" v-for="(item, index) in filteredOptions" :key="index"
+            class="utp-select__menu-item"
             :class="{ 'is-disabled': item.disabled, 'is-selected': states.selectOption?.value === item.value }"
             :id="`select-item-${item.value}`">
             <render-vnode :v-node="renderLabel ? renderLabel(item) : item.label"></render-vnode>
@@ -117,12 +119,31 @@ const onClear = () => {
   emits('change', '')
   emits('update:modelValue', '')
 }
+const filteredPlaceholder = computed(() => {
+  if (props.filterable && states.selectOption && isDropdownShow.value) {
+    return states.selectOption.label
+  } else {
+    return props.placeholder
+  }
+})
 // 控制下拉菜单是否展示函数
 const controlDropdown = (show: boolean) => {
   if (show) {
+    // filter模式 之前选择过对应的值
+    if (props.filterable && states.selectOption) {
+      states.inputValue = ''
+    }
+    // 打开前进行一次默认选项生成
+    if (props.filterable) {
+      generateFilterOptions(states.inputValue)
+    }
     tooltipRef.value.show()
   } else {
     tooltipRef.value.hide()
+    // 失去焦点时，如果之前有选项需要回灌给input
+    if (props.filterable) {
+      states.inputValue = states.selectOption ? states.selectOption.label : ''
+    }
   }
   isDropdownShow.value = show
   emits('visible-change', show)

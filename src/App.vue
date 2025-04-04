@@ -70,7 +70,7 @@
     <br>
     <br>
     <!-- 测试下拉菜单 -->
-    <utp-select :options="options2" v-model="test" clearable filterable></utp-select>
+    <utp-select :options="options2" v-model="test" clearable filterable placeholder="选择"></utp-select>
     <span>test-{{ test }}</span>
   </main>
 </template>
