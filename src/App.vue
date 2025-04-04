@@ -70,7 +70,7 @@
     <br>
     <br>
     <!-- 测试下拉菜单 -->
-    <utp-select :options="options2" v-model="test" clearable :render-label="customRender"></utp-select>
+    <utp-select :options="options2" v-model="test" clearable filterable></utp-select>
     <span>test-{{ test }}</span>
   </main>
 </template>
@@ -154,9 +154,6 @@ const options2 = [
   { label: 'cccc', value: '3' },
   { label: 'dddd', value: '4' },
 ]
-const customRender = (option) => {
-  return h('div', {className: 'xyz'}, [h('b', option.label), h('span', option.value)])
-}
 </script>
 
 <style></style>

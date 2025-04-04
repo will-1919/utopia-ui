@@ -4,7 +4,7 @@
     <utp-tooltip @click-outside="controlDropdown(false)" :popper-options="popperOption" ref="tooltipRef"
       placement="bottom-start" manual>
       <!-- 选择按钮 -->
-      <utp-input ref="inputRef" v-model="states.inputValue" readonly :disabled="disabled" :placeholder="placeholder">
+      <utp-input ref="inputRef" v-model="states.inputValue" @input="onFilter" :readonly="!filterable" :disabled="disabled" :placeholder="placeholder">
         <template #suffix>
           <!-- 清除图标 -->
           <utp-icon @mousedown.prevent="() => { }" @click="onClear" v-if="showClearIcon" icon="circle-xmark"
@@ -16,7 +16,7 @@
       <!-- 选项下拉列表 -->
       <template #content>
         <ul class="utp-select__menu">
-          <li @click.stop="itemSelect(item)" v-for="(item, index) in options" :key="index" class="utp-select__menu-item"
+          <li @click.stop="itemSelect(item)" v-for="(item, index) in filteredOptions" :key="index" class="utp-select__menu-item"
             :class="{ 'is-disabled': item.disabled, 'is-selected': states.selectOption?.value === item.value }"
             :id="`select-item-${item.value}`">
             <render-vnode :v-node="renderLabel ? renderLabel(item) : item.label"></render-vnode>
@@ -29,7 +29,8 @@
 <script setup lang="ts">
 import UtpIcon from '../UtpIcon/UtpIcon.vue';
 import RenderVnode from '../Common/RenderVnode';
-import { computed, reactive, ref } from 'vue';
+import { isFunction } from 'lodash-es';
+import { computed, reactive, ref, watch } from 'vue';
 import UtpInput from '../UtpInput/UtpInput.vue';
 import UtpTooltip from '../UtpTooltip/UtpTooltip.vue';
 import type { Ref } from 'vue';
@@ -80,6 +81,24 @@ const popperOption: any = {
       requires: ["computeStyles"],
     }
   ],
+}
+// 筛选后的数组
+const filteredOptions = ref<SelectOptions[]>(props.options)
+watch(() => props.options, (newOptions) => {
+  filteredOptions.value = newOptions
+})
+const generateFilterOptions = (serchValue: string) => {
+  if (!props.filterable) { return }
+  if (props.filterMethod && isFunction(props.filterMethod)) {
+    filteredOptions.value = props.filterMethod(serchValue)
+  } else {
+    filteredOptions.value = props.options.filter((option) => {
+      return option.label.includes(serchValue)
+    })
+  }
+}
+const onFilter = () => {
+  generateFilterOptions(states.inputValue)
 }
 const isDropdownShow = ref(false)
 // 是否展示清除图标

@@ -6,6 +6,7 @@ interface SelectOptions {
   disabled?: boolean
 }
 type RenderLabelFunc = (option: SelectOptions) => VNode
+type CustomFilterFunc = (value: string) => SelectOptions[]
 interface UtpSelectProps {
   modelValue: string | number // 当前选中的选项
   options: SelectOptions[] // 选项列表
@@ -13,6 +14,8 @@ interface UtpSelectProps {
   disabled?: boolean
   clearable?: boolean,
   renderLabel?: RenderLabelFunc
+  filterable?: boolean
+  filterMethod?: CustomFilterFunc
 }
 interface UtpSelectEmits {
   (e: 'change', value: string | number): void
