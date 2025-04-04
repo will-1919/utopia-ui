@@ -8,15 +8,18 @@ interface UtpSelectProps {
   options: SelectOptions[] // 选项列表
   placeholder?: string
   disabled?: boolean
+  clearable?: boolean
 }
 interface UtpSelectEmits {
   (e: 'change', value: string | number): void
   (e: 'update:modelValue', value: string | number): void
   (e: 'visible-change', value: boolean): void
+  (e: 'clear'): void
 }
 interface SelectStates {
   inputValue: string
   selectOption: null | SelectOptions
+  mouseHover: boolean
 }
 
 export type { UtpSelectProps, UtpSelectEmits, SelectOptions, SelectStates }

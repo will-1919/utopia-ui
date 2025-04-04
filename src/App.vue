@@ -70,7 +70,7 @@
     <br>
     <br>
     <!-- 测试下拉菜单 -->
-    <utp-select :options="options2" v-model="test"></utp-select>
+    <utp-select :options="options2" v-model="test" clearable></utp-select>
     <span>test-{{ test }}</span>
   </main>
 </template>

@@ -1,11 +1,15 @@
 <template>
-  <div @click="toggleDropdown" class="utp-select" :class="{ 'is-disabled': disabled }">
+  <div @click="toggleDropdown" @mouseleave="states.mouseHover = false" @mouseenter="states.mouseHover = true"
+    class="utp-select" :class="{ 'is-disabled': disabled }">
     <utp-tooltip @click-outside="controlDropdown(false)" :popper-options="popperOption" ref="tooltipRef"
       placement="bottom-start" manual>
       <!-- 选择按钮 -->
       <utp-input ref="inputRef" v-model="states.inputValue" readonly :disabled="disabled" :placeholder="placeholder">
         <template #suffix>
-          <utp-icon icon="angle-down" class="header-angle" :class="{'is-active': isDropdownShow}"></utp-icon>
+          <!-- 清除图标 -->
+          <utp-icon @mousedown.prevent="() => {}" @click="onClear" v-if="showClearIcon" icon="circle-xmark" class="utp-input__clear"></utp-icon>
+          <!-- 指示箭头 -->
+          <utp-icon v-else icon="angle-down" class="header-angle" :class="{ 'is-active': isDropdownShow }"></utp-icon>
         </template>
       </utp-input>
       <!-- 选项下拉列表 -->
@@ -23,7 +27,7 @@
 </template>
 <script setup lang="ts">
 import UtpIcon from '../UtpIcon/UtpIcon.vue';
-import { reactive, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import UtpInput from '../UtpInput/UtpInput.vue';
 import UtpTooltip from '../UtpTooltip/UtpTooltip.vue';
 import type { Ref } from 'vue';
@@ -47,7 +51,8 @@ const initialOption = findOption(props.modelValue)
 // 组件当前的状态值对象
 const states = reactive<SelectStates>({
   inputValue: initialOption ? initialOption.lable : '',
-  selectOption: initialOption
+  selectOption: initialOption,
+  mouseHover: false
 })
 // tooltip实例
 const tooltipRef = ref() as Ref<TooltipInstance>
@@ -75,6 +80,22 @@ const popperOption: any = {
   ],
 }
 const isDropdownShow = ref(false)
+// 是否展示清除图标
+const showClearIcon = computed(() => {
+  // 1.鼠标进入
+  // 2.clearable为真
+  // 3.必须有过选项
+  // 4.input不为空
+  return props.clearable && states.mouseHover && states.selectOption && states.inputValue.trim() !== ''
+})
+// 点击清空图标回调函数
+const onClear = () => {
+  states.selectOption = null,
+  states.inputValue = '',
+  emits('clear')
+  emits('change', '')
+  emits('update:modelValue', '')
+}
 // 控制下拉菜单是否展示函数
 const controlDropdown = (show: boolean) => {
   if (show) {
