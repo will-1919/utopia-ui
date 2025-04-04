@@ -1,14 +1,18 @@
+import type { VNode } from "vue"
+
 interface SelectOptions {
-  lable: string // 选项名称
+  label: string // 选项名称
   value: string | number // 选项值
   disabled?: boolean
 }
+type RenderLabelFunc = (option: SelectOptions) => VNode
 interface UtpSelectProps {
   modelValue: string | number // 当前选中的选项
   options: SelectOptions[] // 选项列表
   placeholder?: string
   disabled?: boolean
-  clearable?: boolean
+  clearable?: boolean,
+  renderLabel?: RenderLabelFunc
 }
 interface UtpSelectEmits {
   (e: 'change', value: string | number): void

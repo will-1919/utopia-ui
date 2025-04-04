@@ -7,7 +7,8 @@
       <utp-input ref="inputRef" v-model="states.inputValue" readonly :disabled="disabled" :placeholder="placeholder">
         <template #suffix>
           <!-- 清除图标 -->
-          <utp-icon @mousedown.prevent="() => {}" @click="onClear" v-if="showClearIcon" icon="circle-xmark" class="utp-input__clear"></utp-icon>
+          <utp-icon @mousedown.prevent="() => { }" @click="onClear" v-if="showClearIcon" icon="circle-xmark"
+            class="utp-input__clear"></utp-icon>
           <!-- 指示箭头 -->
           <utp-icon v-else icon="angle-down" class="header-angle" :class="{ 'is-active': isDropdownShow }"></utp-icon>
         </template>
@@ -18,7 +19,7 @@
           <li @click.stop="itemSelect(item)" v-for="(item, index) in options" :key="index" class="utp-select__menu-item"
             :class="{ 'is-disabled': item.disabled, 'is-selected': states.selectOption?.value === item.value }"
             :id="`select-item-${item.value}`">
-            {{ item.lable }}
+            <render-vnode :v-node="renderLabel ? renderLabel(item) : item.label"></render-vnode>
           </li>
         </ul>
       </template>
@@ -27,6 +28,7 @@
 </template>
 <script setup lang="ts">
 import UtpIcon from '../UtpIcon/UtpIcon.vue';
+import RenderVnode from '../Common/RenderVnode';
 import { computed, reactive, ref } from 'vue';
 import UtpInput from '../UtpInput/UtpInput.vue';
 import UtpTooltip from '../UtpTooltip/UtpTooltip.vue';
@@ -50,7 +52,7 @@ const findOption = (value: string | number) => {
 const initialOption = findOption(props.modelValue)
 // 组件当前的状态值对象
 const states = reactive<SelectStates>({
-  inputValue: initialOption ? initialOption.lable : '',
+  inputValue: initialOption ? initialOption.label : '',
   selectOption: initialOption,
   mouseHover: false
 })
@@ -91,8 +93,8 @@ const showClearIcon = computed(() => {
 // 点击清空图标回调函数
 const onClear = () => {
   states.selectOption = null,
-  states.inputValue = '',
-  emits('clear')
+    states.inputValue = '',
+    emits('clear')
   emits('change', '')
   emits('update:modelValue', '')
 }
@@ -118,7 +120,7 @@ const toggleDropdown = () => {
 // 点击菜单中的选项
 const itemSelect = (e: SelectOptions) => {
   if (e.disabled) { return }
-  states.inputValue = e.lable
+  states.inputValue = e.label
   states.selectOption = e
   emits('change', e.value)
   emits('update:modelValue', e.value)

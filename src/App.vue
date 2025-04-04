@@ -70,7 +70,7 @@
     <br>
     <br>
     <!-- 测试下拉菜单 -->
-    <utp-select :options="options2" v-model="test" clearable></utp-select>
+    <utp-select :options="options2" v-model="test" clearable :render-label="customRender"></utp-select>
     <span>test-{{ test }}</span>
   </main>
 </template>
@@ -149,11 +149,14 @@ const switchValue = ref('left')
 import UtpSelect from './components/UtpSelect/UtpSelect.vue';
 const test = ref('1')
 const options2 = [
-  {lable: 'aaaa', value: '1'},
-  {lable: 'bbbb', value: '2', disabled:true},
-  {lable: 'cccc', value: '3'},
-  {lable: 'dddd', value: '4'},
+  { label: 'aaaa', value: '1' },
+  { label: 'bbbb', value: '2', disabled: true },
+  { label: 'cccc', value: '3' },
+  { label: 'dddd', value: '4' },
 ]
+const customRender = (option) => {
+  return h('div', {className: 'xyz'}, [h('b', option.label), h('span', option.value)])
+}
 </script>
 
 <style></style>
