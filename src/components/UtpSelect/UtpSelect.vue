@@ -4,8 +4,8 @@
     <utp-tooltip @click-outside="controlDropdown(false)" :popper-options="popperOption" ref="tooltipRef"
       placement="bottom-start" manual>
       <!-- 选择按钮 -->
-      <utp-input ref="inputRef" v-model="states.inputValue" @input="debounceOnFilter" :readonly="!filterable || !isDropdownShow"
-        :disabled="disabled" :placeholder="filteredPlaceholder">
+      <utp-input @keydown="handleKeydown" ref="inputRef" v-model="states.inputValue" @input="debounceOnFilter"
+        :readonly="!filterable || !isDropdownShow" :disabled="disabled" :placeholder="filteredPlaceholder">
         <template #suffix>
           <!-- 清除图标 -->
           <utp-icon @mousedown.prevent="() => { }" @click="onClear" v-if="showClearIcon" icon="circle-xmark"
@@ -26,9 +26,11 @@
         </div>
         <ul v-else class="utp-select__menu">
           <li @click.stop="itemSelect(item)" v-for="(item, index) in filteredOptions" :key="index"
-            class="utp-select__menu-item"
-            :class="{ 'is-disabled': item.disabled, 'is-selected': states.selectOption?.value === item.value }"
-            :id="`select-item-${item.value}`">
+            class="utp-select__menu-item" :class="{
+              'is-disabled': item.disabled,
+              'is-selected': states.selectOption?.value === item.value,
+              'is-highlighted': states.highlightIndex === index
+            }" :id="`select-item-${item.value}`">
             <render-vnode :v-node="renderLabel ? renderLabel(item) : item.label"></render-vnode>
           </li>
         </ul>
@@ -56,7 +58,7 @@ const props = withDefaults(defineProps<UtpSelectProps>(), {
 })
 const emits = defineEmits<UtpSelectEmits>()
 const timeout = computed(() => {
-  return props.remote ? 300: 0
+  return props.remote ? 300 : 0
 })
 // 查找选项函数
 const findOption = (value: string | number) => {
@@ -71,7 +73,8 @@ const states = reactive<SelectStates>({
   inputValue: initialOption ? initialOption.label : '',
   selectOption: initialOption,
   mouseHover: false,
-  loading: false
+  loading: false,
+  highlightIndex: -1
 })
 // tooltip实例
 const tooltipRef = ref() as Ref<TooltipInstance>
@@ -127,6 +130,7 @@ const generateFilterOptions = async (serchValue: string) => {
       return option.label.includes(serchValue)
     })
   }
+  states.highlightIndex = -1
 }
 const onFilter = () => {
   generateFilterOptions(states.inputValue)
@@ -176,9 +180,52 @@ const controlDropdown = (show: boolean) => {
     if (props.filterable) {
       states.inputValue = states.selectOption ? states.selectOption.label : ''
     }
+    states.highlightIndex = -1
   }
   isDropdownShow.value = show
   emits('visible-change', show)
+}
+const handleKeydown = (e: KeyboardEvent) => {
+  switch (e.key) {
+    case 'Enter':
+      if (!isDropdownShow.value) {
+        controlDropdown(true)
+      } else {
+        if (states.highlightIndex > -1 && filteredOptions.value[states.highlightIndex]) {
+          itemSelect(filteredOptions.value[states.highlightIndex])
+        } else {
+          controlDropdown(false)
+        }
+      }
+      break
+    case 'Escape':
+      if (isDropdownShow.value) {
+        controlDropdown(false)
+      }
+      break
+    case 'ArrowUp':
+      e.preventDefault()
+      if (filteredOptions.value.length > 0) {
+        if (states.highlightIndex === -1 || states.highlightIndex === 0) {
+          states.highlightIndex = filteredOptions.value.length - 1
+        } else {
+          states.highlightIndex--
+        }
+      }
+      break
+    case 'ArrowDown':
+      e.preventDefault()
+      if (filteredOptions.value.length > 0) {
+        if (states.highlightIndex === -1 || states.highlightIndex === (filteredOptions.value.length - 1)) {
+          states.highlightIndex = 0
+        } else {
+          states.highlightIndex++
+        }
+      }
+      break
+    default:
+      break
+  }
 }
 // 切换下拉菜单是否打开
 const toggleDropdown = () => {

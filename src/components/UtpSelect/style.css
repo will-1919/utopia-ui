@@ -66,6 +66,9 @@
       color: var(--utp-select-item-selected-font-color);
       font-weight: 700;
     }
+    &.is-highlighted {
+      background-color: var(--utp-select-item-hover-bg-color);
+    }
     /* 禁用样式 */
     &.is-disabled {
       color: var(--utp-select-item-disabled-font-color);

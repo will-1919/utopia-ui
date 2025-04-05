@@ -31,6 +31,7 @@ interface SelectStates {
   selectOption: null | SelectOptions
   mouseHover: boolean
   loading: boolean
+  highlightIndex: number
 }
 
 export type { UtpSelectProps, UtpSelectEmits, SelectOptions, SelectStates }
