@@ -16,7 +16,15 @@
       </utp-input>
       <!-- 选项下拉列表 -->
       <template #content>
-        <ul class="utp-select__menu">
+        <!-- loading状态 -->
+        <div class="utp-select__loading" v-if="states.loading">
+          <utp-icon icon="spinner" spin></utp-icon>
+        </div>
+        <!-- 无数据 -->
+        <div class="utp-select__loading" v-else-if="filterable && filteredOptions.length === 0">
+          暂无数据~
+        </div>
+        <ul v-else class="utp-select__menu">
           <li @click.stop="itemSelect(item)" v-for="(item, index) in filteredOptions" :key="index"
             class="utp-select__menu-item"
             :class="{ 'is-disabled': item.disabled, 'is-selected': states.selectOption?.value === item.value }"
@@ -43,7 +51,9 @@ import type { InputInstance } from '../UtpInput/types';
 defineExpose({
   name: 'UtpSelect'
 })
-const props = withDefaults(defineProps<UtpSelectProps>(), {})
+const props = withDefaults(defineProps<UtpSelectProps>(), {
+  options: () => [] // 设置数组默认方式
+})
 const emits = defineEmits<UtpSelectEmits>()
 // 查找选项函数
 const findOption = (value: string | number) => {
@@ -57,7 +67,8 @@ const initialOption = findOption(props.modelValue)
 const states = reactive<SelectStates>({
   inputValue: initialOption ? initialOption.label : '',
   selectOption: initialOption,
-  mouseHover: false
+  mouseHover: false,
+  loading: false
 })
 // tooltip实例
 const tooltipRef = ref() as Ref<TooltipInstance>
@@ -89,11 +100,26 @@ const filteredOptions = ref<SelectOptions[]>(props.options)
 watch(() => props.options, (newOptions) => {
   filteredOptions.value = newOptions
 })
-const generateFilterOptions = (serchValue: string) => {
+const generateFilterOptions = async (serchValue: string) => {
   if (!props.filterable) { return }
+  // 普通筛选
   if (props.filterMethod && isFunction(props.filterMethod)) {
     filteredOptions.value = props.filterMethod(serchValue)
-  } else {
+    // 异步筛选
+  } else if (props.remote && props.remoteMethod && isFunction(props.remoteMethod)) {
+    states.loading = true
+    try {
+      filteredOptions.value = await props.remoteMethod(serchValue)
+    }
+    catch (e) {
+      console.log('error:', e)
+      filteredOptions.value = []
+    }
+    finally {
+      states.loading = false
+    }
+  }
+  else {
     filteredOptions.value = props.options.filter((option) => {
       return option.label.includes(serchValue)
     })

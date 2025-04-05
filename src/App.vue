@@ -72,6 +72,10 @@
     <!-- 测试下拉菜单 -->
     <utp-select :options="options2" v-model="test" clearable filterable placeholder="选择"></utp-select>
     <span>test-{{ test }}</span>
+    <!-- 测试远程搜索 -->
+     <br>
+     <br>
+     <test-vue></test-vue>
   </main>
 </template>
 
@@ -154,6 +158,7 @@ const options2 = [
   { label: 'cccc', value: '3' },
   { label: 'dddd', value: '4' },
 ]
+import TestVue from '@/components/UtpSelect/test.vue'
 </script>
 
 <style></style>
