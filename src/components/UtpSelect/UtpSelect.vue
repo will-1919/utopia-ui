@@ -4,7 +4,7 @@
     <utp-tooltip @click-outside="controlDropdown(false)" :popper-options="popperOption" ref="tooltipRef"
       placement="bottom-start" manual>
       <!-- 选择按钮 -->
-      <utp-input ref="inputRef" v-model="states.inputValue" @input="onFilter" :readonly="!filterable || !isDropdownShow"
+      <utp-input ref="inputRef" v-model="states.inputValue" @input="debounceOnFilter" :readonly="!filterable || !isDropdownShow"
         :disabled="disabled" :placeholder="filteredPlaceholder">
         <template #suffix>
           <!-- 清除图标 -->
@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import UtpIcon from '../UtpIcon/UtpIcon.vue';
 import RenderVnode from '../Common/RenderVnode';
-import { isFunction } from 'lodash-es';
+import { isFunction, debounce } from 'lodash-es';
 import { computed, reactive, ref, watch } from 'vue';
 import UtpInput from '../UtpInput/UtpInput.vue';
 import UtpTooltip from '../UtpTooltip/UtpTooltip.vue';
@@ -55,6 +55,9 @@ const props = withDefaults(defineProps<UtpSelectProps>(), {
   options: () => [] // 设置数组默认方式
 })
 const emits = defineEmits<UtpSelectEmits>()
+const timeout = computed(() => {
+  return props.remote ? 300: 0
+})
 // 查找选项函数
 const findOption = (value: string | number) => {
   const option = props.options.find((item) => {
@@ -128,6 +131,9 @@ const generateFilterOptions = async (serchValue: string) => {
 const onFilter = () => {
   generateFilterOptions(states.inputValue)
 }
+const debounceOnFilter = debounce(() => {
+  onFilter()
+}, timeout.value)
 const isDropdownShow = ref(false)
 // 是否展示清除图标
 const showClearIcon = computed(() => {
