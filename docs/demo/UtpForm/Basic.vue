@@ -18,10 +18,10 @@ const rules = {
 <template>
   <div>
     <utp-form :model="model" :rules="rules">
-      <utp-form-item label="the email">
+      <utp-form-item label="the email" prop="email">
         <utp-input v-model="model.email"></utp-input>
       </utp-form-item>
-      <utp-form-item label="the password">
+      <utp-form-item label="the password" prop="password">
         <template #label="{ label }">
           <utp-button>{{ label }}</utp-button>
         </template>
