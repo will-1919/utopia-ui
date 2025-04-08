@@ -21,7 +21,7 @@
 </template>
 <script setup lang="ts">
 import type { UtpFormItemProps, FormValidateFailure, FormItemContext } from './types';
-import { computed, inject, reactive, provide } from 'vue';
+import { computed, inject, reactive, provide, onMounted, onUnmounted } from 'vue';
 import { formContextKey, formItemContextKey } from './types';
 import { isNil } from 'lodash-es';
 // RuleItem为async-validator预设的一些type
@@ -84,20 +84,30 @@ const validate = (trigger?: string) => {
       [modelName]: triggeredRules
     })
     validateStatus.loading = true
-    validator.validate({ [modelName]: innerValue.value }).then(() => {
+    return validator.validate({ [modelName]: innerValue.value }).then(() => {
       validateStatus.state = 'success'
     }).catch((e: FormValidateFailure) => {
       const { errors } = e
       validateStatus.state = 'error'
       validateStatus.errorMsg = (errors && (errors.length > 0)) ? errors[0].message || '' : ''
       console.log('error', e.errors)
+      return Promise.reject(e)
     }).finally(() => {
       validateStatus.loading = false
     })
   }
 }
 const context: FormItemContext = {
+  prop: props.prop || '',
   validate: validate
 }
 provide(formItemContextKey, context)
+onMounted(() => {
+  if(props.prop) {
+    formContext?.addField(context)
+  }
+})
+onUnmounted(() => {
+  formContext?.removeField(context)
+})
 </script>
