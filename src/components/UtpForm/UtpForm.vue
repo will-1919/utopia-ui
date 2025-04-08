@@ -50,7 +50,21 @@ const validate = async () => {
   }
   return Promise.reject(validationErrors)
 }
+const resetFields = (keys: string[] = []) => {
+  const filterArr = keys.length > 0 ? fields.filter((field) => keys.includes(field.prop)) : fields
+  filterArr.forEach((field) => {
+    field.resetField()
+  })
+}
+const clearValidta = (keys: string[] = []) => {
+  const filterArr = keys.length > 0 ? fields.filter((field) => keys.includes(field.prop)) : fields
+  filterArr.forEach((field) => {
+    field.clearValidta()
+  })
+}
 defineExpose<FormInstance>({
-  validate: validate
+  validate: validate,
+  resetFields: resetFields,
+  clearValidta: clearValidta
 })
 </script>

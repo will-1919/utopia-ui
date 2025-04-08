@@ -41,6 +41,7 @@ const validateStatus = reactive({
   errorMsg: '',
   loading: false
 })
+let initialValue: any = null
 // 筛选出和当前表单项目所对应的数据
 const innerValue = computed(() => {
   const model = formContext?.model
@@ -59,6 +60,7 @@ const itemRules = computed(() => {
     return []
   }
 })
+// 筛选出对应的规则
 const getTriggeredRules = (trigger?: string) => {
   const rules = itemRules.value
   if (rules) {
@@ -72,6 +74,7 @@ const getTriggeredRules = (trigger?: string) => {
     return []
   }
 }
+// 验证方法
 const validate = (trigger?: string) => {
   const modelName = props.prop
   const triggeredRules = getTriggeredRules(trigger)
@@ -97,14 +100,31 @@ const validate = (trigger?: string) => {
     })
   }
 }
+// 清除验证输出
+const clearValidta = () => {
+  validateStatus.state = 'init'
+  validateStatus.errorMsg = ''
+  validateStatus.loading = false
+}
+// 恢复表单原始的值
+const resetField = () => {
+  clearValidta()
+  const model = formContext?.model
+  if (model && props.prop && !isNil(model[props.prop])) {
+    model[props.prop] = initialValue
+  }
+}
 const context: FormItemContext = {
   prop: props.prop || '',
-  validate: validate
+  validate: validate,
+  clearValidta: clearValidta,
+  resetField: resetField
 }
 provide(formItemContextKey, context)
 onMounted(() => {
-  if(props.prop) {
+  if (props.prop) {
     formContext?.addField(context)
+    initialValue = innerValue.value
   }
 })
 onUnmounted(() => {

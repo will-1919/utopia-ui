@@ -7,9 +7,9 @@ import { ref, reactive } from 'vue'
 
 const formRef = ref()
 const model = reactive({
-  email: '',
-  password: '',
-  normol: ''
+  email: '1111@qq.com',
+  password: 'dsddwssss',
+  normol: '我上早八'
 })
 const rules = {
   email: [{ type: 'email', required: true, trigger: 'blur' }, { type: 'string', required: true, trigger: 'input' }],
@@ -17,14 +17,6 @@ const rules = {
   normol: [{ type: 'string', required: true, trigger: 'blur', min: 4, max: 8 }]
 }
 const submit = async () => {
-  try {
-    await formRef.value.validate()
-    console.log('passed!')
-  } catch (e) {
-    console.log('the error', e)
-  }
-}
-const submit2 = async () => {
   let res = await formRef.value.validate()
     .catch((e) => {
       console.log('the error', e)
@@ -32,6 +24,9 @@ const submit2 = async () => {
   if(res) {
     console.log('passed!')
   }
+}
+const reset = () => {
+  formRef.value.resetFields()
 }
 </script>
 
@@ -53,8 +48,8 @@ const submit2 = async () => {
         </template>
       </utp-form-item>
       <div>
-        <utp-button type="primary" @click="submit2">Submit</utp-button>
-        <utp-button>Reset</utp-button>
+        <utp-button type="primary" @click="submit">Submit</utp-button>
+        <utp-button @click="reset">Reset</utp-button>
       </div>
     </utp-form>
     <p>

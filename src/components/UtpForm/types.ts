@@ -22,6 +22,8 @@ interface FormContext extends UtpFormProps {
 interface FormItemContext {
   validate: (tigger?: string) => any
   prop: string
+  resetField: () => void
+  clearValidta: () => void
 }
 // 声明错误类型
 interface FormValidateFailure {
@@ -31,6 +33,8 @@ interface FormValidateFailure {
 // form的实例方法
 interface FormInstance {
   validate: () => Promise<any>
+  resetFields: () => void
+  clearValidta: () => void
 }
 // provide传递数据的key
 const formContextKey: InjectionKey<FormContext> = Symbol('formContextKey')
