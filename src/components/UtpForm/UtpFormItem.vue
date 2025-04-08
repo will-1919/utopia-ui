@@ -2,7 +2,8 @@
   <div class="utp-form-item" :class="{
     'is-error': validateStatus.state === 'error',
     'is-success': validateStatus.state === 'success',
-    'is-loading': validateStatus.loading
+    'is-loading': validateStatus.loading,
+    'is-required': isRequired
   }">
     <label class="utp-form-item__label">
       <!-- 借助插槽传值 -->
@@ -12,11 +13,10 @@
     </label>
     <div class="utp-form-item__content">
       <slot :validate="validate"></slot>
-      <div class="utp-form__error-msg" v-if="validateStatus.state === 'error'">
+      <div class="utp-form-item__error-msg" v-if="validateStatus.state === 'error'">
         {{ validateStatus.errorMsg }}
       </div>
     </div>
-    {{ innerValue }} : {{ itemRules }}
   </div>
 </template>
 <script setup lang="ts">
@@ -60,6 +60,12 @@ const itemRules = computed(() => {
     return []
   }
 })
+// 是否是必须项
+const isRequired = computed(() => {
+  return itemRules.value.some((rule) => {
+    return rule.required
+  })
+})
 // 筛选出对应的规则
 const getTriggeredRules = (trigger?: string) => {
   const rules = itemRules.value
@@ -75,7 +81,7 @@ const getTriggeredRules = (trigger?: string) => {
   }
 }
 // 验证方法
-const validate = (trigger?: string) => {
+const validate = async (trigger?: string) => {
   const modelName = props.prop
   const triggeredRules = getTriggeredRules(trigger)
   if (triggeredRules?.length === 0) {
@@ -93,7 +99,7 @@ const validate = (trigger?: string) => {
       const { errors } = e
       validateStatus.state = 'error'
       validateStatus.errorMsg = (errors && (errors.length > 0)) ? errors[0].message || '' : ''
-      console.log('error', e.errors)
+      // console.log('error', e.errors)
       return Promise.reject(e)
     }).finally(() => {
       validateStatus.loading = false

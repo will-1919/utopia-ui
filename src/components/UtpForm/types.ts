@@ -20,7 +20,7 @@ interface FormContext extends UtpFormProps {
 }
 // item传给form的context
 interface FormItemContext {
-  validate: (tigger?: string) => any
+  validate: (tigger?: string) => Promise<any>
   prop: string
   resetField: () => void
   clearValidta: () => void

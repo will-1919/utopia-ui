@@ -9,7 +9,7 @@ const formRef = ref()
 const model = reactive({
   email: '1111@qq.com',
   password: 'dsddwssss',
-  normol: '我上早八'
+  normol: '1515156'
 })
 const rules = {
   email: [{ type: 'email', required: true, trigger: 'blur' }, { type: 'string', required: true, trigger: 'input' }],
@@ -38,14 +38,9 @@ const reset = () => {
       </utp-form-item>
       <utp-form-item label="the password" prop="password">
         <template #label="{ label }">
-          <utp-button>{{ label }}</utp-button>
+          {{ label }}
         </template>
         <utp-input v-model="model.password"></utp-input>
-      </utp-form-item>
-      <utp-form-item label="normol" prop="normol">
-        <template #default="{ validate }">
-          <input @blur="validate" type="text" v-model="model.normol">
-        </template>
       </utp-form-item>
       <div>
         <utp-button type="primary" @click="submit">Submit</utp-button>

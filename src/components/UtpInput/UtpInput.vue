@@ -75,7 +75,9 @@ const isFocus = ref<boolean>(false)
 // 获取表单上下文
 const formItemContext = inject(formItemContextKey)
 const runValidation = (trigger?: string) => {
-  formItemContext?.validate(trigger)
+  formItemContext?.validate(trigger).catch((e) => {
+    console.log('item error', e.errors)
+  })
 }
 // 是否显示清空图标
 const showClear = computed(() => {
