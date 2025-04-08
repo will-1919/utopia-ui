@@ -51,9 +51,11 @@
 </template>
 <script setup lang="ts">
 import type { UtpInputProps, UtpInputEmits } from './types';
-import { computed, nextTick, ref, useAttrs, watch } from 'vue';
+import { computed, inject, nextTick, ref, useAttrs, watch } from 'vue';
 import UtpIcon from '../UtpIcon/UtpIcon.vue';
 import type { Ref } from 'vue';
+import type { FormItemContext } from '../UtpForm/types';
+import { formItemContextKey } from '../UtpForm/types';
 
 defineOptions({
   name: 'UtpInput',
@@ -70,6 +72,8 @@ const emits = defineEmits<UtpInputEmits>()
 const innerValue = ref(props.modelValue)
 // 是不是聚焦状态
 const isFocus = ref<boolean>(false)
+// 获取表单上下文
+const formItemContext = inject(formItemContextKey)
 // 是否显示清空图标
 const showClear = computed(() => {
   return props.clearable && !props.disabled && !!innerValue.value && isFocus.value
@@ -88,6 +92,7 @@ const handleFocus = (event: FocusEvent) => {
 const handleBlur = (event: FocusEvent) => {
   isFocus.value = false
   emits('blur', event)
+  formItemContext?.validate()
 }
 // 清空input的值
 const clear = () => {

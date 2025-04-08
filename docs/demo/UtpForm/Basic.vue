@@ -7,11 +7,13 @@ import { ref, reactive } from 'vue'
 
 const model = reactive({
   email: '',
-  password: ''
+  password: '',
+  normol: ''
 })
 const rules = {
-  email: [{ type: 'string', required: true, trigger: 'blur' }],
-  password: [{ type: 'string', required: true, trigger: 'blur' }]
+  email: [{ type: 'email', required: true, trigger: 'blur' }],
+  password: [{ type: 'string', required: true, trigger: 'blur', min: 8, max: 16 }],
+  normol: [{ type: 'string', required: true, trigger: 'blur', min: 4, max: 8 }]
 }
 </script>
 
@@ -26,6 +28,11 @@ const rules = {
           <utp-button>{{ label }}</utp-button>
         </template>
         <utp-input v-model="model.password"></utp-input>
+      </utp-form-item>
+      <utp-form-item label="normol" prop="normol">
+        <template #default="{validate}">
+          <input @blur="validate" type="text" v-model="model.normol">
+        </template>
       </utp-form-item>
       <div>
         <utp-button type="primary">Submit</utp-button>

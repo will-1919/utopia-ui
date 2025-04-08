@@ -1,5 +1,9 @@
 <template>
-  <div class="utp-form-item">
+  <div class="utp-form-item" :class="{
+    'is-error': validateStatus.state === 'error',
+    'is-success': validateStatus.state === 'success',
+    'is-loading': validateStatus.loading
+  }">
     <label class="utp-form-item__label">
       <!-- 借助插槽传值 -->
       <slot name="label" :label="label">
@@ -7,16 +11,24 @@
       </slot>
     </label>
     <div class="utp-form-item__content">
-      <slot></slot>
+      <slot :validate="validate"></slot>
+      <div class="utp-form__error-msg" v-if="validateStatus.state === 'error'">
+        {{ validateStatus.errorMsg }}
+      </div>
     </div>
     {{ innerValue }} : {{ itemRules }}
+    <button @click.prevent="validate">验证</button>
   </div>
 </template>
 <script setup lang="ts">
-import type { UtpFormItemProps } from './types';
-import { computed, inject, onMounted } from 'vue';
-import { formContextKey } from './types';
+import type { UtpFormItemProps, FormValidateFailure, FormItemContext } from './types';
+import { computed, inject, reactive, provide } from 'vue';
+import { formContextKey, formItemContextKey } from './types';
 import { isNil } from 'lodash-es';
+// RuleItem为async-validator预设的一些type
+import type { RuleItem } from 'async-validator';
+import Schema from 'async-validator';
+
 
 defineOptions({
   name: 'UtpFormItem'
@@ -25,8 +37,11 @@ const props = withDefaults(defineProps<UtpFormItemProps>(), {})
 
 // 获取全部父组件数据
 const formContext = inject(formContextKey)
-onMounted(() => {
-
+// 当前验证状态
+const validateStatus = reactive({
+  state: 'init',
+  errorMsg: '',
+  loading: false
 })
 // 筛选出和当前表单项目所对应的数据
 const innerValue = computed(() => {
@@ -37,6 +52,7 @@ const innerValue = computed(() => {
     return null
   }
 })
+// 筛选出和当前表单项目所对应的规则
 const itemRules = computed(() => {
   const rules = formContext?.rules
   if (rules && props.prop && !isNil(rules[props.prop])) {
@@ -45,5 +61,28 @@ const itemRules = computed(() => {
     return []
   }
 })
-
+const validate = () => {
+  const modelName = props.prop
+  if (modelName) {
+    // 创建验证实例
+    const validator = new Schema({
+      [modelName]: itemRules.value
+    })
+    validateStatus.loading = true
+    validator.validate({ [modelName]: innerValue.value }).then(() => {
+      validateStatus.state = 'success'
+    }).catch((e: FormValidateFailure) => {
+      const { errors } = e
+      validateStatus.state = 'error'
+      validateStatus.errorMsg = (errors && (errors.length > 0)) ? errors[0].message || '' : ''
+      console.log('error', e.errors)
+    }).finally(() => {
+      validateStatus.loading = false
+    })
+  }
+}
+const context: FormItemContext = {
+  validate: validate
+}
+provide(formItemContextKey, context)
 </script>
