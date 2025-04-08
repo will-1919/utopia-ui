@@ -13,6 +13,11 @@ interface UtpFormProps {
   model: Record<string, any>
   rules: FormRules
 }
+interface ValidateStatusProp {
+  state: 'init' | 'success' | 'error'
+  errorMsg: string
+  loading: boolean
+}
 // form传递给formItem的context
 interface FormContext extends UtpFormProps {
   addField: (field: FormItemContext) => void
@@ -20,8 +25,8 @@ interface FormContext extends UtpFormProps {
 }
 // item传给form的context
 interface FormItemContext {
-  validate: (tigger?: string) => Promise<any>
   prop: string
+  validate: (tigger?: string) => Promise<any>
   resetField: () => void
   clearValidta: () => void
 }
@@ -36,6 +41,13 @@ interface FormInstance {
   resetFields: () => void
   clearValidta: () => void
 }
+// formItem的实例方法
+interface FormItemInstance {
+  validateStatus: ValidateStatusProp
+  validate: (tigger?: string) => Promise<any>
+  resetField: () => void
+  clearValidta: () => void
+}
 // provide传递数据的key
 const formContextKey: InjectionKey<FormContext> = Symbol('formContextKey')
 const formItemContextKey: InjectionKey<FormItemContext> = Symbol('formItemContextKey')
@@ -48,5 +60,7 @@ export type {
   FormValidateFailure,
   FormItemRule,
   FormInstance,
+  ValidateStatusProp,
+  FormItemInstance,
 }
 export { formContextKey, formItemContextKey }

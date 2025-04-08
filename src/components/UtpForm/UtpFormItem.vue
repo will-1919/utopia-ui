@@ -20,7 +20,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import type { UtpFormItemProps, FormValidateFailure, FormItemContext } from './types';
+import type { UtpFormItemProps, FormValidateFailure, FormItemContext, FormItemInstance, ValidateStatusProp } from './types';
 import { computed, inject, reactive, provide, onMounted, onUnmounted } from 'vue';
 import { formContextKey, formItemContextKey } from './types';
 import { isNil } from 'lodash-es';
@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<UtpFormItemProps>(), {})
 // 获取全部父组件数据
 const formContext = inject(formContextKey)
 // 当前验证状态
-const validateStatus = reactive({
+const validateStatus = reactive<ValidateStatusProp>({
   state: 'init',
   errorMsg: '',
   loading: false
@@ -135,5 +135,11 @@ onMounted(() => {
 })
 onUnmounted(() => {
   formContext?.removeField(context)
+})
+defineExpose<FormItemInstance>({
+  validateStatus: validateStatus,
+  validate: validate,
+  resetField: resetField,
+  clearValidta: clearValidta,
 })
 </script>
