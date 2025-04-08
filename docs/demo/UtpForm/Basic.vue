@@ -8,13 +8,19 @@ import { ref, reactive } from 'vue'
 const formRef = ref()
 const model = reactive({
   email: '1111@qq.com',
-  password: 'dsddwssss',
-  normol: '1515156'
+  password: '',
+  comfirmPwd: ''
 })
 const rules = {
   email: [{ type: 'email', required: true, trigger: 'blur' }, { type: 'string', required: true, trigger: 'input' }],
   password: [{ type: 'string', required: true, trigger: 'blur', min: 8, max: 16 }],
-  normol: [{ type: 'string', required: true, trigger: 'blur', min: 4, max: 8 }]
+  comfirmPwd: [{ type: 'string', required: true, trigger: 'blur' }, {
+    validator: (rule, value) => {
+      return value === model.password
+    },
+    trigger: 'blur',
+    message: '密码不一致'
+  }]
 }
 const submit = async () => {
   let res = await formRef.value.validate()
@@ -41,6 +47,9 @@ const reset = () => {
           {{ label }}
         </template>
         <utp-input v-model="model.password"></utp-input>
+      </utp-form-item>
+      <utp-form-item label="the password" prop="comfirmPwd">
+        <utp-input v-model="model.comfirmPwd"></utp-input>
       </utp-form-item>
       <div>
         <utp-button type="primary" @click="submit">Submit</utp-button>
