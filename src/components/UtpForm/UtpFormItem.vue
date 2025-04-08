@@ -17,7 +17,6 @@
       </div>
     </div>
     {{ innerValue }} : {{ itemRules }}
-    <button @click.prevent="validate">验证</button>
   </div>
 </template>
 <script setup lang="ts">
@@ -26,7 +25,6 @@ import { computed, inject, reactive, provide } from 'vue';
 import { formContextKey, formItemContextKey } from './types';
 import { isNil } from 'lodash-es';
 // RuleItem为async-validator预设的一些type
-import type { RuleItem } from 'async-validator';
 import Schema from 'async-validator';
 
 
@@ -61,12 +59,29 @@ const itemRules = computed(() => {
     return []
   }
 })
-const validate = () => {
+const getTriggeredRules = (trigger?: string) => {
+  const rules = itemRules.value
+  if (rules) {
+    return rules.filter((rule) => {
+      if (!rule.trigger || !trigger) {
+        return true
+      }
+      return rule.trigger && rule.trigger === trigger
+    })
+  } else {
+    return []
+  }
+}
+const validate = (trigger?: string) => {
   const modelName = props.prop
+  const triggeredRules = getTriggeredRules(trigger)
+  if (triggeredRules?.length === 0) {
+    return true
+  }
   if (modelName) {
     // 创建验证实例
     const validator = new Schema({
-      [modelName]: itemRules.value
+      [modelName]: triggeredRules
     })
     validateStatus.loading = true
     validator.validate({ [modelName]: innerValue.value }).then(() => {

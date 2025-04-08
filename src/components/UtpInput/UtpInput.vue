@@ -74,6 +74,9 @@ const innerValue = ref(props.modelValue)
 const isFocus = ref<boolean>(false)
 // 获取表单上下文
 const formItemContext = inject(formItemContextKey)
+const runValidation = (trigger?: string) => {
+  formItemContext?.validate(trigger)
+}
 // 是否显示清空图标
 const showClear = computed(() => {
   return props.clearable && !props.disabled && !!innerValue.value && isFocus.value
@@ -82,6 +85,7 @@ const showClear = computed(() => {
 const handlerInput = () => {
   emits('update:modelValue', innerValue.value)
   emits('input', innerValue.value)
+  runValidation('input')
 }
 // 聚焦回调函数
 const handleFocus = (event: FocusEvent) => {
@@ -92,7 +96,7 @@ const handleFocus = (event: FocusEvent) => {
 const handleBlur = (event: FocusEvent) => {
   isFocus.value = false
   emits('blur', event)
-  formItemContext?.validate()
+  runValidation('blur')
 }
 // 清空input的值
 const clear = () => {
@@ -122,6 +126,7 @@ const keepFocus = () => {
 // change事件
 const handlerChange = () => {
   emits('change', innerValue.value)
+  runValidation('change')
 }
 watch(() => props.modelValue, (newValue) => {
   innerValue.value = newValue

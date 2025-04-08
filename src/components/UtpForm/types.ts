@@ -5,7 +5,10 @@ interface UtpFormItemProps {
   label: string
   prop?: string
 }
-type FormRules = Record<string, RuleItem[]>
+interface FormItemRule extends RuleItem {
+  trigger?: string
+}
+type FormRules = Record<string, FormItemRule[]>
 interface UtpFormProps {
   model: Record<string, any>
   rules: FormRules
@@ -14,7 +17,7 @@ interface UtpFormProps {
 interface FormContext extends UtpFormProps {}
 // item传给form的context
 interface FormItemContext {
-  validate: () => any
+  validate: (tigger?:string) => any
 }
 // 声明错误类型
 interface FormValidateFailure {
@@ -25,5 +28,5 @@ interface FormValidateFailure {
 const formContextKey: InjectionKey<FormContext> = Symbol('formContextKey')
 const formItemContextKey: InjectionKey<FormItemContext> = Symbol('formItemContextKey')
 
-export type { UtpFormItemProps, UtpFormProps, FormContext, FormItemContext, FormValidateFailure }
+export type { UtpFormItemProps, UtpFormProps, FormContext, FormItemContext, FormValidateFailure, FormItemRule }
 export { formContextKey, formItemContextKey }
