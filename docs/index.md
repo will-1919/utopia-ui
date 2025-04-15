@@ -3,9 +3,10 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "Utopia Ui"
+  text: "Vue3基础组件库"
+  tagline: "一个自用的组件库，欢迎使用和提出Issues！"
+  image:  '/whatAreYouTalkingAbout.jpg'
   actions:
     - theme: brand
       text: Markdown Examples
@@ -13,13 +14,5 @@ hero:
     - theme: alt
       text: API Examples
       link: /api-examples
-
-features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 
