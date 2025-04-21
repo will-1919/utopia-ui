@@ -1,5 +1,5 @@
 ---
-title: Button（按钮）- Utopia UI
+title: Button（按钮）
 description: 用于触发即时操作
 ---
 

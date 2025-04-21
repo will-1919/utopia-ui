@@ -1,5 +1,5 @@
 ---
-title: Form（表单）- Utopia UI
+title: Form（表单）
 description: 用于表单验证
 ---
 
