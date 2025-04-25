@@ -14,7 +14,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '主页', link: '/' },
-      { text: '安装', link: '/markdown-examples' },
+      { text: '安装', link: '/get-started' },
       { text: '组件', link: '/components/utp-button', activeMatch: '/components/' },
     ],
 

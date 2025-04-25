@@ -115,6 +115,9 @@
     --utp-button-hover-bg-color: var(--utp-color-$(val));
     --utp-button-hover-border-color: var(--utp-color-$(val));
     --utp-button-active-text-color: var(--utp-color-white);
+    --utp-button-disabled-text-color: var(--utp-color-$(val)-light-5);
+    --utp-button-disabled-bg-color: var(--utp-color-$(val)-light-9);
+    --utp-button-disabled-border-color: var(--utp-color-$(val)-light-8);
   }
 }
 .utp-button--big {
