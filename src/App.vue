@@ -16,7 +16,7 @@
   </header>
   <main>
     <!-- BUTTON按钮测试 -->
-    <utp-button type="text">text</utp-button>
+    <utp-button ref="btnRef" type="text">text</utp-button>
     <utp-button type="text" plain>text</utp-button>
     <utp-button>btn info</utp-button>
     <utp-button @click="open" plain>btn plain</utp-button>
@@ -87,9 +87,9 @@ import UtpButton from './components/UtpButton/UtpButton.vue'
 import UtpTooltip from './components/UtpTooltip/UtpTooltip.vue';
 
 const btnRef = ref<ButtonInstance | null>(null)
-// onMounted(() => {
-//   console.log('btnRef', btnRef.value?.ref)
-// })
+onMounted(() => {
+  console.log('btnRef', btnRef.value?.ref)
+})
 // Collapse组件测试------------------------------------------------------------------
 import UtpCollapse from './components/UtpCollapse/UtpCollapse.vue'
 import UtpCollapseItem from './components/UtpCollapse/UtpCollapseItem.vue'

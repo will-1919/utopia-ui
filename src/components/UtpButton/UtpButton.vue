@@ -9,8 +9,8 @@
     [`utp-button--${size}`]: size,
   }" :disabled="disabled || loading" :autofocus="autofocus" :type="nativeType">
     <utp-icon icon="spinner" spin v-if="loading"></utp-icon>
-    <utp-icon :icon="icon" spin v-if="icon"></utp-icon>
-    <span>
+    <utp-icon :icon="icon" v-if="icon"></utp-icon>
+    <span v-if="$slots.default">
       <slot></slot>
     </span>
   </button>
