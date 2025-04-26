@@ -9,11 +9,8 @@ import UtpIcon from '@/components/UtpIcon/UtpIcon.vue'
   <div class="group-box">
     <p>Classic</p>
     <div class="group-content">
-      <utp-icon icon="fa-solid fa-house"></utp-icon>
-      <utp-icon icon="fa-solid fa-circle-user"></utp-icon>
-      <utp-icon icon="fa-solid fa-image"></utp-icon>
-      <utp-icon icon="fa-regular file"></utp-icon>
-      <utp-icon icon="fa-github"></utp-icon>
+      <utp-icon icon="fa-house"></utp-icon>
+      <utp-icon icon="fa-brands fa-github"></utp-icon>
     </div>
   </div>
 </template>
