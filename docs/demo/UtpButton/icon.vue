@@ -9,7 +9,7 @@ import UtpButton from '@/components/UtpButton/UtpButton.vue'
     支持图标：图标可以参考Icon组件文档或
     <a href="https://fontawesome.com/search" target="_blank"> https://fontawesome.com/search</a>
     <br>
-    <small style="color: var(--utp-color-primary);">ps：不支持：pro角标的图标哦，露出贫穷的微笑
+    <small style="color: var(--utp-color-primary);">ps：不支持pro角标的图标哦，露出贫穷的微笑
       (￣ω￣)</small>
   </p>
   <utp-button icon="fa-solid fa-thumbs-up">a-solid fa-thumbs-up</utp-button>
