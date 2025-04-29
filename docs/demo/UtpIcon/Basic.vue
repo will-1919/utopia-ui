@@ -68,9 +68,6 @@ import UtpIcon from '@/components/UtpIcon/UtpIcon.vue'
 </template>
 
 <style scoped>
-  .group-box {
-
-  }
   .group-content {
     display: flex;
     justify-content: space-between;

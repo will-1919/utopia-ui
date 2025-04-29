@@ -15,7 +15,7 @@ description: 语义化的矢量图形
 (￣ω￣)</small>
 <preview path="../demo/UtpIcon/Basic.vue" title="常用图标" description=""></preview>
 
-## Button API
+## Icon API
 
 支持fontawesome的所有API，另外多加了自定义的API, 有关fontawesome的API请查看官网[官方文档](https://docs.fontawesome.com/apis)，或[中文文档](https://fontawesome.com.cn/docs/v5/desktop)
 
