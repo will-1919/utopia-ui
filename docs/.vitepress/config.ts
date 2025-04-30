@@ -31,7 +31,7 @@ export default defineConfig({
         text: 'layout 布局组件',
         items: [
           { text: 'Collapse 抽屉', link: '/components/utp-collapse' },
-          { text: 'Tooltip 抽屉', link: '/components/utp-tooltip' },
+          { text: 'Tooltip 文本提示', link: '/components/utp-tooltip' },
           { text: 'Dropdown 下拉菜单', link: '/components/utp-dropdown' }
         ],
       },
