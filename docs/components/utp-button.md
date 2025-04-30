@@ -38,18 +38,18 @@ description: 用于触发即时操作
 
 #### 属性
 
-| 属性        | 说明                          | 类型                                                                        | 默认值    |
-| ----------- | ----------------------------- | --------------------------------------------------------------------------- | --------- |
-| type        | 设置按钮主题                  | `primary` \| `success` \| `info`\| `error`\| `text`                         | `primary` |
-| plain       | 镂空按钮状态                  | `boolean`                                                                   | `false`   |
-| size        | 设置按钮大小                  | `small` \| `middle` \| `big`                                                | `middle`  |
-| round       | 椭圆形按钮状态                | `boolean`                                                                   | `false`   |
-| circle      | 圆形按钮状态                  | `boolean`                                                                   | `false`   |
-| loading     | 载入中按钮状态                | `boolean`                                                                   | `false`   |
-| disabled    | 禁用按钮状态                  | `boolean`                                                                   | `false`   |
-| icon        | 设置按钮图标                  | `string` - [https://fontawesome.com/search](https://fontawesome.com/search) | —         |
-| autofocus   | 同原生button属性：`autofocus` | `boolean`                                                                   | `false`   |
-| native-type | 同原生button属性：`type`      | `button`\| `submit`\| `reset`                                               | `button`  |
+| 属性        | 说明                          | 类型                                                                        | 默认值  |
+| ----------- | ----------------------------- | --------------------------------------------------------------------------- | ------- |
+| type        | 设置按钮主题                  | `primary` \| `success` \| `info`\| `error`\| `text`                         | primary |
+| plain       | 镂空按钮状态                  | `boolean`                                                                   | false   |
+| size        | 设置按钮大小                  | `small` \| `middle` \| `big`                                                | middle  |
+| round       | 椭圆形按钮状态                | `boolean`                                                                   | false   |
+| circle      | 圆形按钮状态                  | `boolean`                                                                   | false   |
+| loading     | 载入中按钮状态                | `boolean`                                                                   | false   |
+| disabled    | 禁用按钮状态                  | `boolean`                                                                   | false   |
+| icon        | 设置按钮图标                  | `string` - [https://fontawesome.com/search](https://fontawesome.com/search) | —       |
+| autofocus   | 同原生button属性：`autofocus` | `boolean`                                                                   | false   |
+| native-type | 同原生button属性：`type`      | `button`\| `submit`\| `reset`                                               | button  |
 
 #### 事件
 
