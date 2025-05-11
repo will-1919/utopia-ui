@@ -4,23 +4,30 @@ import UtpIcon from '@/components/UtpIcon/UtpIcon.vue'
 import { ref, h } from 'vue';
 
 const menuOptions = ref([
-  { key: 1, label: h('h1', '这个加粗了') },
-  { key: 2, label: 'item2', disabled: true },
-  { key: 3, label: 'item3', divided: true },
-  { key: 4, label: 'item4' }
+  { key: 1, label: 'item-a' },
+  { key: 2, label: 'item-b', disabled: true },
+  { key: 3, label: h('i', { style: { fontWeight: 'bold' } }, 'item-c') },
+  { key: 4, label: 'item-d', divided: true }
 ])
 
-const test = (isOpen) => {
-  console.log('isOpen', isOpen)
+const toolTipVisible = ref(false)
+const iconType = ref('')
+const visibleChange = (visible) => {
+  toolTipVisible.value = visible
+  if(visible) {
+    iconType.value = 'primary'
+  } else {
+    iconType.value = ''
+  }
 }
 </script>
 
 <template>
   <div>
-    <utp-dropdown @visible-change="test" :menu-options="menuOptions">
-      <div class="basic-menu">
+    <utp-dropdown @visible-change="visibleChange" :menu-options="menuOptions">
+      <div class="basic-menu" :class="{ 'basic-menu-active': toolTipVisible }">
         <span class="basic-menu-title">基本菜单</span>
-        <utp-icon icon="fa-caret-down"></utp-icon>
+        <utp-icon :type="iconType" icon="fa-caret-down"></utp-icon>
       </div>
     </utp-dropdown>
   </div>
@@ -30,9 +37,15 @@ const test = (isOpen) => {
 .basic-menu {
   display: flex;
   align-items: center;
+
+  .basic-menu-title {
+    margin-right: 5px;
+  }
 }
 
-.basic-menu-title {
-  margin-right: 5px;
+.basic-menu-active {
+  .basic-menu-title {
+    color: #F15A7C;
+  }
 }
 </style>

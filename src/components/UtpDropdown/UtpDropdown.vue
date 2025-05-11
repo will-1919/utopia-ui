@@ -1,7 +1,7 @@
 <template>
   <div class="utp-dropdown">
     <utp-tooltip :trigger="trigger" :placement="placement" :popper-options="popperOptions" :open-delay="openDelay"
-      :close-delay="closeDelay" @visible-change="visibleChange" ref="tooltipRef">
+      :close-delay="closeDelay" :manual="manual" @visible-change="visibleChange" ref="tooltipRef">
       <slot>
 
       </slot>
@@ -26,7 +26,7 @@ import type { UtpDropdownProps, UtpDropdownEmits, UtpDropdownInstance, MenuOptio
 import type { TooltipInstance } from '../UtpTooltip/types';
 import { ref } from 'vue'
 
-const props = withDefaults(defineProps<UtpDropdownProps>(), { hideAfterClick: true, openDelay: 200, closeDelay: 200 })
+const props = withDefaults(defineProps<UtpDropdownProps>(), { hideAfterClick: true, openDelay: 100, closeDelay: 100 })
 const emits = defineEmits<UtpDropdownEmits>()
 const tooltipRef = ref<TooltipInstance | null>(null)
 const visibleChange = (e: boolean) => {
