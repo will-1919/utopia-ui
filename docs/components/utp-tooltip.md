@@ -44,6 +44,13 @@ description: 用于以各种方式展示提示文本
 | openDelay     | 设置显示延迟时间         | `number`                      | 0      |
 | closeDelay    | 设置隐藏延迟时间         | `number`                      | 0      |
 
+#### 事件
+
+| 事件名称       | 说明                   | 事件类型                     |
+| -------------- | ---------------------- | ---------------------------- |
+| visible-change | 切换显示状态的回调函数 | `(isOpen: boolean) => void`  |
+| click-outside  | 点击其他地方的回调函数 | `(isClick: boolean) => void` |
+
 #### Exposes
 
 | 名称 | 说明             | 类型         |
