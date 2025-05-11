@@ -1,0 +1,17 @@
+<!-- 按钮的基本使用 -->
+<script setup>
+// 导入路径请参考安装部分
+import UtpTooltip from '@/components/UtpTooltip/UtpTooltip.vue'
+import UtpButton from '@/components/UtpButton/UtpButton.vue'
+import { ref } from 'vue'
+
+const options = ref({ placement: 'left-end' })
+</script>
+
+<template>
+  <div>
+    <utp-tooltip placement="top" :popper-options="options" content="options级别更高">
+      <utp-button plain>修改popperjs配置</utp-button>
+    </utp-tooltip>
+  </div>
+</template>

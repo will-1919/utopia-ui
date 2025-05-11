@@ -1,4 +1,4 @@
-<!-- 按钮的基本使用 -->
+<!-- 文本提示基础使用 -->
 <script setup>
 // 导入路径请参考安装部分
 import UtpTooltip from '@/components/UtpTooltip/UtpTooltip.vue'
@@ -30,6 +30,11 @@ import UtpButton from '@/components/UtpButton/UtpButton.vue'
         </utp-tooltip>
         <utp-tooltip class="need-top" content="左侧偏下" placement="left-end">
           <utp-button plain>文本提示左侧偏下</utp-button>
+        </utp-tooltip>
+      </div>
+      <div class="trigger-click-box">
+        <utp-tooltip class="trigger-click" content="点击触发" trigger="click" placement="top">
+          <utp-button plain>点击触发</utp-button>
         </utp-tooltip>
       </div>
       <div class="right-group-box">
@@ -75,6 +80,10 @@ import UtpButton from '@/components/UtpButton/UtpButton.vue'
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+}
+.trigger-click-box {
+  display: flex;
+  align-items: center;
 }
 
 .left-group-box,
