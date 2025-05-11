@@ -9,9 +9,6 @@
     <utp-dropdown @visible-change="(e) => { console.log(e) }" @select="(e) => { console.log(e) }"
       :menu-options="menuOptions" placement="bottom" :trigger="trigger" hideAfterClick>
       <img src="./assets/logo.svg" alt="Vue logo" class="logo" width="125" height="125">
-      <template #content>
-        <h1>测试插槽</h1>
-      </template>
     </utp-dropdown>
   </header>
   <main>

@@ -5,7 +5,7 @@ description: 折叠式列表
 
 # Dropdown 下拉菜单
 
-一个折叠式的列表  
+一个折叠式的列表，基于UtpTooltip组件编写，支持UtpTooltip组件所有属性
 <small style="color: var(--utp-color-primary);text-align:right;display:block;">——该组件泛用性一般，对策性极强 (大杯)</small>
 
 ## 基本使用
