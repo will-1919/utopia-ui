@@ -1,7 +1,7 @@
 <template>
-  <div ref="popperContentNode" v-on="outerEvents" class="utp-tooltip">
+  <div ref="popperContentNode" v-on="events" class="utp-tooltip">
     <!-- 触发部分 -->
-    <div v-on="events" ref="tirggerNode" class="utp-tooltip__tirgger">
+    <div ref="tirggerNode" class="utp-tooltip__tirgger">
       <slot></slot>
     </div>
     <!-- 展示部分 -->
@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<UtpTooltipProps>(), {
 })
 // 当前事件变量
 let events: Record<string, any> = reactive({})
-let outerEvents: Record<string, any> = reactive({})
+// let outerEvents: Record<string, any> = reactive({})
 const emits = defineEmits<UtpTooltipEmits>()
 const isOpen = ref(false)
 const tirggerNode = ref<HTMLElement | null>(null)
@@ -85,7 +85,8 @@ const togglePopper = () => {
 const attachEvents = () => {
   if (props.trigger === 'hover') {
     events['mouseenter'] = open
-    outerEvents['mouseleave'] = close
+    events['mouseleave'] = close
+    // outerEvents['mouseleave'] = close
   } else if (props.trigger === 'click') {
     events['click'] = togglePopper
   }
@@ -108,7 +109,7 @@ watch(() => props.trigger, (newValue, oldValue) => {
   if (newValue != oldValue) {
     // 首先清空事件
     events = {}
-    outerEvents = {}
+    // outerEvents = {}
     // 添加事件
     attachEvents()
   }
@@ -116,7 +117,7 @@ watch(() => props.trigger, (newValue, oldValue) => {
 watch(() => props.manual, (isManual) => {
   if (isManual) {
     events = {}
-    outerEvents = {}
+    // outerEvents = {}
   } else {
     attachEvents()
   }
