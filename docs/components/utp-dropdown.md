@@ -22,7 +22,7 @@ description: 折叠式列表
 
 | 属性          | 说明                 | 类型                         | 默认值 |
 | ------------- | -------------------- | ---------------------------- | ------ |
-| menuOptions   | 设置菜单数组         | `MenuOptions[]`              | hover  |
+| menuOptions   | 设置菜单数组         | `Array<MenuOptions>`              | hover  |
 | trigger       | 设置提示文本触发方式 | `hover` \| `click`           | hover  |
 | placement     | 设置提示文本显示方向 | `Placement: 参考ToolTip组件` | bottom |
 | manual        | 设置手动模式         | `boolean`                    | false  |

@@ -53,8 +53,6 @@
 import type { UtpInputProps, UtpInputEmits } from './types';
 import { computed, inject, nextTick, ref, useAttrs, watch } from 'vue';
 import UtpIcon from '../UtpIcon/UtpIcon.vue';
-import type { Ref } from 'vue';
-import type { FormItemContext } from '../UtpForm/types';
 import { formItemContextKey } from '../UtpForm/types';
 
 defineOptions({
@@ -73,7 +71,8 @@ const innerValue = ref(props.modelValue)
 // 是不是聚焦状态
 const isFocus = ref<boolean>(false)
 // 获取表单上下文
-const formItemContext = inject(formItemContextKey)
+// 注意因为有的时候会单独使用Input组件，所以要给inject接收provide传递数据加默认值null，否则会在控制台有Vue warn警告
+const formItemContext = inject(formItemContextKey, null)
 const runValidation = (trigger?: string) => {
   formItemContext?.validate(trigger).catch((e) => {
     console.log('item error', e.errors)

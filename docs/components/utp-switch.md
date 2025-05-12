@@ -23,7 +23,7 @@ description: 用于两种状态之间切换
 通过disabled属性对开关实现禁用
 <preview path="../demo/UtpSwitch/Disabled.vue" title="禁用" description=""></preview>
 
-## Tooltip API
+## Switch API
 
 #### 属性
 
