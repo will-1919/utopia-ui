@@ -26,7 +26,6 @@ import { computed, onMounted, ref, watch } from 'vue';
 import type { UtpSwitchProps, UtpSwitchEmits } from './types';
 defineOptions({
   name: 'UtpSwitch',
-  inheritAttrs: false
 })
 const props = withDefaults(defineProps<UtpSwitchProps>(), {
   activeValue: true,
