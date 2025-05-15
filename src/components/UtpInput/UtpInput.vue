@@ -1,5 +1,6 @@
 <template>
   <div class="utp-input" :class="{
+    [`${attrsOfClass}`]: attrsOfClass,
     [`utp-input--${type}`]: type,
     [`utp-input--${size}`]: size,
     'is-disabled': disabled,
@@ -29,7 +30,8 @@
         <!-- suffix插槽 -->
         <span v-if="$slots.suffix || showClear || showPasswordArea" class="utp-input__suffix" @click="keepFocus">
           <slot name="suffix"></slot>
-          <utp-icon @click="clear" @mousedown.prevent="() => {}" icon="circle-xmark" v-if="showClear" class="utp-input__clear"></utp-icon>
+          <utp-icon @click="clear" @mousedown.prevent="() => { }" icon="circle-xmark" v-if="showClear"
+            class="utp-input__clear"></utp-icon>
           <utp-icon @click="togglePasswordVisible" icon="eye" v-if="showPasswordArea && passwordVisible"
             class="utp-input__password"></utp-icon>
           <utp-icon @click="togglePasswordVisible" icon="eye-slash" v-if="showPasswordArea && !passwordVisible"
@@ -64,7 +66,15 @@ const props = withDefaults(defineProps<UtpInputProps>(), {
   type: 'text',
   autocomplete: 'off'
 })
-const attrs = useAttrs()
+const attrsAll = useAttrs()
+
+const attrs = computed(() => {
+  const { class: _class, ...rest } = useAttrs()
+  return rest
+})
+const attrsOfClass = computed(() => {
+  return attrsAll.class
+})
 const emits = defineEmits<UtpInputEmits>()
 // input双向绑定值
 const innerValue = ref(props.modelValue)

@@ -59,6 +59,6 @@ description: 用于触发即时操作
 
 #### Exposes
 
-| 事件名称 | 说明           | 类型                                                                                            |
+| 名称 | 说明           | 类型                                                                                            |
 | -------- | -------------- | ----------------------------------------------------------------------------------------------- |
 | ref      | 按钮 html 元素 | [object：HTMLButtonElement](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLButtonElement) |
