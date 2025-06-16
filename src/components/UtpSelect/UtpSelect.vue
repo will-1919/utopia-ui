@@ -85,6 +85,11 @@ const states = reactive<SelectStates>({
   loading: false,
   highlightIndex: -1
 })
+watch(() => props.modelValue, (newValue) => {
+  const newOption = findOption(newValue)
+  states.inputValue = newOption ? newOption.label : ''
+  states.selectOption = newOption
+})
 // tooltip实例
 const tooltipRef = ref() as Ref<TooltipInstance>
 const inputRef = ref() as Ref<InputInstance>
