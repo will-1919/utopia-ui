@@ -1,7 +1,6 @@
 <template>
   <form class="utp-form">
     <slot></slot>
-    <button @click.prevent="validate">测试</button>
   </form>
 </template>
 <script setup lang="ts">

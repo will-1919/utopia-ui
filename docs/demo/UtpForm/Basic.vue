@@ -7,7 +7,7 @@ import { ref, reactive } from 'vue'
 
 const formRef = ref()
 const model = reactive({
-  email: '1111@qq.com',
+  email: '1234567@gmail.com',
   password: '',
   comfirmPwd: ''
 })
@@ -34,31 +34,32 @@ const submit = async () => {
 const reset = () => {
   formRef.value.resetFields()
 }
+const clearValidta = () => {
+  formRef.value.clearValidta()
+}
 </script>
 
 <template>
   <div>
     <utp-form ref="formRef" :model="model" :rules="rules">
-      <utp-form-item label="the email" prop="email">
+      <utp-form-item label="Email" prop="email">
         <utp-input v-model="model.email"></utp-input>
       </utp-form-item>
-      <utp-form-item label="the password" prop="password">
+      <utp-form-item label="Password" prop="password">
         <template #label="{ label }">
           {{ label }}
         </template>
-        <utp-input v-model="model.password"></utp-input>
+        <utp-input v-model="model.password" type="password" showPassword></utp-input>
       </utp-form-item>
-      <utp-form-item label="the password" prop="comfirmPwd">
-        <utp-input v-model="model.comfirmPwd"></utp-input>
+      <utp-form-item label="Repeat password" prop="comfirmPwd">
+        <utp-input v-model="model.comfirmPwd" type="password" showPassword></utp-input>
       </utp-form-item>
+      <br>
       <div>
-        <utp-button type="primary" @click="submit">Submit</utp-button>
-        <utp-button @click="reset">Reset</utp-button>
+        <utp-button type="primary" @click="submit">提交</utp-button>
+        <utp-button type="text" @click="reset">初始化表单</utp-button>
+        <utp-button type="text" @click="clearValidta">清除验证</utp-button>
       </div>
     </utp-form>
-    <p>
-      form value
-    <pre>{{ model }}</pre>
-    </p>
   </div>
 </template>
