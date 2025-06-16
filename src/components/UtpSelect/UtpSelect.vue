@@ -42,7 +42,8 @@
 import UtpIcon from '../UtpIcon/UtpIcon.vue';
 import RenderVnode from '../Common/RenderVnode';
 import { isFunction, debounce } from 'lodash-es';
-import { computed, reactive, ref, watch } from 'vue';
+import { computed, reactive, ref, watch, inject } from 'vue';
+import { formItemContextKey } from '../UtpForm/types';
 import UtpInput from '../UtpInput/UtpInput.vue';
 import UtpTooltip from '../UtpTooltip/UtpTooltip.vue';
 import type { Ref } from 'vue';
@@ -57,6 +58,14 @@ const props = withDefaults(defineProps<UtpSelectProps>(), {
   options: () => [] // 设置数组默认方式
 })
 const emits = defineEmits<UtpSelectEmits>()
+// 注意因为有的时候会单独使用Input组件，所以要给inject接收provide传递数据加默认值null，否则会在控制台有Vue warn警告
+const formItemContext = inject(formItemContextKey, null)
+// 执行表单验证
+const runValidation = (trigger?: string) => {
+  formItemContext?.validate(trigger).catch((e) => {
+    console.log('item error', e.errors)
+  })
+}
 const timeout = computed(() => {
   return props.remote ? 300 : 0
 })
@@ -181,6 +190,8 @@ const controlDropdown = (show: boolean) => {
       states.inputValue = states.selectOption ? states.selectOption.label : ''
     }
     states.highlightIndex = -1
+    // 执行表单验证
+    runValidation('blur')
   }
   isDropdownShow.value = show
   emits('visible-change', show)

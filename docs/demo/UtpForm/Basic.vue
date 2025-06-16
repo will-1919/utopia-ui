@@ -2,15 +2,27 @@
 import UtpForm from '@/components/UtpForm/UtpForm.vue'
 import UtpButton from '@/components/UtpButton/UtpButton.vue'
 import UtpInput from '@/components/UtpInput/UtpInput.vue'
+import UtpSelect from '@/components/UtpSelect/UtpSelect.vue';
 import UtpFormItem from '@/components/UtpForm/UtpFormItem.vue'
 import { ref, reactive } from 'vue'
 
+// 表单ref
 const formRef = ref()
+// 身份选择器菜单
+const identityMenu = ref([
+  { label: '阿米娅', value: 'Amiya' },
+  { label: '博士', value: 'doctor' },
+  { label: '凯尔希', value: 'Kaltsit' },
+  { label: '特蕾西娅', value: 'CivilightEterna' },
+])
+// 当前表单值
 const model = reactive({
   email: '1234567@gmail.com',
   password: '',
-  comfirmPwd: ''
+  comfirmPwd: '',
+  identity: ''
 })
+// 验证规则
 const rules = {
   email: [{ type: 'email', required: true, trigger: 'blur' }, { type: 'string', required: true, trigger: 'input' }],
   password: [{ type: 'string', required: true, trigger: 'blur', min: 8, max: 16 }],
@@ -22,20 +34,25 @@ const rules = {
     message: '密码不一致'
   }]
 }
+// 提交函数
 const submit = async () => {
   let res = await formRef.value.validate()
     .catch((e) => {
       console.log('the error', e)
     })
-  if(res) {
+  if (res) {
     console.log('passed!')
   }
 }
+// 重置表单函数
 const reset = () => {
   formRef.value.resetFields()
+  console.log('当前表单值', model)
 }
+// 清空验证函数
 const clearValidta = () => {
   formRef.value.clearValidta()
+  console.log('当前表单值', model)
 }
 </script>
 
@@ -53,6 +70,9 @@ const clearValidta = () => {
       </utp-form-item>
       <utp-form-item label="Repeat password" prop="comfirmPwd">
         <utp-input v-model="model.comfirmPwd" type="password" showPassword></utp-input>
+      </utp-form-item>
+      <utp-form-item label="Identity" prop="identity">
+        <utp-select v-model="model.identity" :options="identityMenu"></utp-select>
       </utp-form-item>
       <br>
       <div>
