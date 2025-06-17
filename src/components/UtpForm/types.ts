@@ -1,18 +1,24 @@
 import type { InjectionKey } from 'vue'
 import type { RuleItem, ValidateError, ValidateFieldsError } from 'async-validator'
 
+// FormItem属性
 interface UtpFormItemProps {
   label: string
   prop?: string
 }
+
+// FormItemRule 扩展后的验证规则
 interface FormItemRule extends RuleItem {
   trigger?: string
 }
+// Form验证规则
 type FormRules = Record<string, FormItemRule[]>
+// UtpForm属性
 interface UtpFormProps {
   model: Record<string, any>
-  rules: FormRules
+  rules?: FormRules
 }
+// 验证状态
 interface ValidateStatusProp {
   state: 'init' | 'success' | 'error'
   errorMsg: string

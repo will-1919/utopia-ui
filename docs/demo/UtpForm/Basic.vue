@@ -3,6 +3,7 @@ import UtpForm from '@/components/UtpForm/UtpForm.vue'
 import UtpButton from '@/components/UtpButton/UtpButton.vue'
 import UtpInput from '@/components/UtpInput/UtpInput.vue'
 import UtpSelect from '@/components/UtpSelect/UtpSelect.vue';
+import UtpSwitch from '@/components/UtpSwitch/UtpSwitch.vue';
 import UtpFormItem from '@/components/UtpForm/UtpFormItem.vue'
 import { ref, reactive } from 'vue'
 
@@ -20,7 +21,8 @@ const model = reactive({
   email: '1234567@gmail.com',
   password: '',
   comfirmPwd: '',
-  identity: ''
+  identity: '',
+  protocol: false
 })
 // 验证规则
 const rules = {
@@ -32,7 +34,9 @@ const rules = {
     },
     trigger: 'blur',
     message: '密码不一致'
-  }]
+  }],
+  identity: [{ type: 'string', required: true, trigger: 'blur' }],
+  protocol: [{ type: 'enum', required: true, enum: [true], message: '请同意协议'}]
 }
 // 提交函数
 const submit = async () => {
@@ -73,6 +77,9 @@ const clearValidta = () => {
       </utp-form-item>
       <utp-form-item label="Identity" prop="identity">
         <utp-select v-model="model.identity" :options="identityMenu"></utp-select>
+      </utp-form-item>
+      <utp-form-item label="Protocol" prop="protocol">
+        <utp-switch v-model="model.protocol"></utp-switch>
       </utp-form-item>
       <br>
       <div>
