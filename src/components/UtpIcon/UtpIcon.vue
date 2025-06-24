@@ -10,7 +10,7 @@ import { omit } from 'lodash-es'
 import { computed } from 'vue';
 
 defineOptions({
-  name: 'utp-icon',
+  name: 'UtpIcon',
   inheritAttrs: false,  // 停止props属性透传到跟组件
 })
 const props = defineProps<UtpIconProps>()

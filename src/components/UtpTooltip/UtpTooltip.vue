@@ -23,6 +23,9 @@ import type { Instance } from '@popperjs/core';
 import useClickOutside from '@/hooks/useClickOutside';
 import { debounce } from 'lodash-es';
 
+defineOptions({
+  name: 'UtpTooltip'
+})
 const props = withDefaults(defineProps<UtpTooltipProps>(), {
   placement: 'bottom',
   trigger: 'hover',

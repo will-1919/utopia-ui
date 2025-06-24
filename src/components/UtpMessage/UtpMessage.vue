@@ -23,6 +23,9 @@ import { computed, onMounted, ref, watch, nextTick } from 'vue';
 import { getLastBottomOffset } from './method'
 import useEventListener from '@/hooks/useEventListener';
 
+defineOptions({
+  name: 'UtpMessage'
+})
 const props = withDefaults(defineProps<UtpMessageProps>(), {
   type: 'primary',
   duration: 3000,

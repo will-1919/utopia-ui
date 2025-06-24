@@ -26,7 +26,7 @@ import { inject, computed } from 'vue'
 import UtpIcon from '../UtpIcon/UtpIcon.vue'
 
 defineOptions({
-  name: 'utp-collapse-item'
+  name: 'UtpCollapseItem'
 })
 // 组件属性
 const props = defineProps<CollapseItemProps>()

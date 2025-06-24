@@ -9,6 +9,9 @@ import { ref, provide, watch } from 'vue'
 import type { NameType, CollapseProps, CollapseEmits } from './types'
 import { collapseContextKey } from './types'
 
+defineOptions({
+  name: 'UtpCollapse'
+})
 // 动态v-module
 const props = defineProps<CollapseProps>()
 const emits = defineEmits<CollapseEmits>()

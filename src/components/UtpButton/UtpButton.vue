@@ -22,7 +22,7 @@ import UtpIcon from '../UtpIcon/UtpIcon.vue'
 import type { ButtonProps } from './types'
 
 defineOptions({
-  name: 'utp-button',
+  name: 'UtpButton',
 })
 
 withDefaults(defineProps<ButtonProps>(), {

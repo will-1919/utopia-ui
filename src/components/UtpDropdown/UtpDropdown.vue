@@ -26,6 +26,9 @@ import type { UtpDropdownProps, UtpDropdownEmits, UtpDropdownInstance, MenuOptio
 import type { TooltipInstance } from '../UtpTooltip/types';
 import { ref } from 'vue'
 
+defineOptions({
+  name: 'UtpDropdown'
+})
 const props = withDefaults(defineProps<UtpDropdownProps>(), { hideAfterClick: true, openDelay: 100, closeDelay: 100 })
 const emits = defineEmits<UtpDropdownEmits>()
 const tooltipRef = ref<TooltipInstance | null>(null)
