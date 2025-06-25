@@ -6,13 +6,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/umd/utp-element.umd.cjs",
-  "module": "./dist/es/utp-element.js",
+  "main": "./dist/umd/utopia-ui.umd.cjs",
+  "module": "./dist/es/utopia-ui.js",
   "types": "./dist/types/src/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/es/utp-element.js",
-      "require": "./dist/umd/utp-element.umd.cjs",
+      "import": "./dist/es/utopia-ui.js",
+      "require": "./dist/umd/utopia-ui.umd.cjs",
       "types": "./dist/types/src/index.d.ts"
     }
   },

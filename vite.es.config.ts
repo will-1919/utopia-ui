@@ -27,8 +27,8 @@ export default defineConfig({
     outDir: 'dist/es',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'), // 构建库的入口文件
-      name: 'UtpElement', // 指定库的全局变量名（当构建格式为 UMD 或 IIFE 时会用到），挂载在 window上，console.log(window.UtpElement)
-      fileName: 'utp-element', // 指定输出的文件名
+      name: 'UtopiaUi', // 指定库的全局变量名（当构建格式为 UMD 或 IIFE 时会用到），挂载在 window上，console.log(window.UtpElement)
+      fileName: 'utopia-ui', // 指定输出的文件名
       formats: ['es'],
     },
     rollupOptions: {

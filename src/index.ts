@@ -1,4 +1,4 @@
-import type { App } from 'vue'
+import type { App, Plugin } from 'vue'
 import UtpButton from '@/components/UtpButton'
 import UtpCollapse, { UtpCollapseItem } from '@/components/UtpCollapse'
 import UtpDropdown from '@/components/UtpDropdown'
