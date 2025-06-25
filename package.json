@@ -12,7 +12,8 @@
   "exports": {
     ".": {
       "import": "./dist/es/utp-element.js",
-      "require": "./dist/umd/utp-element.umd.cjs"
+      "require": "./dist/umd/utp-element.umd.cjs",
+      "types": "./dist/types/src/index.d.ts"
     }
   },
   "scripts": {
