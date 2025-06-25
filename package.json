@@ -6,19 +6,22 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/utp-element.umd.cjs",
-  "module": "./dist/utp-element.js",
+  "main": "./dist/umd/utp-element.umd.cjs",
+  "module": "./dist/es/utp-element.js",
+  "types": "./dist/types/src/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/utp-element.js",
-      "require": "./dist/utp-element.umd.cjs"
+      "import": "./dist/es/utp-element.js",
+      "require": "./dist/umd/utp-element.umd.cjs"
     }
   },
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "run-p build-umd build-es",
     "preview": "vite preview",
     "build-only": "vite build",
+    "build-umd": "vite build --config vite.umd.config.ts",
+    "build-es": "vite build --config vite.es.config.ts",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
