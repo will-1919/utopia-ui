@@ -6,6 +6,7 @@
   "files": [
     "dist"
   ],
+  "sideEffects": ["dist/es/style.css", "dist/umd/style.css"],
   "main": "./dist/umd/utopia-ui.umd.cjs",
   "module": "./dist/es/utopia-ui.js",
   "types": "./dist/types/src/index.d.ts",
@@ -14,6 +15,10 @@
       "import": "./dist/es/utopia-ui.js",
       "require": "./dist/umd/utopia-ui.umd.cjs",
       "types": "./dist/types/src/index.d.ts"
+    },
+    "./dist/": {
+      "import": "./dist/",
+      "require": "./dist/"
     }
   },
   "scripts": {
@@ -30,6 +35,9 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
+  "peerDependencies": {
+    "vue": "^3.5.12"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
@@ -38,10 +46,10 @@
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@popperjs/core": "^2.11.8",
     "async-validator": "^4.2.5",
-    "lodash-es": "^4.17.21",
-    "vue": "^3.5.12"
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
+    "vue": "^3.5.12",
     "@tsconfig/node22": "^22.0.0",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.9.0",
