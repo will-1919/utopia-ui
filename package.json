@@ -1,5 +1,5 @@
 {
-  "name": "utopia-ui",
+  "name": "@will47/utopia-ui",
   "version": "1.0.0",
   "description": "My First Vue3 UI Kit™",
   "author": "will47",
@@ -44,7 +44,8 @@
     "format": "prettier --write src/",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "vue": "^3.5.12"
