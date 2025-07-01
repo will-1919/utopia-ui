@@ -1,7 +1,7 @@
 <!-- 按钮的不同形状 -->
 <script setup>
 // 导入路径请参考安装部分
-import UtpButton from '@/components/UtpButton/UtpButton.vue'
+import { UtpButton } from '@will47/utopia-ui'
 </script>
 
 <template>

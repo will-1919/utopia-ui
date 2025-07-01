@@ -1,8 +1,7 @@
-<!-- 按钮的基本使用 -->
+<!-- 抽屉禁用 -->
 <script setup>
 // 导入路径请参考安装部分
-import UtpCollapse from '@/components/UtpCollapse/UtpCollapse.vue'
-import UtpCollapseItem from '@/components/UtpCollapse/UtpCollapseItem.vue'
+import { UtpCollapse, UtpCollapseItem } from '@will47/utopia-ui';
 import { ref } from 'vue';
 
 // 当前已经拉开的抽屉

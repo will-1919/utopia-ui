@@ -1,8 +1,7 @@
-<!-- 按钮的基本使用 -->
+<!-- 不同类型的消息弹窗 -->
 <script setup>
 // 导入路径请参考安装部分
-import { createMessage } from '@/components/UtpMessage/method.ts'
-import UtpButton from '@/components/UtpButton/UtpButton.vue'
+import { UtpButton, createMessage } from '@will47/utopia-ui'
 
 const createPrimaryMessage = () => {
   createMessage({message: '这是一条主要消息', type: 'primary'})

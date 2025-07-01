@@ -1,7 +1,7 @@
-<!-- 按钮的基本使用 -->
+<!-- 图标基本使用 -->
 <script setup>
 // 导入路径请参考安装部分
-import UtpIcon from '@/components/UtpIcon/UtpIcon.vue'
+import { UtpIcon } from '@will47/utopia-ui'
 </script>
 
 <template>
@@ -68,10 +68,10 @@ import UtpIcon from '@/components/UtpIcon/UtpIcon.vue'
 </template>
 
 <style scoped>
-  .group-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+.group-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
 </style>

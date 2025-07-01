@@ -37,7 +37,7 @@ description: 全局展示操作反馈信息
 | createMessage       | 创建Message实例                      | `(Message可接收参数) => Message实例` |
 | getLastInstance     | 获取最后一个消息组件对应的实例       | `() => Message实例\|undefined`       |
 | getLastBottomOffset | 获取传入组件的上一个组件底部位置信息 | `(id: string) => number`             |
-| closeAll            | 销毁所有的消息                       | `() => void`                         |
+| closeMessageAll     | 销毁所有的消息                       | `() => void`                         |
 
 #### Message可接收参数
 

@@ -1,15 +1,14 @@
-<!-- 按钮的基本使用 -->
+<!-- 消息弹窗的基本使用 -->
 <script setup>
 // 导入路径请参考安装部分
-import { createMessage } from '@/components/UtpMessage/method.ts'
-import UtpButton from '@/components/UtpButton/UtpButton.vue'
+import { UtpButton, createMessage } from '@will47/utopia-ui'
 import { h } from 'vue'
 
 const createTextMessage = () => {
-  createMessage({message: '这是一条文本消息'})
+  createMessage({ message: '这是一条文本消息' })
 }
 const createVnodeMessage = () => {
-  createMessage({message: h('i', {style: {'font-weight': 'bold'}}, '这是一个斜体加粗的Vnode消息')})
+  createMessage({ message: h('i', { style: { 'font-weight': 'bold' } }, '这是一个斜体加粗的Vnode消息') })
 }
 </script>
 
