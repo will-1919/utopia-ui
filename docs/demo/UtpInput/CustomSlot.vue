@@ -1,17 +1,10 @@
+<!-- 组合式输入框 -->
 <script setup>
 import { ref } from 'vue';
 // 导入路径请参考安装部分
-import UtpInput from '@/components/UtpInput/UtpInput.vue'
-import UtpIcon from '@/components/UtpIcon/UtpIcon.vue'
-import UtpSelect from '@/components/UtpSelect/UtpSelect.vue';
+import { UtpInput, UtpIcon } from '@will47/utopia-ui';
 
 const inputValue = ref('')
-const selecthValue = ref('')
-const selectOption = ref([
-  { label: '弑君者', value: 'operator-1' },
-  { label: '维什戴尔', value: 'operator-2' },
-  { label: '伺夜', value: 'operator-3' }
-])
 </script>
 
 <template>

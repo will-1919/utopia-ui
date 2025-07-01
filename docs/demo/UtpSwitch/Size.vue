@@ -1,7 +1,7 @@
-<!-- 开关基础使用 -->
+<!-- 开关不同大小 -->
 <script setup>
 // 导入路径请参考安装部分
-import UtpSwitch from '@/components/UtpSwitch/UtpSwitch.vue';
+import { UtpSwitch } from '@will47/utopia-ui';
 import { ref } from 'vue';
 
 const smallValue = ref(false)

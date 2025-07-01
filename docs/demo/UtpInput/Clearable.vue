@@ -1,7 +1,8 @@
+<!-- 输入框一键清除 -->
 <script setup>
 import { ref } from 'vue';
 // 导入路径请参考安装部分
-import UtpInput from '@/components/UtpInput/UtpInput.vue'
+import { UtpInput } from '@will47/utopia-ui';
 
 const inputValue = ref('')
 </script>

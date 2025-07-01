@@ -1,8 +1,8 @@
-<!-- 选择器快捷搜索 -->
+<!-- 选择器远程搜索 -->
 <script setup>
 import { ref } from 'vue'
 // 路径导入参考安装部分
-import UtpSelect from '@/components/UtpSelect/UtpSelect.vue'
+import { UtpSelect } from '@will47/utopia-ui'
 const selecthValue = ref('')
 const operatorArr = ref([
   '信仰搅拌机',

@@ -1,10 +1,6 @@
+<!-- 表单基本使用 -->
 <script setup>
-import UtpForm from '@/components/UtpForm/UtpForm.vue'
-import UtpButton from '@/components/UtpButton/UtpButton.vue'
-import UtpInput from '@/components/UtpInput/UtpInput.vue'
-import UtpSelect from '@/components/UtpSelect/UtpSelect.vue';
-import UtpSwitch from '@/components/UtpSwitch/UtpSwitch.vue';
-import UtpFormItem from '@/components/UtpForm/UtpFormItem.vue'
+import { UtpForm, UtpButton, UtpInput, UtpSelect, UtpSwitch, UtpFormItem } from '@will47/utopia-ui';
 import { ref, reactive } from 'vue'
 
 // 表单ref

@@ -8,6 +8,6 @@
 body {
     color: var(--vp-c-text-1);
   }
-  h1, h2, h3, h4, h5, h6, p {
+  h1, h2, h3, h4, h5, h6, p, td {
     color: var(--vp-c-text-1);
   }
