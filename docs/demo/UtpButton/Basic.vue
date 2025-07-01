@@ -1,12 +1,12 @@
 <!-- 按钮的基本使用 -->
 <script setup>
 // 导入路径请参考安装部分
-import UtpButton from '@/components/UtpButton/UtpButton.vue'
+import { UtpButton } from '@will47/utopia-ui'
 </script>
 
 <template>
   <!-- 默认 -->
-   <p>默认风格：</p>
+  <p>默认风格：</p>
   <utp-button>primary</utp-button>
   <!-- 传入不同的type -->
   <utp-button type="success">success</utp-button>

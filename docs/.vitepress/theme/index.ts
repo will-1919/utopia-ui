@@ -16,6 +16,9 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 library.add(fas, fab, far) // 添加图标到项目
 
+// 配置utopia-ui
+import '@will47/utopia-ui/dist/es/style.css'
+
 export default {
   ...DefaultTheme,
   enhanceApp({ app }: { app: App }) {
