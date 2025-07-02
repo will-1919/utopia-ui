@@ -7,7 +7,7 @@ export default defineConfig({
   title: 'Utopia Ui',
   description: 'How to use Utopia Ui',
   // srcDir: 'components', // 配置存放markdown文件并生成对应路由的文件夹
-  base: '/repo/',
+  base: './',
   themeConfig: {
     // 导航标题位置
     siteTitle: false,
