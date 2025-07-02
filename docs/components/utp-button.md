@@ -17,22 +17,22 @@ description: 用于触发即时操作
 ## 不同形状
 
 除了默认的举行按钮之外，也支持椭圆形按钮和圆形按钮
-<preview path="../demo/UtpButton/Shape.vue" title="不同形状" description=""></preview>
+<preview path="../demo/UtpButton/shape.vue" title="不同形状" description=""></preview>
 
 ## 不同大小
 
 有三种大小，默认为中号
-<preview path="../demo/UtpButton/Size.vue" title="不同大小" description=""></preview>
+<preview path="../demo/UtpButton/size.vue" title="不同大小" description=""></preview>
 
 ## 是否禁用
 
 可以使用disabled来控制按钮是否禁用
-<preview path="../demo/UtpButton/Disabled.vue" title="禁用" description=""></preview>
+<preview path="../demo/UtpButton/disabled.vue" title="禁用" description=""></preview>
 
 ## 图标与加载
 
 按钮支持fontawesome风格图标，并且支持加载状态，加载状态按钮为disabled
-<preview path="../demo/UtpButton/Icon.vue" title="图标与加载" description=""></preview>
+<preview path="../demo/UtpButton/icon.vue" title="图标与加载" description=""></preview>
 
 ## Button API
 
