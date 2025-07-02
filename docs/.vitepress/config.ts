@@ -50,9 +50,6 @@ export default defineConfig({
     socialLinks: [{ icon: 'github', link: 'https://github.com/Will1148683448/utopia-ui' }],
   },
   vite: {
-    ssr: {
-      noExternal: ['@will47/utopia-ui']
-    },
     resolve:{
       alias: {
         '@': fileURLToPath(new URL('../../src', import.meta.url))
