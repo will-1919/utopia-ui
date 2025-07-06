@@ -1,6 +1,6 @@
 {
   "name": "@will47/utopia-ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "My First Vue3 UI Kit™",
   "author": "will47",
   "license": "MIT",
@@ -8,7 +8,7 @@
     "Vue3",
     "UI"
   ],
-  "homepage": "https://github.com/Will1148683448/utopia-ui",
+  "homepage": "https://will1148683448.github.io/utopia-ui/",
   "repository": {
     "type": "git",
     "url": "https://github.com/Will1148683448/utopia-ui"
