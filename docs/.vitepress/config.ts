@@ -46,7 +46,7 @@ export default defineConfig({
       },
     ],
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/Will1148683448/utopia-ui' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/will-1919/utopia-ui' }],
   },
   vite: {
     resolve:{
