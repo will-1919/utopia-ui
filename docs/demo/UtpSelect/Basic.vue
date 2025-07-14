@@ -1,7 +1,7 @@
 <!-- 选择器基础使用 -->
 <script setup>
 // 导入路径请参考安装部分
-import { UtpSelect } from '@will47/utopia-ui'
+import { UtpSelect } from '@will1919/utopia-ui'
 import { ref } from 'vue';
 
 const selecthValue = ref('')

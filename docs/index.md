@@ -29,5 +29,5 @@ features:
       dark: '/xi-dark.png'
       light: '/xi-light.png'
     title: 个人邮箱
-    details: 有任何修改意见以及其他问题均可联系（will1148683448@gmail.com）
+    details: 有任何修改意见以及其他问题均可联系（willliu1919@gmail.com）
 ---

@@ -2,7 +2,7 @@
 <script setup>
 import { ref } from 'vue'
 // 路径导入参考安装部分
-import { UtpSelect } from '@will47/utopia-ui'
+import { UtpSelect } from '@will1919/utopia-ui'
 const selecthValue = ref('')
 const operatorArr = ref([
   '信仰搅拌机',

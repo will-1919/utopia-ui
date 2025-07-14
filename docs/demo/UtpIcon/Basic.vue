@@ -1,7 +1,7 @@
 <!-- 图标基本使用 -->
 <script setup>
 // 导入路径请参考安装部分
-import { UtpIcon } from '@will47/utopia-ui'
+import { UtpIcon } from '@will1919/utopia-ui'
 </script>
 
 <template>

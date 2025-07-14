@@ -1,7 +1,7 @@
 <!-- 抽屉菜单互锁模式 -->
 <script setup>
 // 导入路径请参考安装部分
-import { UtpCollapse, UtpCollapseItem } from '@will47/utopia-ui';
+import { UtpCollapse, UtpCollapseItem } from '@will1919/utopia-ui';
 import { ref } from 'vue';
 
 // 当前已经拉开的抽屉

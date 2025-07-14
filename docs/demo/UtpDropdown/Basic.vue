@@ -1,6 +1,6 @@
 <!-- 下拉菜单基本使用 -->
 <script setup>
-import { UtpDropdown, UtpIcon } from '@will47/utopia-ui';
+import { UtpDropdown, UtpIcon } from '@will1919/utopia-ui';
 import { ref, h } from 'vue';
 
 const menuOptions = ref([

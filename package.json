@@ -1,17 +1,17 @@
 {
-  "name": "@will47/utopia-ui",
-  "version": "1.0.2",
+  "name": "@will1919/utopia-ui",
+  "version": "1.0.0",
   "description": "My First Vue3 UI Kit™",
-  "author": "will47",
+  "author": "will1919",
   "license": "MIT",
   "keywords": [
     "Vue3",
     "UI"
   ],
-  "homepage": "https://github.com/Will1148683448/utopia-ui",
+  "homepage": "https://will-1919.github.io/utopia-ui/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Will1148683448/utopia-ui"
+    "url": "https://github.com/will-1919/utopia-ui"
   },
   "type": "module",
   "files": [
@@ -51,16 +51,16 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "vue": "^3.5.12",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@popperjs/core": "^2.11.8",
-    "@will47/utopia-ui": "^1.0.2",
+    "@will1919/utopia-ui": "^1.0.0",
     "async-validator": "^4.2.5",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "vue": "^3.5.12"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",

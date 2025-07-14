@@ -1,7 +1,7 @@
 <!-- 开关基础使用 -->
 <script setup>
 // 导入路径请参考安装部分
-import { UtpSwitch } from '@will47/utopia-ui';
+import { UtpSwitch } from '@will1919/utopia-ui';
 import { ref } from 'vue';
 
 const switchValue = ref('y')

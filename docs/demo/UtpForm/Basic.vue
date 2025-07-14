@@ -1,6 +1,6 @@
 <!-- 表单基本使用 -->
 <script setup>
-import { UtpForm, UtpButton, UtpInput, UtpSelect, UtpSwitch, UtpFormItem } from '@will47/utopia-ui';
+import { UtpForm, UtpButton, UtpInput, UtpSelect, UtpSwitch, UtpFormItem } from '@will1919/utopia-ui';
 import { ref, reactive } from 'vue'
 
 // 表单ref

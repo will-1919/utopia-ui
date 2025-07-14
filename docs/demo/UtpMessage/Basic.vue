@@ -1,7 +1,7 @@
 <!-- 消息弹窗的基本使用 -->
 <script setup>
 // 导入路径请参考安装部分
-import { UtpButton, createMessage } from '@will47/utopia-ui'
+import { UtpButton, createMessage } from '@will1919/utopia-ui'
 import { h } from 'vue'
 
 const createTextMessage = () => {

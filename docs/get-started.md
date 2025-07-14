@@ -7,7 +7,7 @@
 使用npm安装
 
 ```
-npm i @will47/utopia-ui --save
+npm i @will1919/utopia-ui --save
 ```
 
 ## 全局注册
@@ -17,8 +17,8 @@ npm i @will47/utopia-ui --save
 请在main.ts中添加
 
 ```ts
-import UtopiaUi from '@will47/utopia-ui' // 导入UtopiaUi
-import '@will47/utopia-ui/dist/es/style.css' // 引入样式文件
+import UtopiaUi from '@will1919/utopia-ui' // 导入UtopiaUi
+import '@will1919/utopia-ui/dist/es/style.css' // 引入样式文件
 
 createApp(App).use(UtopiaUi).mount('#app') // 全局注册组件
 ```
@@ -38,14 +38,14 @@ createApp(App).use(UtopiaUi).mount('#app') // 全局注册组件
 请在main.ts中引入样式文件
 
 ```ts
-import '@will47/utopia-ui/dist/es/style.css' // 引入样式文件
+import '@will1919/utopia-ui/dist/es/style.css' // 引入样式文件
 ```
 
 然后在需要使用的组件中导入组件使用即可。
 
 ```vue
 <script setup>
-import { UtpButton } from '@will47/utopia-ui'
+import { UtpButton } from '@will1919/utopia-ui'
 </script>
 
 <template>

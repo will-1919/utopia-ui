@@ -1,7 +1,7 @@
 <!-- 文本提示配置 -->
 <script setup>
 // 导入路径请参考安装部分
-import { UtpTooltip, UtpButton } from '@will47/utopia-ui';
+import { UtpTooltip, UtpButton } from '@will1919/utopia-ui';
 import { ref } from 'vue'
 
 const options = ref({ placement: 'left-end' })

@@ -1,7 +1,7 @@
 <!-- 不同类型的消息弹窗 -->
 <script setup>
 // 导入路径请参考安装部分
-import { UtpButton, createMessage } from '@will47/utopia-ui'
+import { UtpButton, createMessage } from '@will1919/utopia-ui'
 
 const createPrimaryMessage = () => {
   createMessage({message: '这是一条主要消息', type: 'primary'})

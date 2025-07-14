@@ -2,7 +2,7 @@
 <script setup>
 import { ref } from 'vue';
 // 导入路径请参考安装部分
-import { UtpInput } from '@will47/utopia-ui';
+import { UtpInput } from '@will1919/utopia-ui';
 
 const inputValue = ref('')
 const smallValue = ref('')

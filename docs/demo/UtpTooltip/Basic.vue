@@ -1,7 +1,7 @@
 <!-- 文本提示基础使用 -->
 <script setup>
 // 导入路径请参考安装部分
-import { UtpTooltip, UtpButton } from '@will47/utopia-ui';
+import { UtpTooltip, UtpButton } from '@will1919/utopia-ui';
 
 </script>
 
